@@ -1,0 +1,176 @@
+% Copyleft 2010 by Walter Vargas <walter@covetel.com.ve>
+
+\documentclass{beamer}
+\usepackage{listings}
+\lstset{language=HTML,CSS,XHTML,XML}
+
+% Configuración de la apariencia. 
+
+\usetheme{Szeged}
+\usecolortheme{beaver}
+\usefonttheme[onlylarge]{structurebold}
+\setbeamerfont*{frametitle}{size=\normalsize,series=\bfseries}
+
+% Paquetes
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+
+% Titulo
+\title[WebDesign] {Diseño Web | Tecnologías Involucradas}
+\author[Walter Vargas]{ info@covetel.com.ve \inst{1}}
+\institute[covetel.com.ve]{ \inst{1} Cooperativa Venezolana de Tecnologías Libres R.S. }
+\date
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\section{El Entorno Web}
+\begin{frame}{Estándares Web} % (fold)
+
+\begin{center}
+Hoy en día, hablar de diseño Web es hablar de adecuación a los estándares.
+\pause \\[0.5cm]
+Hoy en día, hablar de estándares es hablar de la W3C.
+\end{center}
+\end{frame}
+
+
+\begin{frame}{¿Qué es la W3C?} % (fold)
+\begin{center}
+El {\bfseries World Wide Web Consortium}, abreviado W3C, es un consorcio
+internacional creado por {\bfseries Tim Berners-Lee}\footnote{Tim Berners-Lee
+es el creador de el lenguaje HTML, el protocolo HTTP y  el sistema URL} que produce recomendaciones para la World Wide Web.
+\\[0.5cm]
+\pause
+
+\includegraphics{imgs/w3c.png}
+\end{center}
+
+\end{frame}
+
+\begin{frame}{¿Qué son los estándares?} % (fold)
+
+    \begin{center}
+    La W3C crea y supervisa el desarrollo de tecnologías Web, incluyendo XML,
+    HTML y sus distintas aplicaciones. \\[0.5cm]
+    \pause
+
+    También controla problemas de más alto nivel como la accesibilidad de los
+    contenidos al mayor número posible de dispositivos y usuarios.\\[0.5cm]
+    \pause
+    El W3C no es un cuerpo oficial de estándares, es un esfuerzo en común por
+    parte de los expertos en materias relacionadas con la Web por poner
+    {\bfseries orden} en el desarrollo de las tecnologías Web.
+    \end{center}
+\end{frame}
+
+
+\begin{frame}{Otros Cuerpos de Estándares que afectan la Web} % (fold)
+    \begin{itemize}
+        \item ISO (International Organization for Standardization.)
+        \item IETF (Internet Engineering Task Force) 
+        \item Ecma International
+        \item Unicode Consortium
+        \item ANSI
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Las ventajas de los estándares} % (fold)
+    \begin{center}
+    Se espera que los navegadores se adherirán llenos de fe y fidelidad a las
+    recomendaciones de la W3C. 
+    \end{center}
+    \begin{itemize}
+        \item Accesibilidad
+        \item Comptatibilidad proactiva
+        \item Desarrollo más rápido y sencillo 
+        \item Descarga y muestra en pantallas más rápidas. 
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Herramientas para desarrollar apegados a los estándares} % (fold)
+    \begin{center}
+    Existen herramientas que nos ayudan a escribir nuestras aplicaciones más
+    apegadas a los estándares.
+    \end{center}
+\end{frame}
+
+\section{Herramientas}
+
+\begin{frame}{Firefox} % (fold)
+    \begin{center}
+    \begin{itemize}
+        \item Web Developer \footnote{\url{https://addons.mozilla.org/en-US/firefox/addon/web-developer/}}
+        \item HTML Validator \footnote{\url{http://users.skynet.be/mgueury/mozilla/}}
+    \end{itemize}
+    \end{center}
+\end{frame}
+
+\begin{frame}{W3C} % (fold)
+    \begin{center}
+    \begin{itemize}
+        \item Instalar el validador local de la W3C para HTML/XHTML
+        \footnote{aptitude install w3c-markup-validator} 
+        \item Instalar el validador local de la W3C para CSS \footnote{\url{http://jigsaw.w3.org/css-validator/DOWNLOAD.html}}
+    \end{itemize}
+    \end{center}
+\end{frame}
+
+\begin{frame}[fragile]{Instalar el validador de HTML} % (fold)
+    \begin{center}
+    Podemos instalar el validador de la W3C para HTML en un sistema Debian
+    Lenny/Squeeze utilizando el siguiente comando:
+    \begin{verbatim}
+    # aptitude install w3c-markup-validador
+    \end{verbatim}
+    \end{center}
+\end{frame}
+
+\begin{frame}[fragile]{Instalar las dependencias del validador de CSS} % (fold)
+    Podemos instalar el validador de la W3C para CSS en un sistema Debian
+    Lenny/Squeeze utilizando los siguientes comandos:
+    {\footnotesize
+    \begin{verbatim}
+    # aptitude install sun-java6-jdk 
+    # aptitude install ant 
+    # aptitude install tomcat5.5 tomcat5.5-admin tomcat5.5-webapps
+    # aptitude install cvs 
+    \end{verbatim}
+    }
+\end{frame} 
+
+\begin{frame}[fragile]{Instalar el validador de CSS} % (fold)
+
+    {\footnotesize 
+    \begin{verbatim}
+    # cd /usr/src 
+    # export CVSROOT=:pserver:anonymous@dev.w3.org:/sources/public 
+    # cvs login 
+      password: anonymous
+    # export CVSROOT=:pserver:anonymous@dev.w3.org:/sources/public 
+    # cvs checkout 2002/css-validator
+    # cd 2002/css-validator 
+    # wget http://www.covetel.com.ve/conf/build.xml
+    # ant war 
+    # cp css-validator.war /var/lib/tomcat5.5/webapps 
+    \end{verbatim}
+    }
+    TOMCAT5\_SECURITY=NO en el archivo /etc/default/tomcat5.5\\[0.5cm]
+
+    \begin{verbatim}
+    # /etc/init.d/tomcat5.5 restart
+    \end{verbatim}
+
+\end{frame}
+
+\begin{frame}{Preguntas} % (fold)
+    \begin{center}
+    Siempre puede enviar sus preguntas y hacer seguimiento del curso a la
+    dirección de correo {\bfseries cursos@covetel.com.ve}
+    \end{center}
+\end{frame}
+
+\end{document}

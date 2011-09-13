@@ -1,0 +1,20 @@
+\frametitle {Instalar el validador de CSS}\par     {\footnotesize
+    \begin{verbatim}
+    # cd /usr/src
+    # export CVSROOT=:pserver:anonymous@dev.w3.org:/sources/public
+    # cvs login
+      password: anonymous
+    # export CVSROOT=:pserver:anonymous@dev.w3.org:/sources/public
+    # cvs checkout 2002/css-validator
+    # cd 2002/css-validator
+    # wget http://www.covetel.com.ve/conf/build.xml
+    # ant war
+    # cp css-validator.war /var/lib/tomcat5.5/webapps
+    \end{verbatim}
+    }
+    TOMCAT5\_SECURITY=NO en el archivo /etc/default/tomcat5.5\\[0.5cm]
+
+    \begin{verbatim}
+    # /etc/init.d/tomcat5.5 restart
+    \end{verbatim}
+
