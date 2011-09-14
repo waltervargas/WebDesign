@@ -2,7 +2,14 @@
 
 \documentclass{beamer}
 \usepackage{listings}
-\lstset{language=HTML,CSS,XHTML,XML}
+\lstset{
+    language=HTML 
+}
+\lstset{
+    basicstyle=\scriptsize, 
+    stringstyle=\ttfamily,
+    showstringspaces=false
+}
 
 % Configuración de la apariencia. 
 
@@ -22,6 +29,10 @@
 \date
 
 \begin{document}
+
+\begin{frame}{Tabla de Contenidos} % (fold)
+\tableofcontents
+\end{frame}
 
 \begin{frame}
   \titlepage
@@ -98,7 +109,7 @@ es el creador de el lenguaje HTML, el protocolo HTTP y  el sistema URL} que prod
     \end{center}
 \end{frame}
 
-\section{Herramientas}
+\subsection{Herramientas}
 
 \begin{frame}{Firefox} % (fold)
     \begin{center}
@@ -170,6 +181,426 @@ es el creador de el lenguaje HTML, el protocolo HTTP y  el sistema URL} que prod
     \begin{center}
     Siempre puede enviar sus preguntas y hacer seguimiento del curso a la
     dirección de correo {\bfseries cursos@covetel.com.ve}
+    \end{center}
+\end{frame}
+
+\subsection{Estándares Web actuales}
+
+\begin{frame}{Estándares Web actuales} % (fold)
+    \begin{center}
+        Esta sección presenta los estándares actuales para los siguientes
+        aspectos: 
+        \pause
+        \begin{itemize}
+            \item Estructura
+            \item Comportamiento
+            \item Presentación del diseño Web
+        \end{itemize}
+    \end{center}
+\end{frame}
+
+\begin{frame}{Modelo de Capas del Diseño Web} % (fold)
+    \begin{center}
+        Suele hablarse del diseño y el desarrollo Web en términos de
+        \textbf{capas}.
+        \begin{itemize}
+            \item El marcado de documentos conforma la {\bfseries Capa
+            Estructural}
+            \item La {\bfseries Capa de Presentación} especificada con las
+            hojas de estilo en cascada (CSS)
+            \item La {\bfseries Capa de Comportamiento} contiene el
+            \textit{scripting} y programación que añade interactividad y
+            efectos dinámicos a un sitio. 
+        \end{itemize}
+    \end{center}
+
+\end{frame}
+
+\subsubsection{Capa estructural}
+
+\begin{frame}{Capa estructural} % (fold)
+\begin{center}
+    Lenguajes estándar actuales para el marcado estructural
+    \begin{itemize}
+        \item XHTML 1.0 y XHTML 1.1 \footnote{XHTML son las siglas de
+        \textit{Extensible Hypertext Markup Language} o Lenguaje Extensible de
+        Marcado de Hipertexto}
+        \item XML 1.0 \footnote{XML son las siglas de \textit{Extensible Markup
+        Language}} 
+    \end{itemize}
+\end{center}
+\end{frame}
+
+\begin{frame}{XHTML} % (fold)
+    \begin{center}
+        XHTML 1.0 es simplemente HTML 4.0 reescrito bajo las mas estrictas
+        reglas sintácticas de XML. \\[0.5cm]
+        \pause
+        XHTML 1.1 se libera de elementos y atributos depreciados y se ha
+        modularizado para facilitar expansiones futuras.\\[0.5cm]
+        \pause
+        XHTML Aún esta en desarrollo. (XHTML2)\\[0.5cm]
+        \pause
+        La última versión de HTML fue HTML 4.01, sigue siendo soportado por los
+        navegadores actuales, pero no será compatible a largo plazo.\\[0.5cm]
+        \pause
+        Puede encontrar los vinculos de estos lenguajes en la dirección
+        \url{http://www.w3c.org/MarkUp}
+    \end{center}
+\end{frame}
+
+\begin{frame}{XML} % (fold)
+    \begin{center}
+       XML es un grupo de reglas para la creación de nuevos lenguajes de
+       marcado.  \\[0.5cm]
+
+       Esto les permite los desarrolladores crear grupos personalizados de
+       etiquetas para usos especiales. \\[0.5cm]
+
+       Para encontrar más información valla a la fuente en
+       \url{http://www.w3c.org/XML}
+    \end{center}
+\end{frame}
+
+\subsubsection{Capa de Presentación} 
+
+\begin{frame}{Capa de Presentación} % (fold)
+    \begin{center}
+        Ahora que todas las instrucciones de presentación fueron eliminadas del
+        estándar de marcado,  esta información pasa a ser un trabajo exclusivo
+        de las hojas de estilo en cascada.\\[0.5cm]
+
+        Los estándares de las hojas de estilo se están desarrollando en fases
+        de este modo: 
+
+        \begin{itemize}
+            \item \textbf{CSS Nivel 1}
+            \item \textbf{CSS Nivel 2}
+            \item \textbf{CSS Nivel 3}
+        \end{itemize}
+
+   
+    \end{center}
+\end{frame}
+
+\begin{frame}{CSS Nivel 1} % (fold)
+    \begin{center}
+        Este estándar de hojas de estilo ha sido una recomendación desde el año
+        1996 y ahora tienen soporte completo por las versiones actuales de los
+        navegadores. \\[0.5cm]
+
+        Este nivel contiene reglas que controlan la presentación en pantalla
+        del texto, márgenes y bordes. 
+    \end{center}
+\end{frame}
+
+\begin{frame}{CSS Nivel 2.1} % (fold)
+    \begin{center}
+    Esta recomendación es conocida por la adición de la característica de
+    posicionamiento absoluto de los elementos de la página Web. El nivel 2
+    alcanzó el estatus de recomendación en 1998. \\[0.5cm]
+
+    En 2004 el nivel 2.1 fue aceptada como recomendación oficial 
+
+    Puede encontrar una traducción al español de la recomendación 2.1 en la
+    dirección \url{http://www.w3.org/Style/css21-updates/css2.1_spa.pdf}
+    \end{center}
+\end{frame}
+
+\begin{frame}{CSS Nivel 3} % (fold)
+    El nivel 3 se construye sobre el nivel 2, pero esta modularizado para
+    facilitar las expansiones futuras y para permitir a los dispositivos
+    soportar conjuntos lógicos.\\[0.5cm] 
+
+    La actualización del nivel 3 incluye nuevas características gráficas como
+    los bordes redondeados, textos con sombras, asignar multiples fondos, un
+    mejor manejo de las tablas incluyendo el estilo zebra, multi-columnas. El
+    modelo conservará muchas de las propiedades actuales y trabajará con nuevos
+    selectores. 
+\end{frame}
+
+\subsubsection{Capa de Comportamiento} 
+
+\begin{frame}{Capa de Comportamiento} % (fold)
+\begin{center}
+    
+   El \textit{scripting} y programación de esta capa añaden interactividad y
+   efectos dinámicos a un sitio. \\[0.5cm]
+
+   La capa de comportamiento descanza sobre \textbf{DOM} (\textit{Document Object
+   Model}, Modelo de Objetos del Documento).  
+\end{center}
+\end{frame}
+
+\begin{frame}{Modelos de objeto} % (fold)
+\begin{center}
+    El DOM permite a scripts y aplicaciones acceder y modificar el contenido,
+    la estructura y el estilo de un documento nombrando formalmente cada una de
+    sus partes, sus atributos y el modo en el que el objeto puede ser
+    manipulado.  \\[0.5cm]
+
+    Al principio cada uno de los navegadores tenia su propio DOM, dificultando
+    la creación de efectos interactivos para todos los navegadores. 
+\end{center}
+\end{frame}
+
+\begin{frame}{Niveles de DOM} % (fold)
+    \begin{center}
+        \begin{itemize}
+            \item Modelo de Objetos del Documento (Núcleo) Nivel 1
+            \item Modelo de Objetos del Documento Nivel 2
+        \end{itemize}
+    \end{center}
+\end{frame}
+
+\begin{frame}{DOM 1} % (fold)
+    \begin{center}
+        DOM Nivel 1 incluye documentos XML y HTML así como la manipulación y
+        navegación de documentos. Esta especificación puede encontrarse en la
+        dirección \url{http://www.w3c.org/TR/REC-DOM-Level-1}
+    \end{center}
+\end{frame}
+
+\begin{frame}{DOM 2} % (fold)
+    \begin{center}
+        DOM Nivel 2 incluye un modelo de objetos de hojas de estlo, permitiendo
+        manipular información de estilo. En la dirección
+        \url{http://www.w3c.org/DOM/DOMTR} puede encontrar más información.
+    \end{center}
+\end{frame}
+
+\subsubsection{Scripting} 
+
+
+
+\begin{frame}{Scripting} % (fold)
+    \begin{center}
+     Netscape introdujo su lenguaje de programación Web,  JavaScript, con su
+     navegador Navigator 2.0. Originalmente se llamaba \textit{Livescript} pero
+     cuando la marca pasó a ser compartida por SUN, se añadió \textit{Java} al nombre.\\[0.5cm]
+
+     Microsoft respondió con su propio \textit{JScript}, mientras soportaba
+     algunos niveles de JavaScript en la versión 3.0 de su navegador. \\[0.5cm]
+
+     Se necesitaba claramente un estándar válido para los distintos
+     navegadores.
+    \end{center}
+\end{frame}
+
+\begin{frame}{JavaScript 1.5/ECMAScript 262} % (fold)
+    \begin{center}
+        La W3C desarrolla una versión estándarizada de JavaScript en
+        coordinación con Ecma International.\\[0.5cm]
+
+        En la mayoría de los casos los desarrolladores se refieren al lenguaje
+        como JavaScript, siendo implícita la implementación estándar.\\[0.5cm]
+
+        Puede encontrar la especificación completa en la dirección
+        \url{http://www.ecma-international.org/publications/standards/Ecma-262.htm}
+    \end{center}
+\end{frame}
+
+\section{Estructura del documento} % (fold)
+\label{sec:Estructura del documento}
+
+\begin{frame}{Estructura del documento} % (fold)
+    Un documento (X)HTML se compone de tres partes: 
+
+    \begin{itemize}
+        \item Una \textbf{declaración} de la vesión HTML o XHTML utilizada. 
+        \item Una \textbf{cabecera} con información sobre el documento.
+        \item El  \textbf{cuerpo} con el contenido del documento.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Elementos utilizados para establecer la estructura del documento} % (fold)
+    \begin{center}
+        \begin{itemize}
+            \item \texttt{html} Elemento raíz de un documento (X)HTML
+            \item \texttt{head} Cabecera
+            \item \texttt{body} Cuerpo del documento
+            \item \texttt{title} Título del documento
+            \item \texttt{meta} Metadatos (información sobre el documento)
+        \end{itemize}
+    \end{center}
+\end{frame}
+
+\begin{frame}[fragile]{Estructura mínima de un documento} % (fold)
+    \begin{lstlisting}    
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3c.org/TR/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3c.org/1999/xhtml" 
+    xml:lang="es" lang="es"> 
+    <head>
+        <title> Titulo del documento </title>
+    </head>
+
+    <body>
+        <p> Contenido del documento </p>
+    </body>
+</html>
+    \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Declaración del tipo de documento DOCTYPE} % (fold)
+    \begin{center}
+       \begin{lstlisting}
+ <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3c.org/TR/xhtml1-strict.dtd">
+       \end{lstlisting}
+
+       La declaración \texttt{<!DOCTYPE>} (tipo de documento) contiene dos
+       métodos para señalar la información del DTD, un identificador de tipo de
+       documento reconocido públicamente, o una url específica en caso de que
+       el identificador público no sea reconocido por el dispositivo
+    \end{center}
+\end{frame}
+
+\begin{frame}{Opciones DTD HTML 4.01 y XHTML 1.0} % (fold)
+    \begin{center}
+        \begin{itemize}
+            \item Estricto
+            \item Transicional
+            \item Con marcos
+        \end{itemize}
+    \end{center}
+\end{frame}
+
+\begin{frame}{Lista de las descripciones y marcados} % (fold)
+    \begin{center}
+        \begin{itemize}
+            \item HTML 4.01 estricto
+            \item HTML 4.01 transicional
+            \item HTML 4.01 con marcos 
+            \item XHTML 1.0 estricto
+            \item XHTML 1.0 transicional 
+            \item XHTML 1.0 con marcos
+            \item XHTML 1.1 
+        \end{itemize}
+    \end{center}
+\end{frame}
+
+\lstset{language=HTML}
+\begin{frame}[fragile]{HTML 4.01 estricto} % (fold)
+    \begin{center}
+        La DTD estricta omite todos los elementos y atributos depreciados.
+    \end{center}
+    \begin{lstlisting}
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+    \end{lstlisting} 
+\end{frame}
+
+\begin{frame}[fragile]{HTML 4.01 transicional} % (fold)
+    \begin{center}
+        La DTD transicional incluye toda la DTD estricta junto con todos los
+        elementos depreciados. 
+    \end{center}
+    \begin{lstlisting}
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+   "http://www.w3.org/TR/html4/loose.dtd">
+    \end{lstlisting} 
+\end{frame}
+
+\begin{frame}[fragile]{HTML 4.01 con marcos} % (fold)
+    \begin{center}
+        Si el documento contiene marcos (es decir si utiliza \texttt{frameset}
+        en lugar de \texttt{body}) identifique la DTD con marcos. Esta DTD es
+        la misma que la versión transicional (incluye elementos y atributos
+        depreciados) con elementos específicos para marcos. Los documentos HTML
+        que contienen contenido que se muestran en los marcos no necesitan
+        utilizar esta DTD.
+    \end{center}
+    \begin{lstlisting}
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN"
+   "http://www.w3.org/TR/html4/frameset.dtd">
+    \end{lstlisting} 
+\end{frame}
+
+\begin{frame}[fragile]{XHTML 1.0 estricto} % (fold)
+    \begin{center}
+        Es igual al HTML 4.01 estricto pero reformulado de acuerdo a las reglas
+        sintácticas del XML
+    \end{center}
+    \begin{lstlisting}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+    \end{lstlisting} 
+\end{frame}
+
+\begin{frame}[fragile]{XHTML 1.0 transicional} % (fold)
+    \begin{center}
+        Igual al HTML 4.01 transicional pero reformulado de acerdo a las reglas
+        sitácticas del XML
+    \end{center}
+    \begin{lstlisting}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+    \end{lstlisting} 
+\end{frame}
+
+\begin{frame}[fragile]{XHTML 1.0 con marcos} % (fold)
+    \begin{center}
+        Igual que HTML 4.01 con marcos pero reformulado de acuerdo a las reglas
+        sintácticas del XML
+    \end{center}
+    \begin{lstlisting}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
+    \end{lstlisting} 
+\end{frame}
+
+
+\begin{frame}[fragile]{XHTML 1.1} % (fold)
+    \begin{center}
+        Solo hay una DTD para XHTML 1.1. Omite todos los elementos y atributos
+        depreciados. Se distingue del XHTML 1.0 estricto en lo siguiente: 
+
+        \begin{itemize}
+            \item El atributo \texttt{lang} ha sido reemplazado por el atributo
+            \texttt{xml:lang}
+            \item El atributo \texttt{name} ha sido reemplazado por el atributo
+            \texttt{id} para los elementos \texttt{a} y \texttt{map}
+            \item Se ha añadido una colección \textit{ruby} de elementos. La
+            W3C define \textit{ruby} como \textit{comandos cortos de texto al
+            lado del texto base, típicamente utilizados en documentos
+            asiáticos para indicar pronunciación o para proveer una nota breve}
+        \end{itemize}
+    \end{center}
+    \begin{lstlisting}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" 
+   "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+    \end{lstlisting} 
+\end{frame}
+
+\begin{frame}[fragile]{Elemento raíz} % (fold)
+    \begin{center}
+        \begin{lstlisting}
+<html xmlns="http://www.w3c.org/1999/xhtml" 
+    xml:lang="es" lang="es"> 
+        \end{lstlisting}
+    \end{center}
+\end{frame}
+
+\begin{frame}[fragile]{Cabecera del documento} % (fold)
+    \begin{center}
+        \begin{lstlisting}
+<head>
+  <title> Titulo del documento </title>
+</head>
+        \end{lstlisting}
+    \end{center}
+\end{frame}
+
+\begin{frame}[fragile]{Cuerpo del documento} % (fold)
+    \begin{center}
+        \begin{lstlisting}
+<body>
+   <p> Contenido del documento </p>
+</body>
+        \end{lstlisting}
     \end{center}
 \end{frame}
 
