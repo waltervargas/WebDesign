@@ -141,7 +141,7 @@
         \item \texttt{valign="top|middle|bottom|baseline"}
     \end{itemize}
     \pause 
-    \textbf{Atributos depreciados}
+    \textbf{Atributos relegados}
     \begin{itemize}
         \item \texttt{bgcolor='color'}
     \end{itemize}
@@ -178,7 +178,7 @@
 
 \begin{frame}{Celdas \texttt{<td>}} % (fold)
         \texttt{<td>...</td>}\\
-        \textbf{Atributos depreciados}
+        \textbf{Atributos relegados}
         \begin{itemize}
             \item \texttt{bgcolor}
             \item \texttt{height}
@@ -266,7 +266,7 @@
     \end{itemize}
 
 
-    \textbf{Atributos depreciados}
+    \textbf{Atributos relegados}
     \begin{itemize}
         \item \texttt{align="top|bottom|left|right"}
     \end{itemize}
@@ -291,6 +291,166 @@
 
 % subsection Elementos descriptivos (end)
 
+\subsection{Grupos de filas y columnas} % (fold)
+\label{sub:Grupos de filas y columnas}
 
+\begin{frame}{\texttt{<thead>, <tbody>, <tfoot>}} % (fold)
+Grupos de filas, fueron introducidos por Internet Explorer 3.0 para que los
+agentes de usuarios y las hojas de estilo pudieran tratarlas como unidades 
+
+\begin{itemize}
+    \item \textit{Núcleo} (\texttt{id, class, style, title}),
+    \textit{Internacionalización, Eventos}
+    \item \texttt{align="left|center|right|justify|char"}
+    \item \texttt{char='caracter'}
+    \item \texttt{charoff="longitud"}
+    \item \texttt{valign="top|middle|bottom|baseline"}
+\end{itemize}
+    
+\end{frame}
+
+\begin{frame}[fragile]{Ejemplo \texttt{<thead>, <tbody>, <tfoot>}} % (fold)
+\begin{lstlisting}
+<table border="1">
+  <thead>
+    <tr> <th>Month</th> <th>Savings</th> </tr>
+  </thead>
+  <tfoot>
+    <tr> <td>Sum</td> <td>$180</td> </tr>
+  </tfoot>
+  <tbody>
+    <tr> <td>January</td> <td>$100</td> </tr>
+    <tr> <td>February</td> <td>$80</td> </tr>
+  </tbody>
+</table>
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}{Columnas y grupos de columnas} % (fold)
+\begin{center}
+    En algunos casos es útil identificar columnas conceptuales de celdas de
+    datos o grupos de columnas. Los elementos \texttt{col} (columna) y
+    \texttt{colgroup} (grupo de columnas) permiten unir conceptualmente un
+    grupo de celdas que aparezcan en una columna o columnas.\\[0.2cm]
+    \pause
+    Cuando se combinan estos grupos con el elemento \texttt{scope} puede dar un
+    contexto muy útil a los lectores de pantallas. \\[0.2cm]
+    \pause
+    Los grupos de columnas permiten aplicar las siguientes propiedades de
+    estilo de acuerdo a la recomendación CSS 2.1: \texttt{border, background,
+    width, visibility}
+\end{center}
+\end{frame}
+
+\begin{frame}{Columnas \texttt{<col />}} % (fold)
+    \textbf{Atributos}
+    \begin{itemize}
+        \item Núcleo (\texttt{id, class, style, title}),
+        \textit{Internacionalización, Eventos}
+         \item \texttt{align="left|right|center|justify|char"}
+         \item \texttt{span="número"}
+         \item \texttt{width="pixels, porcetaje, n*"}
+        \item \texttt{char='caracter'}
+        \item \texttt{charoff="longitud"}
+        \item \texttt{valign="top|middle|bottom|baseline"}
+    \end{itemize}
+    
+\end{frame}
+
+\begin{frame}[fragile]{Ejemplo de columnas \texttt{<col />}} % (fold)
+\begin{lstlisting}
+<table width="100%" border="1">
+  <col width="20px" /> 
+  <col width="30px" />
+  <col width="10px" />
+  <tr> 
+    <th>ISBN</th> <th>Title</th> <th>Price</th>
+  </tr>
+  <tr>
+    <td>3476896</td><td>My first HTML</td><td>$53</td>
+  </tr>
+  <tr>
+    <td>2489604</td><td>My first CSS</td><td>$47</td>
+  </tr>
+</table>
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Grupos de Columnas \texttt{<colgroup>...</colgroup>}} % (fold)
+    Posee los mismos atributos que el elemento \texttt{<col />}. 
+    \begin{lstlisting}
+<table width="100%" border="1">
+  <colgroup span="2" align="left"></colgroup>
+  <colgroup align="right" style="color:#0000FF;"></colgroup>
+  <tr>
+    <th>ISBN</th>
+    <th>Title</th>
+    <th>Price</th>
+  </tr>
+  <tr>
+    <td>3476896</td>
+    <td>My first HTML</td>
+    <td>$53</td>
+  </tr>
+</table>
+        
+    \end{lstlisting}
+\end{frame}
+% subsection Grupos de filas (end)
+
+\subsection{Espaciado} % (fold)
+\label{sub:Espaciado}
+
+\begin{frame}{Espaciado de celdas} % (fold)
+    Hay dos tipos de espacio que puede añadirse en y alrededor de las celdas:
+    relleno de celda o \textit{cellpadding}, esto es el margen interior o el
+    espacio entre una celda y su contenido y el espacio entre celdas o
+    \textit{cellspacing}. \\[0.5cm]
+
+    Los atributos \texttt{cellspacing} y \texttt{celpadding} se utilizan con el
+    elemento \texttt{table}
+
+\end{frame}
+
+% subsection Espaciado (end)
+
+\subsection{Cabeceras de tabla} % (fold)
+\label{sub:Cabeceras de tabla}
+
+\begin{frame}[fragile]{Asociar cabeceras con datos} % (fold)
+    {\tiny
+    Los atributos \texttt{scope} y \texttt{headers} se pueden utilizar para
+    vincular los datos a las cabeceras. 
+        }
+\begin{lstlisting}
+<table border="1">
+  <tr>
+    <th></th>
+    <th scope="col">Month</th>
+    <th scope="col">Savings</th>
+  </tr>
+  <tr>
+    <td scope="row">1</td>
+    <td>January</td>
+    <td>$100</td>
+  </tr>
+  <tr>
+    <td scope="row">2</td>
+    <td>February</td>
+    <td>$80</td>
+  </tr>
+</table>    
+\end{lstlisting}
+\end{frame}
+
+
+\begin{frame}{Preguntas} % (fold)
+    \begin{center}
+    Preguntas
+    \end{center}
+\end{frame}
+
+
+% subsection Cabeceras de tabla (end)
 
 \end{document}
