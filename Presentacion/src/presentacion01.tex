@@ -1,0 +1,296 @@
+% Copyleft 2010 by Walter Vargas <walter@covetel.com.ve>
+
+\documentclass{beamer}
+\usepackage{listings}
+\lstset{
+    language=HTML 
+}
+\lstset{
+    basicstyle=\scriptsize, 
+    stringstyle=\ttfamily,
+    showstringspaces=false, 
+    numbers=left,
+    numberstyle=\scriptsize,
+    tabsize=2,
+}
+
+% Configuración de la apariencia. 
+
+\usetheme{Szeged}
+\usecolortheme{beaver}
+\usefonttheme[onlylarge]{structurebold}
+\setbeamerfont*{frametitle}{size=\normalsize,series=\bfseries}
+
+% Paquetes
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+
+% Titulo
+\title[WebDesign] {Diseño Web | Tecnologías Involucradas}
+\author[Walter Vargas]{ info@covetel.com.ve \inst{1}}
+\subtitle{Tablas y Formularios}
+\institute[covetel.com.ve]{ \inst{1} Cooperativa Venezolana de Tecnologías Libres R.S. }
+\date
+
+\begin{document}
+
+\begin{frame}{Tabla de Contenidos} % (fold)
+\tableofcontents
+\end{frame}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\section{Tablas}
+
+\begin{frame}{Tablas} % (fold)
+\begin{center}
+    Los elementos HTML de tablas fueron introducidos por Netscape en la versión
+    1.1 de su navegador, fueron desarrollados para permitir a los autores
+    representar datos tabulares en filas y columnas.
+\end{center}
+\end{frame}
+
+\subsection{Elementos de una Tabla} % (fold)
+\label{sub:Elementos de una Tabla}
+
+% subsection Elementos de una Tabla (end)
+
+\begin{frame}{Elementos de una Tabla} % (fold)
+    \begin{center}
+        \begin{itemize}
+            \item \texttt{table} Establecer una tabla
+            \item \texttt{tr} Fila
+            \item \texttt{td} Columna
+            \item \texttt{th} Celda de cabecera de tabla 
+            \item \texttt{caption} Leyenda de la tabla
+            \item \texttt{thead} Cabecera de la tabla
+            \item \texttt{tbody} Cuerpo de la tabla 
+            \item \texttt{tfoot} Pie de una tabla 
+            \item \texttt{col} Declara una columna
+            \item \texttt{colgroup} Declara un grupo de columnas 
+           
+        \end{itemize}
+    \end{center}
+\end{frame}
+
+\begin{frame}{Tipos de Tablas} % (fold)
+   \begin{center}
+       \begin{itemize}
+           \item Tablas de Datos
+           \item Tablas de Diseño \footnote{La recomendación HTML 4.01 de la
+           W3C desaconseja específicamente este uso de tablas}
+       \end{itemize}
+   \end{center}
+\end{frame}
+
+\subsection{Estructura básica de las Tablas} % (fold)
+
+\begin{frame}{Filas y Celdas} % (fold)
+\begin{center}
+    Los elementos mínimos para definir una tabla son \texttt{table},
+    \texttt{tr}, \texttt{td}
+\end{center}
+\end{frame}
+
+\begin{frame}{Atributos de la Tabla} % (fold)
+    \begin{center}
+        {\footnotesize
+        \begin{itemize}
+            \item \texttt{id, class, style, title} Núcleo,
+            \textit{Internacionalización,  Eventos}
+            \item \texttt{border="número"}
+            \item \texttt{cellpadding="número"}
+            \item \texttt{cellspacing="número"}
+            \item \texttt{frame="void|above|below|hsides|lhs|rhs|vsides|box|border"}
+            \item \texttt{summary}
+            \item \texttt{width="número o porcentaje"}
+        \end{itemize}
+        }
+    \end{center}
+\end{frame}
+
+\begin{frame}{Atributos Depreciados} % (fold)
+    \begin{center}
+        \begin{itemize}
+            \item \texttt{align="left|right|center"}
+            \item \texttt{bgcolor='color'}
+        \end{itemize}
+    \end{center}
+\end{frame}
+
+\begin{frame}{Atributos no estándar} % (fold)
+    \begin{center}
+        \begin{itemize}
+            \item \texttt{height="número, porcentaje"}
+        \end{itemize}
+    \end{center}
+\end{frame}
+
+\begin{frame}{Filas \texttt{<tr>}} % (fold)
+    \texttt{<tr>...</tr>}\\[0.5cm]
+    \pause
+    \textbf{Atributos}
+    \begin{itemize}
+        \item Núcleo (\texttt{id, class, style, title}),
+        \textit{Internacionalización}, Eventos
+        \item \texttt{aligh="left|center|right|justify|char"}
+        \item \texttt{char='caracter'}
+        \item \texttt{charoff="longitud"}
+        \item \texttt{valign="top|middle|bottom|baseline"}
+    \end{itemize}
+    \pause 
+    \textbf{Atributos depreciados}
+    \begin{itemize}
+        \item \texttt{bgcolor='color'}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Celdas \texttt{<td>}} % (fold)
+        \texttt{<td>...</td>}\\
+        \textbf{Atributos}
+        {\footnotesize 
+        \begin{itemize}
+            \item \textit{Núcleo} (\texttt{id, class, style, title}), \textit{Internacionalización}, \textit{Eventos}
+            \item \texttt{abbr="texto"}
+            \item \texttt{align="left|right|center|justify|char"}
+            \item \texttt{axis="texto"}
+            \item \texttt{char='character'}
+            \item \texttt{charoff="longitud"}
+        \end{itemize}
+        }
+\end{frame}
+
+\begin{frame}{Celdas \texttt{<td>}} % (fold)
+    \texttt{<td>...</td>}\\
+    \textbf{Atributos}
+    {\footnotesize 
+    \begin{itemize}
+            \item \texttt{colspan="número"}
+            \item \texttt{headers="referencias"}
+            \item \texttt{rowspan="número"}
+            \item \texttt{scope="row|col|rowgroup|colgroup"}
+            \item \texttt{valign="top|middle|bottom|baseline"}
+    \end{itemize}
+    }
+\end{frame}
+
+\begin{frame}{Celdas \texttt{<td>}} % (fold)
+        \texttt{<td>...</td>}\\
+        \textbf{Atributos depreciados}
+        \begin{itemize}
+            \item \texttt{bgcolor}
+            \item \texttt{height}
+            \item \texttt{nowrap}
+            \item \texttt{width}
+        \end{itemize}
+\end{frame}
+% subsection Estructura básica de las Tablas (end)
+
+\subsection{Expandir celdas y columnas} % (fold)
+\label{sub:Expandir celdas y columnas}
+
+\begin{frame}[fragile]{Expandir columnas \texttt{<colspan>} } % (fold)
+        Para expandir columnas, utilizamos la etiqueta \texttt{colspan}. Por
+        ejemplo: 
+
+        \begin{lstlisting}
+<table width="100%" border="1">
+  <tr>
+    <th>Month</th>
+    <th>Savings</th>
+  </tr>
+  <tr>
+    <td colspan="2">January</td>
+  </tr>
+  <tr>
+    <td colspan="2">February</td>
+  </tr>
+</table>            
+        \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Expandir filas \texttt{<rowspan>}} % (fold)
+    El atributo \texttt{rowspan} estira una celda para que pase a ocupar el
+    espacio de varias celdas, esta vez en sentido vertical. 
+    \begin{lstlisting}
+<table width="100%" border="1">
+  <tr>
+    <th>Month</th>
+    <th>Savings</th>
+    <th>Savings for holiday!</th>
+  </tr>
+  <tr>
+    <td>January</td>
+    <td>$100</td>
+    <td rowspan="2">$50</td>
+  </tr>
+  <tr>
+    <td>February</td>
+    <td>$80</td>
+  </tr>
+</table>
+    \end{lstlisting}
+\end{frame}
+
+% subsection Expandir celdas y columnas (end)
+
+\subsection{Elementos descriptivos} % (fold)
+
+\begin{frame}[fragile]{Cabeceras de tabla \texttt{<th>}} % (fold)
+    Las celdas que forman la cabecera de la tabla se indican utilizando el
+    elemento  \texttt{<th>} \\
+    \begin{lstlisting}
+<table border="1">
+  <tr>
+    <th>Month</th>
+    <th>Savings</th>
+  </tr>
+  <tr>
+    <td>January</td>
+    <td>$100</td>
+  </tr>
+</table>
+    \end{lstlisting}
+    El elemento \texttt{<th>} acepta la misma lista de atributos que el
+    elemento \texttt{<td>}
+\end{frame}
+
+\begin{frame}[fragile]{Leyendas \texttt{<caption>} } % (fold)
+    El elemento \texttt{caption} da un título o una descripción breve de la
+    tabla\\[0.2cm]
+    \textbf{Atributos}
+    \begin{itemize}
+        \item \texttt{id, class, style, title} 
+    \end{itemize}
+
+
+    \textbf{Atributos depreciados}
+    \begin{itemize}
+        \item \texttt{align="top|bottom|left|right"}
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{Leyendas \texttt{<caption>} } % (fold)
+\begin{lstlisting}[]
+<table border="1">
+  <caption>Monthly savings</caption>
+  <tr>
+    <th>Month</th>
+    <th>Savings</th>
+  </tr>
+  <tr>
+    <td>January</td>
+    <td>$100</td>
+  </tr>
+</table>    
+\end{lstlisting}
+\end{frame}
+
+% subsection Elementos descriptivos (end)
+
+
+
+\end{document}
