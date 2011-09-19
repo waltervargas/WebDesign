@@ -1,0 +1,725 @@
+% Copyleft 2010 by Walter Vargas <walter@covetel.com.ve>
+
+\documentclass{beamer}
+\usepackage{listings}
+\lstset{
+    language=HTML 
+}
+\lstset{
+    basicstyle=\scriptsize, 
+    stringstyle=\ttfamily,
+    showstringspaces=false, 
+    numbers=left,
+    numberstyle=\scriptsize,
+    tabsize=2,
+}
+
+% Configuración de la apariencia. 
+
+\usetheme{Szeged}
+\usecolortheme{beaver}
+\usefonttheme[onlylarge]{structurebold}
+\setbeamerfont*{frametitle}{size=\normalsize,series=\bfseries}
+
+\usepackage{color}
+\definecolor{lightgray}{rgb}{.9, .9, .9}
+\definecolor{darkgray}{rgb}{.4, .4, .4}
+\definecolor{purple}{rgb}{0.65,  0.12,  0.82}
+\definecolor{azulito}{HTML}{0066CC}
+
+\lstdefinelanguage{HTML}{
+keywords={xml, DOCTYPE, head,  body, html}, 
+keywordstyle=\color{green}\bfseries, 
+ndkeywords={title, option, form, textarea, table, th, tr, td, p, br, input,
+button, frame, iframe, div, optgroup, select, fieldset,  legend}, 
+ndkeywordstyle=\color{blue}\bfseries, 
+identifierstyle=\color{black}, 
+sensitive=false, 
+comment=[l]{//}, 
+morecomment=[s]{/*}{*/}, 
+stringstyle=\color{azulito}\ttfamily, 
+morestring=[b]', 
+morestring=[b]"
+}
+
+\lstset{
+language=HTML, 
+backgroundcolor=\color{lightgray}, 
+extendedchars=true, 
+basicstyle=\footnotesize\ttfamily, 
+showstringspaces=false, 
+showspaces=false, 
+numbers=left, 
+numberstyle=\footnotesize, 
+numbersep=9pt, 
+tabsize=2, 
+breaklines=true, 
+showtabs=false, 
+captionpos=b 
+}
+
+
+% Paquetes
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+
+% Titulo
+\title[WebDesign] {Diseño Web | Tecnologías Involucradas}
+\author[Walter Vargas]{ info@covetel.com.ve \inst{1}}
+\subtitle{Formularios}
+\institute[covetel.com.ve]{ \inst{1} Cooperativa Venezolana de Tecnologías Libres R.S. }
+\date
+
+\begin{document}
+
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}{Tabla de Contenidos} % (fold)
+\tableofcontents
+\end{frame}
+
+\section{Formularios}
+
+\subsection{Elementos de un formulario} % (fold)
+
+\begin{frame}{Elementos de un Formulario} % (fold)
+    \begin{center}
+        \begin{itemize}
+            \item \texttt{form} Establece el formulario
+            \item \texttt{input} Crea distintos controles 
+            \item \texttt{button} Botón genérico de entrada. 
+            \item \texttt{textarea} Control de entrada de texto multilinea. 
+            \item \texttt{select} Menu de elección múltiple o lista deslizante.
+            \item \texttt{option} Una opción dentro de un control
+            \texttt{select}
+            \item \texttt{optgroup} Define un grupo de opciones
+            \item \texttt{label} Adjunta información de los controles
+            \item \texttt{fieldset} Agrupa controles y etiquetas relacionados.
+            \item \texttt{legend} Asigna una leyenda a un conjunto de campos.
+        \end{itemize}
+    \end{center}
+\end{frame}
+
+\begin{frame}{Consideraciones de un formulario} % (fold)
+    \begin{center}
+        El formulario puede tener cualquier contenido Web (imágenes, texto,
+        tablas) pero su función es la de contenedor de distintos controles
+        utilizados para introduccir información. \\[0.4cm]
+        \pause
+
+        Puede tener varios formularios en un solo documento pero no pueden
+        anidarse, y debe evitar que se superpongan. \\[0.4cm]
+        \pause
+
+        Cuando un formulario tiene más de 4 grupos de campos, debe considerar
+        utilizar el patrón de diseño \textit{Process Funnel}\\[0.4cm]
+        \pause
+
+        Cuando un usuario rellena un formulario y pulsa el botón de envío el
+        navegador toma la información,  la dispone en parejas nombre/valor, la
+        codifica para la transferencia y la envía al servidor. 
+    \end{center}
+\end{frame}
+
+\subsubsection{form} 
+
+\begin{frame}{El elemento básico de un formulario \texttt{<form>} } % (fold)
+    \textbf{Atributos}
+    \begin{itemize}
+        \item \textit{Núcleo} (\texttt{id, class, style, title}),
+        \textit{Internacionalización}, \textit{Eventos}, \texttt{onsubmit,
+        onreset, onblur}
+        \item \texttt{accept="lista-tipo-contenido"}
+        \item \texttt{acept-charset="lista-conjunto-caracteres"}
+        \item \texttt{action="url"}
+        \item \texttt{enctype="tipo contenido"}
+        \item \texttt{method="get|post"}
+        \item \texttt{name="texto"} (\textit{relegado} en XHTML en favor del
+        atributo \texttt{id})
+        \item \texttt{target="nombre"} 
+    \end{itemize}
+\end{frame}
+
+\subsubsection{action} 
+
+\begin{frame}[fragile]{El atributo \texttt{action}} % (fold)
+\begin{center}
+    
+    El atributo \texttt{action} del elemento \texttt{form} proporciona la URL
+    del programa del lado del servidor que se utilizará para procesar el
+    formulario.
+    
+    \begin{lstlisting}
+    <form action="/personas/guardar">
+
+    </form>
+    \end{lstlisting}
+
+\end{center}
+\end{frame}
+
+\subsubsection{fragile} 
+
+\begin{frame}[fragile]{El atributo \texttt{method}} % (fold)
+\begin{center}
+    
+    El atributo \texttt{method} especifica uno de los dos métodos \texttt{get}
+    o \texttt{post} para enviar la información del formulario al servidor.
+    \\[0.4cm]
+    \pause
+    La información suele transferirse en una serie de variables separadas por
+    el carácter \textit{ampersand} \texttt{\&} como se puede ver en el siguiente
+    ejemplo: 
+
+    \begin{verbatim}
+    nombre=Walter&apellido=Vargas&ciudad=Caracas
+    \end{verbatim}
+    \pause
+    El atributo \texttt{name} del los elementos de control del formulario
+    proporciona el nombre de la variable. El contenido que el usuario
+    introduce, constituye el contenido de la variable.
+
+\end{center}
+\end{frame}
+
+\subsection{Métodos GET y POST} % (fold)
+
+\begin{frame}[fragile]{Envío via GET \texttt{method="get"}} % (fold)
+    \begin{center}
+        Con el método \texttt{get}, el navegador transfiere los datos del
+        formulario como parte de la propia URL (añadidos al final y separados
+        por un signo de interrogación) en una única transmisión. 
+
+        \begin{verbatim}
+REQUEST_URI: /cgi-bin/headers.pl?nombre=walter&apellido=vargas&ciudad=caracas
+        \end{verbatim}
+    \end{center}
+\end{frame}
+
+\subsubsection{Cabeceras get} 
+
+\begin{frame}[fragile]{Cabeceras \texttt{get}} % (fold)
+    \begin{center}
+    \footnotesize{ 
+        \begin{verbatim}
+GET /cgi-bin/headers.pl?nombre=Walter&apellido=Vargas&ciudad=caracas HTTP/1.1
+Host: localhost
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.6; rv:6.0.2) Gecko/20100101 Firefox/6.0.2
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: es-ve,es-es;q=0.8,en;q=0.5,en-us;q=0.3
+Accept-Encoding: gzip, deflate
+Accept-Charset: ISO-8859-1,utf-8;q=0.7,*;q=0.7
+Connection: keep-alive
+Referer: http://localhost/form.html
+        \end{verbatim}
+        }
+    \end{center}
+
+\end{frame}
+
+\begin{frame}{Envío via \texttt{method="post"}} % (fold)
+    \begin{center}
+        El método \texttt{post} transmite la información de entrada del
+        formulario separada de la URL, en un mensaje dividido en dos partes. La
+        primera parte del mensaje es solo la cabecera especial enviada por el
+        navegador con cada solicitud. \\[0.4cm]
+        \pause
+        Cuando el servidor ve la cadena \textit{post} al comienzo del mensaje,
+        queda en escucha de los datos. 
+    \end{center}
+\end{frame}
+
+\subsubsection{Cabeceras post} 
+
+\begin{frame}[fragile]{Cabeceras \texttt{post}} % (fold)
+
+\footnotesize{
+\begin{verbatim}
+POST /cgi-bin/headers.pl HTTP/1.1
+Host: localhost
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.6; rv:6.0.2) Gecko/20100101 Firefox/6.0.2
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: es-ve,es-es;q=0.8,en;q=0.5,en-us;q=0.3
+Accept-Encoding: gzip, deflate
+Accept-Charset: ISO-8859-1,utf-8;q=0.7,*;q=0.7
+Connection: keep-alive
+Referer: http://localhost/form.html
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 44    
+\end{verbatim}
+
+\begin{verbatim}
+Line-based text data: application/x-www-form-urlencoded
+    nombre=Walter&apellido=Vargas&ciudad=caracas    
+\end{verbatim}
+}
+\end{frame}
+
+
+\subsection{Codificación} % (fold)
+
+\begin{frame}{Codificación \texttt{<form enctype="valor">}} % (fold)
+    \begin{center}
+        Otro paso de la transacción es la codificación de los datos.\\
+        Es un método para traducir espacios y otros caracteres no permitidos en
+        las URL en sus equivalentes hexadecimales. Por ejemplo el espacio se
+        traduce como \texttt{\%20} y la barra inclinada como \%2F.\\[0.4cm] 
+        \pause
+
+        El formato de codificación por defecto es
+        \texttt{application/x-www-form-urlencoded}.\\[0.4cm] 
+        \pause
+        Si su formulario incluye adjuntos (\texttt{file}) para cargar archivos
+        al servidor, debe utilizar \texttt{multipart/form-data}
+    \end{center}
+\end{frame}
+
+% subsection Codificación tt (end)
+
+\subsection{Controles de Formulario} % (fold)
+
+\begin{frame}{Controles de Entrada} % (fold)
+    El elemento \texttt{input} se utiliza para crear distintos controles de
+    entrada de formulario,  entre ellos: 
+
+    \begin{itemize}
+        \item Campos de entrada de texto de una sola linea
+        \item Campos de entrada de contraseña
+        \item Controles ocultos 
+        \item Casillas de verificación 
+        \item Botones de opción
+        \item Botones de envío y de reinicio
+        \item Mecanismos de subida de archivos
+        \item Botones de imagen y personalización
+    \end{itemize}
+
+    El atributo \texttt{type} del elemento \texttt{input} especifica el tipo de
+    control. 
+\end{frame}
+
+\subsubsection{Entrada de Texto}
+
+\begin{frame}{\texttt{Entrada de Texto <input type='text'>}} % (fold)
+    \textbf{Atributos}
+    \begin{itemize}
+        \item Núcleo (\texttt{id, class, style, title}) Internacionalización,
+        Eventos, Foco (\texttt{accesskey,tabindex, onfocus, onblur})
+        \item  \texttt{disabled='disabled'}
+        \item \texttt{maxlenght='número'}
+        \item \texttt{name='text'} (\textit{requerido})
+        \item \texttt{readonly='readonly'}
+        \item \texttt{size='número'}
+        \item \texttt{value='valor'}
+    \end{itemize}
+\end{frame}
+
+\subsubsection{Entrada de Contraseña}
+
+\begin{frame}{Entrada de contraseña \texttt{<input type='password'>}} % (fold)
+    \textbf{Atributos}
+    \begin{itemize}
+        \item Núcleo (\texttt{id, class, style, title}) Internacionalización,
+        Eventos, Foco (\texttt{accesskey,tabindex, onfocus, onblur})
+        \item  \texttt{disabled='disabled'}
+        \item \texttt{maxlenght='número'}
+        \item \texttt{name='text'} (\textit{requerido})
+        \item \texttt{readonly='readonly'}
+        \item \texttt{size='número'}
+        \item \texttt{value='valor'} (\textit{requerido})
+    \end{itemize}
+
+\end{frame}
+
+\subsubsection{Entrada oculta}
+
+\begin{frame}{Entrada oculta \texttt{<input type='hidden'>}} % (fold)
+    \textbf{Atributos}
+    \begin{itemize}
+        \item  \texttt{accesskey='caracter'}
+        \item \texttt{tabindex='número'}
+        \item \texttt{name='texto'} (\textit{requerido})
+        \item \texttt{value='valor'} (\textit{requerido})
+    \end{itemize}
+\end{frame}
+
+
+\subsubsection{Casilla de Verificación} 
+
+\begin{frame}[fragile]{Casilla de Verificación \texttt{<input type='checkbox'>}} % (fold)
+    \textbf{Atributos}
+    \begin{itemize}
+        \item Núcleo (\texttt{id, class, style, title}) Internacionalización,
+        Eventos, Foco (\texttt{accesskey,tabindex, onfocus, onblur})
+        \item \texttt{align='left|right|top|texttop|middle|baseline|bottom'}
+        \item \texttt{disabled='disabled'}
+        \item \texttt{maxlenght='número'}
+        \item \texttt{name='text'} (\textit{requerido})
+        \item \texttt{readonly='readonly'}
+        \item \texttt{size='número'}
+        \item \texttt{value='valor'}
+    \end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]{Casilla de Verificación \texttt{<input type='checkbox'>}} % (fold)
+\footnotesize{
+    \begin{lstlisting}
+<form>
+<input type="checkbox" name="os" value="debian" /> I like Debian <br />
+<input type="checkbox" name="os" value="arch" /> I like Arch <br /> 
+<input type="checkbox" name="os" value="ubuntu" /> I like Ubuntu<br /> 
+</form>
+    \end{lstlisting}
+}
+\end{frame}
+
+\subsubsection{Botón de opción} 
+\begin{frame}{Botón de opción} % (fold)
+    \textbf{Atributos}
+    \begin{itemize}
+        \item Núcleo (\texttt{id, class, style, title}) Internacionalización,
+        Eventos, Foco (\texttt{accesskey,tabindex, onfocus, onblur})
+        \item \texttt{chequed='chequed'}
+        \item \texttt{disabled='disabled'}
+        \item \texttt{name='text'} (\textit{requerido})
+        \item \texttt{readonly='readonly'}
+        \item \texttt{value='valor'}
+    \end{itemize}
+    
+\end{frame}
+
+\begin{frame}[fragile]{Botón de opción} % (fold)
+\footnotesize{
+\begin{lstlisting}
+<form>
+<input type="radio" name="sex" value="femenino" /> Femenino<br />
+<input type="radio" name="sex" value="masculino" /> Masculino <br />
+<input type="radio" name="sex" value="otro" /> Otro <br />
+</form>    
+\end{lstlisting}
+}
+\end{frame}
+
+\subsubsection{Botones de envío y reinicio} 
+
+\begin{frame}{Botón de envío \texttt{type='submit'}} % (fold)
+    \textbf{Atributos}
+    \begin{itemize}
+        \item Núcleo (\texttt{id, class, style, title}) Internacionalización,
+        Eventos, Foco (\texttt{accesskey,tabindex, onfocus, onblur})
+        \item \texttt{disabled='disabled'}
+        \item \texttt{name='text'} (\textit{requerido})
+        \item \texttt{value='valor'}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Botón de envío} % (fold)
+    \begin{lstlisting}
+<form name="input" action="/login" method="get">
+    Username: <input type="text" name="user" />
+
+    <input type="submit" value="Submit" />
+</form>        
+    \end{lstlisting}
+\end{frame}
+
+\subsubsection{Botón de reinicio}
+
+\begin{frame}[fragile]{Botón de reinicio \texttt{type='reset'}} % (fold)
+    \textbf{Atributos}
+    \begin{itemize}
+        \item Núcleo (\texttt{id, class, style, title}) Internacionalización,
+        Eventos, Foco (\texttt{accesskey,tabindex, onfocus, onblur})
+        \item \texttt{disabled='disabled'}
+        \item \texttt{value='valor'}
+    \end{itemize}
+    
+\end{frame}
+
+\subsubsection{Botón personalizado }
+
+\begin{frame}{Botón personalizado \texttt{type='button'}} % (fold)
+    Puede crear un botón personalizado que sea utilizado con controles de
+    \textit{scripting} (JavaScript) del lado del cliente ajustando el tipo
+    \texttt{input} a \texttt{button}\\
+    \footnotesize{
+    \textbf{Atributos}
+    \begin{itemize}
+        \item Núcleo (\texttt{id, class, style, title}) Internacionalización,
+        Eventos, Foco (\texttt{accesskey,tabindex, onfocus, onblur})
+        \item \texttt{disabled='disabled'}
+        \item \texttt{name='texto'}
+        \item \texttt{value='texto'}
+        \item \texttt{align='left|right|top|texttop|middle|baseline|bottom'}
+    \end{itemize}
+    }
+\end{frame}
+
+\subsubsection{Botón de imagen}
+
+\begin{frame}[fragile]{Botón de imagen \texttt{type='image'}} % (fold)
+    Si quiere utilizar su propia imagen para un boton de envío,  utilice el
+    tipo \texttt{image}\\
+
+    \footnotesize{
+    \textbf{Atributos}
+    \begin{itemize}
+        \item Núcleo (\texttt{id, class, style, title}) Internacionalización,
+        Eventos, Foco (\texttt{accesskey,tabindex, onfocus, onblur})
+        \item \texttt{disabled='disabled'}
+        \item \texttt{name='texto'} (\textit{texto requerido})
+        \item \texttt{src='url'}
+        \item \texttt{alt='texto'}
+        \item \texttt{align='top|middle|bottom'}
+    \end{itemize}
+    }
+\begin{lstlisting}
+<input type="image" src="submit.gif" alt="Submit" />
+\end{lstlisting}
+
+\end{frame}
+
+\subsubsection{Selector de archivos}
+\begin{frame}{Selector de archivos \texttt{type='file'}} % (fold)
+    El tipo de entrada \texttt{file} permite enviar archivos externos con el
+    formulario. El control del formulario incluye un campo de texto y un botón
+    de navegación que accede a los contenidos de la computadora local.\\ 
+    
+    \footnotesize{
+    \textbf{Atributos}
+    \begin{itemize}
+        \item Núcleo (\texttt{id, class, style, title}) Internacionalización,
+        Eventos, Foco (\texttt{accesskey,tabindex, onfocus, onblur})
+        \item \texttt{disabled='disabled'}
+        \item \texttt{name='texto'} (\textit{texto requerido})
+        \item \texttt{accept='Tipo de MIME'}
+        \item \texttt{maxlength='número'}
+        \item \texttt{size='número'}
+        \item \texttt{readonly='readonly'}
+        \item \texttt{value='texto'}
+    \end{itemize}
+    }
+\end{frame}
+
+\subsubsection{Area de texto multilinea} 
+
+\begin{frame}[fragile]{Área de texto multilinea \texttt{<textarea> </textarea>}} % (fold)
+El elemento \texttt{textarea} crea una casilla de entrada de texto deslizable y
+multilinea que permite introducir entradas de texto amplias. \\
+
+\footnotesize{
+    \begin{itemize}
+        \item Núcleo (\texttt{id, class, style, title}) Internacionalización,
+        Eventos, \texttt{onselect}, \texttt{onchange},  Foco (\texttt{accesskey,tabindex, onfocus, onblur})
+        \item \texttt{cols='número'} (\textit{requerido})
+        \item \texttt{disabled='disabled'}
+        \item \texttt{name='text'} (\textit{requerido})
+        \item \texttt{readonly='readonly'}
+        \item \texttt{rows='número'} (\textit{requerido})
+    \end{itemize}
+    \begin{lstlisting}
+<textarea rows="2" cols="20">
+Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...
+</textarea>
+
+    \end{lstlisting}
+}
+\end{frame}
+
+\subsubsection{Listas de selección} 
+
+\begin{frame}[fragile]{Listas de selección} % (fold)
+    \footnotesize{
+    El elemento \texttt{select} permite generar un menu de opciones más
+    compacto que el que proporcionan las agrupaciones de casillas de
+    verificación o de botones de opción. Un menu se muestra como un menu
+    desplegable o como una lista deslizante de opciones, dependiendo del tamaño
+    especificado. El elemento \texttt{select} funciona a modo de contenedo para
+    varios elementos \texttt{opcion}. Tambien puede contener uno o más
+    \texttt{optgroups}, utilizado para definir un grupo lógico de elementos
+    \texttt{opcion}. 
+
+\begin{lstlisting}
+<select>
+  <option value="volvo">Volvo</option>
+  <option value="saab">Saab</option>
+  <option value="mercedes">Mercedes</option>
+  <option value="audi">Audi</option>
+</select>    
+\end{lstlisting}
+
+    }
+\end{frame}
+
+\begin{frame}{\texttt{<select> </select>}} % (fold)
+    \textbf{Atributos}
+    \begin{itemize}
+        \item Núcleo (\texttt{id, class, style, title}) Internacionalización,
+        Eventos, \texttt{onfocus}, \texttt{onblur}, \texttt{onchange}
+        \item \texttt{disabled='disabled'}
+        \item \texttt{name='text'} (\textit{requerido})
+        \item \texttt{multiple='multiple'} 
+        \item \texttt{size='número'}
+        \item \texttt{tabindex='número'}
+    \end{itemize}
+\end{frame}
+
+
+\begin{frame}{\texttt{<option> </option>}} % (fold)
+    \textbf{Atributos}
+    \begin{itemize}
+        \item Núcleo (\texttt{id, class, style, title}) Internacionalización,
+        Eventos
+        \item \texttt{disabled='disabled'}
+        \item \texttt{label='texto'}
+        \item \texttt{selected='selected'}
+        \item \texttt{value='texto'}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{\texttt{<optgroup> </optgroup>}} % (fold)
+    \textbf{Atributos}
+    \begin{itemize}
+        \item Núcleo (\texttt{id, class, style, title}) Internacionalización,
+        Eventos
+        \item \texttt{disabled='disabled'}
+        \item \texttt{label='texto'}
+    \end{itemize}
+
+    \begin{lstlisting}
+<select>
+  <optgroup label="Swedish Cars">
+    <option value="volvo">Volvo</option>
+    <option value="saab">Saab</option>
+  </optgroup>
+  <optgroup label="German Cars">
+    <option value="mercedes">Mercedes</option>
+    <option value="audi">Audi</option>
+  </optgroup>
+</select>        
+    \end{lstlisting}
+    
+\end{frame}
+
+\begin{frame}[fragile]{Listas de selección multiples} % (fold)
+    Para que la lista sea de selección multiple, especifique el número de
+    lineas que le gustaría que fuerán visibles en la lista utilizando el
+    atributo \texttt{size} o añada el atributo \texttt{multiple} al elemento
+    \texttt{select}. 
+
+    \begin{lstlisting}
+<select multiple="multiple" size="2">
+  <option value="volvo">Volvo</option>
+  <option value="saab">Saab</option>
+  <option value="mercedes">Mercedes</option>
+  <option value="audi">Audi</option>
+</select>
+    \end{lstlisting}
+
+\end{frame}
+
+\subsubsection{Botones}
+
+\begin{frame}[fragile]{Botones \texttt{<button type='button'> </button>}} % (fold)
+\footnotesize{
+    El elemento \texttt{button} define un 'botón' personalizado que funciona
+    como los botones creados con la etiqueta \texttt{input}. El elemento
+    \texttt{button} puede tener imagenes (pero no mapas de imágen) y cualquier
+    otro contenido excepto elementos \texttt{a}, \texttt{form} y elementos de
+    control de formulario. Los botones pueden renderizarse como botones 3D
+    sombreados, con movimiento arriba y abajo cuando se pulsan (como los
+    botones de envío y de reinicio), a diferencia del tipo de entrada
+    \texttt{image} que es solo una imágen plana. 
+
+    \begin{lstlisting}
+<button type="button">Click Me!</button>
+    \end{lstlisting}
+
+}
+\end{frame}
+
+\begin{frame}{Botones lista de atributos} % (fold)
+    \begin{itemize}
+        \item Núcleo (\texttt{id, class, style, title}) Internacionalización,
+        Eventos, Foco (\texttt{acceskey} \texttt{tabindex} \texttt{onfocus}
+        \texttt{onblur})
+        \item \texttt{disabled='disabled'}
+        \item \texttt{name='texto'}
+        \item \texttt{type='submit|reset|button'}
+
+    \end{itemize}
+\end{frame}
+
+\subsubsection{Fieldset y Legend} 
+\begin{frame}{Fieldset y Legend} % (fold)
+
+\footnotesize{
+El elemento \texttt{fieldset} se utiliza para crear un grupo lógico de
+controles de formulario. El \texttt{fieldset} puede contener un elemento
+\texttt{legend}, una descripción de los campos incluidos que puede resultar muy
+útil a los navegadores no visuales y lectores de pantalla.\\[0.5cm] 
+
+    \textbf{Atributos de \texttt{fieldset}}
+    \begin{itemize}
+        \item Núcleo (\texttt{id, class, style, title}) Internacionalización,
+        Eventos \\[0.5cm]
+    \end{itemize}
+    \textbf{Atributos de \texttt{legend}}
+    \begin{itemize}
+        \item Núcleo (\texttt{id, class, style, title}) Internacionalización,
+        Eventos
+        \item \texttt{acceskey='caracter'}
+        \item \texttt{align='top|bottom|left|right'} (\textit{relegado})
+    \end{itemize}
+
+} 
+
+\end{frame}
+
+\begin{frame}[fragile]{Fieldset y Legend} % (fold)
+\begin{lstlisting}
+<form>
+  <fieldset>
+    <legend>Personalia:</legend>
+    Name: <input type="text" size="30" /><br />
+    Email: <input type="text" size="30" /><br />
+    Date of birth: <input type="text" size="10" />
+  </fieldset>
+</form>
+\end{lstlisting}
+\end{frame}
+
+
+\begin{frame}{\texttt{acceskey}} % (fold)
+
+\begin{center}
+
+    El atributo \texttt{accesskey} especifica un carácter que será usado como
+    atajo de teclado para un elemento. La funcionalidad real de la tecla de
+    acceso puede necesitar de una combinación de tecla como \texttt{Alt-tecla}
+    (Windows) o \texttt{Comando-Tecla} para Mac. \\[0.5cm] 
+    \pause
+        El atributo \texttt{accesskey} puede utilizarse con los elementos de
+    control de formulario \texttt{button},  \texttt{input},  \texttt{label},
+    \texttt{legend} y \texttt{textarea}. 
+
+\end{center}
+
+\end{frame}
+
+
+\begin{frame}{\texttt{tabindex}} % (fold)
+    \begin{center}
+        Utilice \texttt{tabindex} si quiere reorganizar el orden del foco sin
+        cambiar el orden de los elementos.
+    \end{center}
+\end{frame}
+
+% subsection Controles de Formulario (end)
+
+
+
+\end{document}
