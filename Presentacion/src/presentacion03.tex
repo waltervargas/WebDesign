@@ -59,7 +59,7 @@
 
 \begin{frame}[fragile]{Párrafos \texttt{<p> </p>}} % (fold)
     Los párrafos son los elementos más rudimentarios de un documento de texto.
-    Se indican con el elemento \texttt{p}.\\[0.5cm]
+    Se indican con el elemento \texttt{p}.\\[0.1cm]
 
     \textbf{Atributos}
     \begin{itemize}
@@ -426,12 +426,173 @@ Jenny: <span class="telephone">867.5309</span>
 \end{frame}
 
 
-\begin{frame}{Notas sobre el uso de class} % (fold)
-    contenido
+\begin{frame}[fragile]{Notas sobre el uso de \texttt{class}} % (fold)
+\footnotesize{
+    La capacidad de crear sus propios elementos personalizados utlizando
+    \texttt{id} y \texttt{class} es muy satisfactoria. El atributo
+    \texttt{class} es propenso a ser mal utilizado. Estos consejos le darán
+    algunas pautas básicas de marcado. 
+
+    \begin{itemize}
+        \item \textbf{Lograr que los nombres \texttt{class} tengan
+        significado.} \\
+        El valor del atributo \texttt{class} debería proporcionar una
+        descripción semántica del contenido de un \texttt{div} o \texttt{span}.
+        Elegir nombres en función de la presentación que se quiere dar al
+        elemento no ayuda a dar significado al elemento y reintroduce la
+        información de presentación al documento. 
+
+        \item \textbf{No abuse de las clases: } Es fácil excederse asignando
+        nombres \texttt{class} a elementos. En muchos casos pueden utilizarse
+        otros tipos de selectores como selectores contextuales o de atributo.
+        Por ejemplo, en lugar de etiquetar todos los elementos \texttt{h1} de
+        una barra lateral como \texttt{class="barralateral"} podría utilizarse
+        un selector contextual de este modo: 
+
+        \begin{lstlisting}
+div#sidebar h1 {font: Verdana 1.2em bold #444;}
+        \end{lstlisting}
+    \end{itemize}
+    }
 \end{frame}
 
-% subsection Los elementos genéricos  (end)
+\subsection{Listas} % (fold)
 
-% subsection  (end)
+\begin{frame}{Listas} % (fold)
+    Los humanos somos creadores de listas por naturaleza, así que resulta
+    lógico que los mecanismos para crear listas de información hayan formado
+    parte del lenguaje HTML desde el principio. Esta sección presenta los tipos
+    de lista definidos en XHTML. 
+    \begin{itemize}
+        \item Información sin numerar
+        \item Información numerada
+        \item Términos y definiciones
+    \end{itemize}
+\end{frame}
+
+
+\begin{frame}{Listas no numeradas \texttt{<ul> <li> </li> </ul>}} % (fold)
+    Las listas no numeradas se utilizan para colecciones de elementos
+    relacionados que aparecen sin ningún orden determinado. \\[0.5cm]
+
+    \textbf{Elemento \texttt{<ul>}}\\[0.2cm] 
+
+    \textbf{Atributos}
+    \begin{itemize}
+        \item Núcleo (\texttt{id, class, style, title}),
+        \textit{Internacionalización},  \textit{Eventos}
+    \end{itemize}
+
+    \textbf{Atributos relegados}
+    \begin{itemize}
+        \item \texttt{compact} 
+        \item \texttt{type="disc|circle|square"}
+    \end{itemize}
+\end{frame}
+
+
+\begin{frame}{Listas no numeradas \texttt{<ul> <li> </li> </ul>}} % (fold)
+    \textbf{Elemento \texttt{<li>}}\\[0.2cm] 
+
+    \textbf{Atributos}
+    \begin{itemize}
+        \item Núcleo (\texttt{id, class, style, title}),
+        \textit{Internacionalización},  \textit{Eventos}
+    \end{itemize}
+
+    \textbf{Atributos relegados}
+    \begin{itemize}
+        \item \texttt{type='formato'} 
+        \item \texttt{value='número'}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Sintaxis de listas no numeradas} % (fold)
+    Este ejemplo muestra el marcado de una lista básica no ordenada. 
+
+    \begin{lstlisting}
+<ul> 
+    <li> Perl  </li>
+    <li> Haskel </li> 
+    <li> Erlang </li>
+    <li> Lisp </li> 
+</ul>
+    \end{lstlisting}
+
+    En HTML 4.01 las etiquetas de cierre para los elementos de lista son
+    opcionales, pero en XHTML se necesitan todas las etiquetas de cierre. Es
+    aconsejable cerrar todos los elementos sea cual sea la versión de HTML que
+    se esta utilizando.
+\end{frame}
+
+\begin{frame}{Listas numeradas \texttt{<ol>}} % (fold)
+    Las listas numeradas se utilizan para las listas en las que la secuencia de
+    los elementos es importante, como instrucciones paso a paso o notas al
+    final de página. Las listas numeradas se indican con el elemento
+    \texttt{ol} y deben incluir uno o más elementos de lista \texttt{li}. Como
+    todas las listas, las listas numeradas y sus elementos de lista son
+    elementos a nivel de bloque. 
+
+    \textbf{Atributos}
+    \begin{itemize}
+        \item Núcleo (\texttt{id, class, style, title}),
+        \textit{Internacionalización},  \textit{Eventos}
+    \end{itemize}
+
+    \textbf{Atributos relegados}
+    \begin{itemize}
+        \item \texttt{compact}
+        \item \texttt{start='number'}
+        \item \texttt{type='1|A|a|I|i'}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Sintaxis de listas numeradas} % (fold)
+    Las listas numeradas tienen las mismas estructuras básicas que las listas no
+    numeradas como muestra este ejemplo. 
+
+    \begin{lstlisting}
+<ol> 
+    <li> Despertarse </li> 
+    <li> Cepillarse </li>
+    <li> Tomar una ducha </li> 
+    <li> Preparar Te </li> 
+    <li> Revisar el correo </li> 
+</ol>
+    \end{lstlisting}
+
+\end{frame}
+
+\begin{frame}{Listas de definición \texttt{<dl>}} % (fold)
+   Utilice una lista de definición para las listas que concisten en parejas de
+   términos y definiciones. \\[0.2cm]
+    
+   \textbf{Atributos del elemento \texttt{dl}}
+   \begin{itemize}
+       \item Núcleo (\texttt{id, class, style, title}),
+       \textit{Internacionalización},  \textit{Eventos}
+       \item \texttt{compact}
+   \end{itemize}
+   
+   \textbf{Atributos del elemento \texttt{dd}}
+   \begin{itemize}
+       \item Núcleo (\texttt{id, class, style, title}),
+       \textit{Internacionalización},  \textit{Eventos}
+   \end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]{Ejemplo de listas de definición} % (fold)
+\begin{lstlisting}
+<dl>
+  <dt>Coffee</dt>
+    <dd>- black hot drink</dd>
+  <dt>Milk</dt>
+    <dd>- white cold drink</dd>
+</dl>
+\end{lstlisting}
+\end{frame}
+
+% subsection Listas (end)
 
 \end{document}
