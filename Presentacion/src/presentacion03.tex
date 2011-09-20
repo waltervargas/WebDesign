@@ -1,0 +1,437 @@
+\input{preambulo.tex}
+
+% Titulo
+\title[WebDesign] {Diseño Web | Tecnologías Involucradas}
+\author[Walter Vargas]{ info@covetel.com.ve \inst{1}}
+\subtitle{Elementos de texto}
+\institute[covetel.com.ve]{ \inst{1} Cooperativa Venezolana de Tecnologías Libres R.S. }
+\date
+
+\begin{document}
+
+\begin{frame} % (fold)
+    \titlepage 
+\end{frame}
+
+\begin{frame} % (fold)
+    \tableofcontents
+\end{frame}
+
+\section{Elementos de texto}
+
+\subsection{La creación de bloques de contenido} % (fold)
+
+\begin{frame}{La creación de bloques de contenido} % (fold)
+    Los elementos de texto se dividen en dos grandes categorías: en línea y en
+    bloque. Los elementos en línea están en el flujo del texto y, por defecto,
+    no causan saltos de línea. \\[0.5cm]
+    \pause
+    Los elementos a nivel de bloque, tienen una presentación por defecto que
+    comienza en una nueva línea y tienden a apilarse como bloques en el flujo
+    normal del documento. \\[0.5cm]
+    \pause
+    Los elementos de bloque componenen la estructura principal del
+    documento.\\[0.5cm]
+\end{frame}
+
+\begin{frame}[fragile]{Cabeceras \texttt{<h1> <h6>}} % (fold)
+    Las cabeceras se utilizan para introducir ideas o secciones de texto.
+    (X)HTML define seis niveles de cabeceras, de \texttt{h1} a \texttt{h6}, de
+    mayor a menor importancia. 
+
+    \textbf{Atributos}
+    \begin{itemize}
+        \item Núcleo (\texttt{id, class, style, title}),
+        \textit{Internacionalización},  \textit{Eventos}
+    \end{itemize}
+
+    \textbf{Atributos relegados}
+    \begin{itemize}
+        \item \texttt{align='center|left|right'}
+    \end{itemize}
+
+    Este ejemplo define el elemento como una cabecera de primer nivel
+
+    \begin{lstlisting}
+<h1> Perl Primeros Pasos </h1>
+    \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Párrafos \texttt{<p> </p>}} % (fold)
+    Los párrafos son los elementos más rudimentarios de un documento de texto.
+    Se indican con el elemento \texttt{p}.\\[0.5cm]
+
+    \textbf{Atributos}
+    \begin{itemize}
+        \item Núcleo (\texttt{id, class, style, title}),
+        \textit{Internacionalización},  \textit{Eventos}
+    \end{itemize}
+    \textbf{Atributos relegados}
+    \begin{itemize}
+        \item \texttt{align='center|left|right'}
+    \end{itemize}
+
+    Los párrafos pueden contener texto y elementos en linea, pero no pueden
+    contener otros elementos de bloque, como otros párrafos. Este es un ejemplo
+    de un párrafo marcado como un elemento \texttt{p}
+
+    \begin{lstlisting}
+<p> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+</p> 
+    \end{lstlisting}
+
+\end{frame}
+
+\begin{frame}[fragile]{Citas \texttt{blockquote}} % (fold)
+    Utilice el elemento \texttt{blockquote} para citas largas, especialmente
+    aquellas que ocupan varios párrafos y tienen saltos de línea. \\[0.5cm]
+    \textbf{Atributos}
+    \begin{itemize}
+        \item Núcleo (\texttt{id, class, style, title}),
+        \textit{Internacionalización},  \textit{Eventos}
+    \end{itemize}
+    Se recomienda que el contenido de una cita esté contenido en otros
+    elementos de bloque como párrafos, cabeceras, listas, etc, tal y como
+    muestra este ejemplo de marcado. 
+
+    \begin{lstlisting}
+<p><blockquote
+cite="http://catb.org/~esr/writings/taoup/html/ch01s06.html#id2877537"> 
+Write simple parts connected by clean interfaces.
+</blockquote> </p>
+    \end{lstlisting}
+\end{frame}
+
+\subsubsection{Texto preformateado}
+
+\begin{frame}{Texto preformateado \texttt{<pre> </pre>}} % (fold)
+    El texto preformateado se utiliza cuando es necesario conservar el espacio
+    en blanco de la fuente (espacios de caracteres o saltos de linea) al
+    mostrar el documento en pantalla. Puede ser muy útil para código o poesía,
+    donde los espacios y el alineamiento son importantes para el
+    significado.\\[0.5cm]
+
+    \textbf{Atributos}
+    \begin{itemize}
+        \item Núcleo (\texttt{id, class, style, title}),
+        \textit{Internacionalización},  \textit{Eventos}
+    \end{itemize}
+    \textbf{Atributos depreciados} 
+        \begin{itemize}
+            \item \texttt{width='número'}
+        \end{itemize}
+
+     El texto preformateado es el único que aparece en pantalla exactamente
+     como fue escrito en el código fuente. 
+\end{frame}
+
+
+\subsubsection{Direcciones}
+
+\begin{frame}[fragile]{Direcciones \texttt{<address> ... </address>}} % (fold)
+    El elemento \texttt{address} se utiliza para proporcionar información de
+    contacto del autor o del encargado de mantenimiento del documento. No es
+    apropiado para todos los listados de direcciones. 
+    \textbf{Atributos}
+    \begin{itemize}
+        \item Núcleo (\texttt{id, class, style, title}),
+        \textit{Internacionalización},  \textit{Eventos}
+    \end{itemize}
+    
+    \begin{lstlisting}
+<address>
+Documento elaborado por Walter Vargas 
+<a href="http://www.covetel.com.ve/"> Covetel R.S. </a> 
+</address>
+    \end{lstlisting}
+\end{frame}
+
+
+% subsection La creación de bloques de contenido (end)
+
+\subsection{Elementos de línea} % (fold)
+
+\begin{frame}{Elementos de Línea} % (fold)
+    La mayoria de los elementos de texto son elementos de línea. Los elementos
+    de línea, por defecto, no añaden saltos de línea ni expacios extra. 
+\end{frame}
+
+\subsubsection{Elementos de frase}
+
+\begin{frame}{Elementos de frase} % (fold)
+
+\footnotesize{
+    HTML 4.01 y XHTML 1.0 y 1.1 definen una colección de elementos de frase
+    (tambien denominados elementos lógicos) para añadir estructura y
+    significado al texto en línea. Como los elementos de frase comparten
+    sintaxis y atributos, se agregan a un elemento de los de aquí listados.\\[0.5cm]
+
+    \textbf{abbr, acronym, cite, code, dfn, em, kbd, samp, strong, var}\\[0.5cm]
+
+    \textbf{Atributos}
+    \begin{itemize}
+        \item Núcleo (\texttt{id, class, style, title}),
+        \textit{Internacionalización},  \textit{Eventos}
+    \end{itemize}
+
+    Los elementos de frase pueden contener otros elementos en línea. En las
+    próximas láminas se presenta el significado y uso de cada elemento. También
+    aparecen indicados los elementos con una presentación estandarizada en los
+    navegadores (por ejemplo los elementos \texttt{em} se muestran siempre en
+    cursiva). Recuerde, sin embargo, seleccionar elementos en función del
+    significado y no del efecto de renderizado. 
+}
+\end{frame}
+
+\begin{frame}[fragile]{\texttt{em}} % (fold)
+    Indica texto enfatizado, los elementos \texttt{em} casi siempre se
+    renderizan en cursiva. 
+    \begin{lstlisting}
+<em>Emphasized text</em>
+    \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{\texttt{strong}} % (fold)
+    Indica texto muy enfatizado, los elementos \texttt{strong} casi siempre se
+    están renderizados en negrita.
+    \begin{lstlisting}
+<strong>Strong text</strong>
+    \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{\texttt{abbr}} % (fold)
+    Indica una forma abreviada
+    \begin{lstlisting}
+The <abbr title="World Health Organization">WHO</abbr> was founded in 1948.
+    \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{\texttt{acronym}} % (fold)
+    Indica un acrónimo.
+\begin{lstlisting} 
+this api allow connect to an <acronym title="Lightweight Directory Access Protocol">LDAP</acronym>
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{\texttt{cite}} % (fold)
+    Indica una cita: una referencia a otro documento, especialmente libros,
+    revistas, artículos, etc. Las citas suelen renderizarse en cursiva. 
+\begin{lstlisting}
+<cite>Especificacion XHTML 2</cite>
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{\texttt{dfn}} % (fold)
+    Indica la definición del término. Puede utilizarser para llamar la
+    atención sobre la introducción de términos y frases especiales. Estos
+    términos suelen renderizarse en cursiva. 
+    \begin{lstlisting}
+<dfn> A hacker is ... </dfn>
+    \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{\texttt{code}} % (fold)
+    Indica un ejemplo de código. Por defecto se renderiza en una fuente de tipo
+    monoespacial especificada por el navegador (normalmente la tipografía
+    Courier). 
+
+\begin{lstlisting}
+<code class="haskell">
+fac :: Integer -> Integer
+fac 0 = 1
+fac n | n > 0 = n * fac (n-1)
+</code>
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{kbd} % (fold)
+    Equivale a \textbf{keyboard} o teclado e indica el texto introducido por el
+    usuario. Puede ser útil para documentos técnicos. El texto de teclado suele
+    renderizarse en fuente monoespacial. 
+
+\begin{lstlisting}
+Escriba en la consola <kbd> rm -f -R / </kbd> para ...
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{\texttt{samp}} % (fold)
+    Indica muestras de salida de programas, \textit{scripts}, etc. Puede ser
+    útil para documentos técnicos. El texto de muestra suele renderizarse en
+    fuente monoespacial. 
+\begin{lstlisting}
+En la pantalla va a salir la frase 
+<samp> Kernel panic </samp>
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{\texttt{var}} % (fold)
+    Indica una variable o arguento de programa. Es otro elemento útil para
+    documentos técnicos. Las variables suelen renderizarse en cursiva. 
+\begin{lstlisting}
+El elemento se encuentra en la variable 
+<var> $_ </var>
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Citas breves \texttt{q}} % (fold)
+    HTML 4 introdujo el elemento \texttt{q} para indicar citas en línea breves
+    como "Ser o no ser". Las citas más largas deberían utilizar el elemento
+    \texttt{blockquote}. \\[0.5cm]
+
+    \textbf{Atributos} 
+    \begin{itemize}
+        \item Núcleo (\texttt{id, class, style, title}),
+        \textit{Internacionalización},  \textit{Eventos}
+        \item \texttt{cite='url'}
+    \end{itemize}
+
+\begin{lstlisting}
+<q cite="http://catb.org/~esr/writings/taoup/html/ch01s06.html"> 
+Design for the future, because it will
+be here sooner than you think
+</q>
+\end{lstlisting}
+\end{frame}    
+
+\begin{frame}[fragile]{Texto eliminado e insertado} % (fold)
+\footnotesize{
+    Los elementos \texttt{ins} y \texttt{del} se utilizan para marcar los
+    cambios en el texto y para indicar partes de un documento que han sido
+    insertadas o eliminadas. Pueden ser útiles en los documentos legales y en
+    cualquier caso en el que se necesite seguir la pista a las
+    modificaciones.\\[0.4cm]
+
+    Pueden contener una o más palabras en un párrafo o uno o más elementos como
+    párrafos, listas y tablas. \\[0.4cm]
+
+    Cuando se utilizan como elementos en línea no pueden contener elementos de
+    bloque porque violaría el contenido permitido.
+
+    \textbf{Atributos}
+    \begin{itemize}
+        \item Núcleo (\texttt{id, class, style, title}),
+        \textit{Internacionalización},  \textit{Eventos}
+        \item \texttt{cite='url'}
+        \item \texttt{datetime="YYYY-MM-DDThh:mm:ssTZD"}
+    \end{itemize}
+
+\begin{lstlisting}
+Mi color favorito es <del title="explica breve del cambio">azul</del> <ins>rojo</ins>
+\end{lstlisting}
+ }
+\end{frame}
+
+\subsection{Los elementos genéricos \texttt{div} y \texttt{span} } % (fold)
+
+\begin{frame}{Los elementos genéricos \texttt{div} y \texttt{span} } % (fold)
+    Los elementos genéricos \texttt{div} y \texttt{span} permiten a los autores
+    crear elementos personalizados. El elemento \texttt{div} se utiliza para
+    indicar elementos a nivel de bloque y \texttt{span} indica elementos en
+    línea. Estos dos elementos tienen atributos \texttt{id} y \texttt{class}
+    para darles nombre, significado o contexto.
+\end{frame}
+
+\begin{frame}{El \texttt{div} polivalente} % (fold)
+    El elemento \texttt{div} se utiliza para identificar y etiquetar cualquier
+    división de texto a nivel de bloque, sean unos cuantos elementos de lista o
+    una página entera. \\[0.4cm]
+
+    \textbf{Atributos}
+    \begin{itemize}
+        \item Núcleo (\texttt{id, class, style, title}),
+        \textit{Internacionalización},  \textit{Eventos}
+    \end{itemize}
+
+    \textbf{Atributos relegados}
+    \begin{itemize}
+        \item \texttt{align='center|left|right'}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{El útil \texttt{span}} % (fold)
+
+\footnotesize{
+    Como el elemento \texttt{div}, \texttt{span} permite a los autores crear
+    elementos personalizados. La diferencia es que \texttt{span} se utiliza
+    para elementos en línea y no introduce un salto de línea.\\[0.1cm]
+
+    \textbf{Atributos}
+    \begin{itemize}
+        \item Núcleo (\texttt{id, class, style, title}),
+        \textit{Internacionalización},  \textit{Eventos}
+    \end{itemize}
+
+    El código es un ejemplo de un \texttt{span} utilizado para identificar un
+    número de teléfono. 
+
+\begin{lstlisting}
+Jenny: <span class="telephone">867.5309</span>
+\end{lstlisting}
+    
+    Este marcado tiene distintos usos. Lo más común es utilizarlo como un
+    "gancho" que puede aplicarse a reglas de hojas de estilo. En este ejemplo,
+    todos los elementos etiquetados como \texttt{telephone} puede recibir las
+    mismas instrucciones de presentación, como mostrarse en texto azul en
+    negritas.\\[0.1cm]
+
+    El \texttt{span} también da significado a una serie de otra forma aleatoria
+    de dígitos para los agentes de usuario que conocen lo que hay que hacer con
+    la información \texttt{telephone}. 
+
+}
+\end{frame}
+
+\begin{frame}{Elementos identificadores \texttt{class}, \texttt{id}} % (fold)
+    Los ejemplos anteriores muestran cómo se utilizan los atributos \texttt{id}
+    y \texttt{class} para convertir elementos genéricos \texttt{div} y
+    \texttt{span} en elementos con significados y usos específicos. \\[0.5cm]
+
+    Debe destacarse que los atributos \texttt{class} y \texttt{id} pueden
+    utilizarse con casi todos los elementos XHTML, no solo con \texttt{div} y
+    \texttt{span}. 
+\end{frame}
+
+\begin{frame}{Identificador \texttt{id}} % (fold)
+    El atributo \texttt{id} se utiliza para dar a un elemento un nombre
+    específico y único en el documento. Esto significa que no habrá ningún otro
+    elemento con ese \texttt{id}. Los valores \texttt{id} deben ser únicos. \\
+    La recomendación HTML 4.01 especifica estos usos para el atributo
+    \texttt{id}: 
+
+    \begin{itemize}
+        \item Como un selector de hojas de estilo
+        \item Como ancla para vínculos 
+        \item Como un medio para acceder a un elmento desde un \textit{script}
+        \item Para el procesado por parte de agentes de usuario, esencialmente
+        tratando los elementos como datos.
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}{El identificador \texttt{class}} % (fold)
+    El atributo \texttt{class} se utiliza para agrupar elementos similares.
+    Pueden asignarse varios elementos al mismo nombre \texttt{class} y de este
+    modo se pueden tratar igual. \\
+    En el ejemplo anterior de \texttt{span}, el número de teléfono estaba
+    identificado como \texttt{telephone} con el atributo \texttt{class}. Esto
+    implica que puede haber muchos números de teléfono más en el documento. Una
+    sola regla de hojas de estilo podría utilizarse para que todos sean en azul
+    y negritas. \\
+    De acuerdo a la especificación HTML 4.01 este atributo puede utilizarse: 
+
+    \begin{itemize}
+        \item Como selector de hojas de estilo
+        \item Para el procesado por parte de agentes de usuario
+    \end{itemize}
+\end{frame}
+
+
+\begin{frame}{Notas sobre el uso de class} % (fold)
+    contenido
+\end{frame}
+
+% subsection Los elementos genéricos  (end)
+
+% subsection  (end)
+
+\end{document}
