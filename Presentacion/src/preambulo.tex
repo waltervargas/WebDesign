@@ -1,6 +1,6 @@
 % Copyleft 2010 by Walter Vargas <walter@covetel.com.ve>
 
-\documentclass{beamer}
+\documentclass[9pt]{beamer}
 \usepackage{listings}
 \lstset{
     language=HTML 
@@ -28,15 +28,13 @@
 \definecolor{azulito}{HTML}{0066CC}
 
 \lstdefinelanguage{HTML}{
-keywords={xml, DOCTYPE, head,  body, html,  document}, 
-keywordstyle=\color{green}\bfseries, 
+keywords={xml, DOCTYPE, head,  body, html}, 
+keywordstyle=\color{azulito}\bfseries, 
 ndkeywords={title, option, form, textarea, table, th, tr, td, p, br, input,
 button, frame, iframe, div, optgroup, select, fieldset,  legend, h1, h2, h3,
 h4, h5, h6, p, blockquote, address, em,strong, abbr, acronym, cite, dfn, code,
-kbd, samp, var, q,  link,  script,  this, next,  each, text,  false,  true}, 
+kbd, samp, var, q, ul, li, dl, dt, dd}, 
 ndkeywordstyle=\color{blue}\bfseries, 
-morekeywords={ready, return,  click,  load}, 
-morekeywordstyle=\color{pink}\bfseries, 
 identifierstyle=\color{black}, 
 sensitive=false, 
 comment=[l]{//}, 
@@ -50,11 +48,11 @@ morestring=[b]"
 language=HTML, 
 backgroundcolor=\color{lightgray}, 
 extendedchars=true, 
-basicstyle=\footnotesize\ttfamily, 
+basicstyle=\scriptsize\ttfamily, 
 showstringspaces=false, 
 showspaces=false, 
 numbers=left, 
-numberstyle=\footnotesize, 
+numbersstyle=\footnotesize, 
 numbersep=9pt, 
 tabsize=2, 
 breaklines=true, 
