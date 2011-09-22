@@ -218,4 +218,53 @@ $('#introduction > h2 a').click(function() {
     línea de código.
 \end{frame}
 
+\section{Selector de Expresiones}
+
+\subsection{Selectores CSS} % (fold)
+
+\begin{frame}[fragile]{Elemento: T} % (fold)
+Todos los elementos que tienen un nombre de etiqueta para T.
+\textbf{Ejemplo}
+\begin{itemize}
+    \item \$('div') \textit{: selecciona todos los elementos con un nombre de etiqueta
+    \texttt{div} en el documento.} 
+    \item \$('em') \textit{: selecciona todos los elementos con un nombre de etiqueta
+    \texttt{em} en el documento.}
+\end{itemize}
+JQuery utiliza JavaScript \texttt{getElementByTagName()} para los selectores de
+nombre de etiqueta.
+\end{frame}
+
+\begin{frame}[fragile]{ID: \#myid} % (fold)
+El único elemento con un ID igual a \texttt{myid}.
+
+\textbf{Ejemplo}
+\begin{itemize}
+    \item \$('\#myid') \textit{: selecciona el unico elemento con \texttt{id = 'myid'},
+    independientemente de su nombre de etiqueta. }
+    \item \$('p\#myid') \textit{: selecciona un solo párrafo con \texttt{id} de
+    \texttt{'myid'}, el único elemento \texttt{<p id = 'myid'>}. }
+\end{itemize}
+Cada nombre asignado a un \texttt{id} debe ser utilizado sólo una vez en un
+documento.
+
+Para un selector \texttt{id} JQuery utiliza el \texttt{getElementById()}.
+\end{frame}
+
+\begin{frame}[fragile]{Class: .myclass} % (fold)
+Todos los elementos que tienen una class \texttt{myclass}.
+\textbf{Ejemplo}
+\begin{itemize}
+    \item \$('.myclass') \textit{: selecciona todos los elementos con una clase
+    \texttt{myclass}.} 
+    \item \$('p.myclass') \textit{: selecciona todos los párrafos con una clase 
+    \texttt{myclass}.} 
+    \item \$('.myclass.otherclass') \textit{: selecciona todos los elementos
+    con una clase \texttt{myclass} y \texttt{otherclass} }
+\end{itemize}
+En términos de velocidad,  el ejemplo 2 es preferible al 1,  ya que el primero
+utiliza el nativo \texttt{getElementsByTagName()} función de JavaScript para
+filtrar la búsqueda, y las miradas de la clase dentro del subconjunto
+emparejado de elementos DOM. 
+\end{frame}
 \end{document}
