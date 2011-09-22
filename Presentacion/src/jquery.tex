@@ -73,7 +73,7 @@ En este ejemplo se muestra como referenciar los componentes de JQuery.\\[0.5cm]
 
 \begin{frame}[fragile]{Escribiendo el Código JQuery} % (fold)
 Nuestro código personalizado lo hemos incluido en el código HTML utilizando
-\texttt{<script src="appjquery.js" type="text/javascript"></script>}. A pesar de lo mucho
+\texttt{<script src="\/appjquery.js" type="text/javascript"\/></script>}. A pesar de lo mucho
 que realiza tiene pocas lineas de código:
 \end{frame}
 
@@ -251,7 +251,7 @@ documento.
 Para un selector \texttt{id} JQuery utiliza el \texttt{getElementById()}.
 \end{frame}
 
-\begin{frame}[fragile]{Class: .myclass} % (fold)
+\begin{frame}[fragile]{Clase: .myclass} % (fold)
 Todos los elementos que tienen una class \texttt{myclass}.
 \textbf{Ejemplo}
 \begin{itemize}
@@ -266,5 +266,36 @@ En términos de velocidad,  el ejemplo 2 es preferible al 1,  ya que el primero
 utiliza el nativo \texttt{getElementsByTagName()} función de JavaScript para
 filtrar la búsqueda, y las miradas de la clase dentro del subconjunto
 emparejado de elementos DOM. 
+\end{frame}
+
+\begin{frame}[fragile]{Descendiente: E F} % (fold)
+Todos los elementos encontrados por F que son descendientes de uno de los
+elementos coincidentes por E.
+
+\textbf{Ejemplo}
+\begin{itemize}
+    \item \$('\#container p') \textit{: selecciona todos los elementos
+    encontrados por \texttt{<p>} que son descendientes de un elemento que tiene
+    como \texttt{id} \texttt{container}.}
+    \item \$('a img') \textit{: selecciona todos los elementos encontrados por
+    \texttt{<img>} que son descendientes de un elemento coincidente con
+    \texttt{<a>}.}
+\end{itemize}
+Un descendiente de un elemento puede ser un hijo, nieto,  bisnieto y así
+sucesivamente. Por ejemplo en el siguiente código HTML,  el elemento
+\texttt{<img>} es
+descendiente de los elementos \texttt{<span>}, \texttt{<p>},  \texttt{<div
+id="\/inner"\/>} y
+\texttt{<div id="\/container"\/>}:
+
+\begin{lstlisting}
+<div id="container">
+  <div id="inner">
+    <p>
+      <span><img src="example.jpg" alt="" /></span>
+    </p>
+  </div>
+</div>
+\end{lstlisting}
 \end{frame}
 \end{document}
