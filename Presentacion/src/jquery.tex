@@ -73,7 +73,7 @@ En este ejemplo se muestra como referenciar los componentes de JQuery.\\[0.5cm]
 
 \begin{frame}[fragile]{Escribiendo el Código JQuery} % (fold)
 Nuestro código personalizado lo hemos incluido en el código HTML utilizando
-<script src="appjquery" type="text/javascript"></script>. A pesar de lo mucho
+\texttt{<script src="appjquery.js" type="text/javascript"></script>}. A pesar de lo mucho
 que realiza tiene pocas lineas de código:
 \end{frame}
 
@@ -122,4 +122,116 @@ $(document).ready(function () {
 \end{lstlisting}
 Este ejemplo crea una tabla dinámica para los usuarios.
 \end{frame}
+
+\begin{frame}[fragile]{Disección del Script} % (fold)
+Este script ha sido elegido específicamente ya que ilustra la capacidad general
+de la biblioteca JQuery e identifica las categorías de los métodos utilizados.
+\end{frame}
+
+\begin{frame}[fragile]{Disección del Script} % (fold)
+\begin{itemize}
+    \item \textbf{Selector de Expresiones.}
+    Antes de que podamos actuar en un Documento HTML se debe localizar las
+    partes pertinentes,  en el script algunas veces utilizamos un método simple
+    para buscar un elemento:
+\begin{lstlisting}
+$('#introduction')
+\end{lstlisting}
+    Esta expresión se crea un nuevo objeto JQuery que hace referencia al
+    elemento de ID \texttt{introduction}, algunas veces se requiere un selector
+    más complejo:
+\begin{lstlisting}
+$('#introduction > h2 a')
+\end{lstlisting}
+   Aqui se obtiene un objeto JQuery que se refiere a los elementos
+   descendientes de \texttt{<h2>} y que son hijos del elemento con ID
+   \texttt{introduction}.   
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Disección del Script} % (fold)
+\begin{itemize}
+    \item \textbf{Métodos de recorrido DOM.}
+    A veces tenemos un objeto JQuery que ya hace referencia a un conjunto de
+    elementos DOM,  pero tenemos que realizar una acción en uno diferente,  en
+    estos casos los métodos de recorrido DOM son útiles, esto lo podemos ver en
+    parte de nuestro script:
+\begin{lstlisting}
+this.toggleClass('arrow-down')
+ .next()
+ .slideToggle('fast');
+\end{lstlisting}
+    Debido al contexto de esta pieza de código, la palabra reservada
+    \texttt{this} se refiere al objeto JQuery en este caso el objeto apunta la
+    etiqueta \texttt{<h3>}. La llamada al método \texttt{.toggleClass} manipula
+    este elemento de partida,  el método \texttt{.next()} cambia el
+    funcionamiento del elemento y
+    \texttt{.slideToggle} llama las acciones del elemento \texttt{<div>}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Disección del Script} % (fold)
+\begin{itemize}
+    \item \textbf{Métodos de Eventos.}
+    Aun cuando podemos modificar la página a nuestra voluntad necesitamos
+    métodos que reaccionen a eventos causados por los usuarios en el momento
+    adecuado:
+\begin{lstlisting}
+$('#introduction > h2 a').click(function() {
+ $('#introduction').load(this.href);
+ return false;
+});
+\end{lstlisting}
+    En este fragmento se registra un controlador que se ejecutará cada vez que
+    se hace click en la etiqueta de anclaje seleccionado.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Disección del Script} % (fold)
+\begin{itemize}
+\item \textbf{Métodos de Eventos.}
+\begin{lstlisting}
+$(document).ready(function() {
+ //..
+});
+\end{lstlisting}
+    Este método nos permite registrar comportamiento inmediatamente después de
+    que la estructura del DOM este disponible en nuestro código
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Disección del Script} % (fold)
+\begin{itemize}
+    \item \textbf{Métodos de Efectos.}
+    Los métodos de evento nos permiten reaccionar a las entradas del usuario.
+    En los métodos de efecto se hace con efecto, en lugar de ocultar y mostrar
+    inmediatamente elementos lo hace con animación.
+\begin{lstlisting}
+this.toggleClass('arrow-down')
+ .next()
+ .slideToggle('fast');
+\end{lstlisting}
+    Este método realiza una rápida transición de deslizamiento en el elemento,
+    permitiendo ocultar y mostrar alternativamente con cada invocación.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Disección del Script} % (fold)
+\begin{itemize}
+    \item \textbf{Métodos AJAX.}
+    Muchos sitios web modernos emplean técnicas para carga el contenido cuando
+    no se ah solicitado una actualización de la página. JQuery permite lograr
+    esto con facilidad, los métodos de AJAX inician la solicitud de contenido y
+    nos permite monitorear su progreso.
+\begin{lstlisting}
+$('#introduction > h2 a').click(function() {
+ $('#introduction').load(this.href);
+ return false;
+\end{lstlisting}
+    En la línea 2 el método \texttt{.load} nos permite obtener otro documento HTML
+    desde el servidor e insertarlo en el documento actual,  todo ello con una
+    línea de código.
+\end{itemize}
+\end{frame}
+
 \end{document}
