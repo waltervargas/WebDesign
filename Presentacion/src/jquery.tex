@@ -1,0 +1,125 @@
+\input{preambulo.tex}
+
+% Titulo
+\title[WebDesign] {Diseño Web | Tecnologías Involucradas}
+\author[Walter Vargas]{ info@covetel.com.ve \inst{1}}
+\subtitle{JQuery}
+\institute[covetel.com.ve]{ \inst{1} Cooperativa Venezolana de Tecnologías Libres R.S. }
+\date
+
+\begin{document}
+
+\begin{frame} % (fold)
+    \titlepage 
+\end{frame}
+
+\begin{frame} % (fold)
+    \tableofcontents
+\end{frame}
+
+\section{Anatomía de un Script de JQuery}
+
+\subsection{Tablas Dinámicas de Contenido} % (fold)
+
+\begin{frame}{JQuery} % (fold)
+    JQuery es una biblioteca que contiene una amplia variedad de métodos y
+    funciones de los cuales sera muy útil saber las categorías
+    básicas y como utilizarlas para nuestro beneficio.\\[0.5cm]
+\end{frame}
+
+\begin{frame}[fragile]{Obtención de JQuery} % (fold)
+    El sitio web oficial de JQuery siempre es el recurso más al día para el
+    código y noticias relacionadas con la biblioteca. Para empezar necesitamos
+    una copia de JQuery, que se puede descargar desde la página principal del
+    sitio. Varias versiones de JQuery pueden estar disponibles en cualquier
+    momento dado, la última versión sin comprimir será la más apropiada para
+    nosotros.\\[0.5cm]
+    Para usar JQuery no es necesaria su instalación sólo tenemos que colocarlo
+    en nuestro sitio en un lugar público. Cada vez que necesitamos un metodo de
+    JQuery simplemente lo referenciamos desde el archivo del documento
+    HTML.\\[0.5cm]
+\end{frame}
+
+\begin{frame}[fragile]{Configuración del documento HTML} % (fold)
+Existen tres componentes en el uso de JQuery:
+
+\textbf{Componentes}
+\begin{itemize}
+    \item El Documento HTML.
+    \item El Archivo CSS con los estilos.
+    \item Los Archivos Javascript.
+\end{itemize}
+
+En este ejemplo se muestra como referenciar los componentes de JQuery.\\[0.5cm]
+
+\end{frame}
+
+\begin{frame}[fragile]{Configuración del documento HTML} % (fold)
+\begin{lstlisting}
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang:"en" lang:"en">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>JQuery</title>
+  <link rel="stylesheet" href="jquery.css" type="text/css" />
+  <script src="jquery.js" type="text/javascript"></script>
+  <script src="appjquery.js" type="text/javascript"></script>
+  </head>
+ <body>
+ </body>
+</html>
+\end{lstlisting}
+
+\end{frame}
+
+\begin{frame}[fragile]{Escribiendo el Código JQuery} % (fold)
+Nuestro código personalizado lo hemos incluido en el código HTML utilizando
+<script src="appjquery" type="text/javascript"></script>. A pesar de lo mucho
+que realiza tiene pocas lineas de código:
+\end{frame}
+
+\begin{frame}[fragile]{Escribiendo el Código JQuery} % (fold)
+\begin{lstlisting}
+JQuery.fn.toggleNext = function() {
+ this.toggleClass('arrow-down')
+ .next().slideToggle('fast');
+}
+
+$(document).ready(function () {
+ $('div id="page-contents"></div>')
+ .prepend('<h3>Page Contents</h3>')
+ .append('<div></div>')
+ .prependTo('body');
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Escribiendo el Código JQuery} % (fold)
+\begin{lstlisting}[firstnumber=last]
+ $('#content h2').each(function(index) {
+ var $chapterTitle = $(this);
+ var chapterId = 'chapter~' + (index + 1);
+ chapterTitle.attr('id', chapterId);
+ $('<a></a>').text($chapterTitle.text())
+  .attr({
+   'title': 'Jump to' + $chapterTitle.text(), 
+   'href': '#' + chapterId
+  })
+  .appendTo('#page-contents div');
+  });
+ \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Escribiendo el Código JQuery} % (fold)
+ \begin{lstlisting}[firstnumber=last]
+ $('#page-contents h3').click(function() {
+  $(this).toggleNext();
+ });
+
+ $('#introduction > h2 a').click(function() {
+  $('#introduction').load(this.href);
+  return false;
+ });
+});
+\end{lstlisting}
+Este ejemplo crea una tabla dinámica para los usuarios.
+\end{frame}
+\end{document}
