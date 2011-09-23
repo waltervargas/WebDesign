@@ -298,4 +298,338 @@ id="\/inner"\/>} y
 </div>
 \end{lstlisting}
 \end{frame}
+
+
+\begin{frame}[fragile]{Hijo: E>F} % (fold)
+Todos los elementos encontrados por F que son hijos de un elemento acompañado
+por E.
+\textbf{Ejemplo}
+\begin{itemize}
+    \item \$('li>ul') \textit{: selecciona todos los elementos que comienzan
+    por \texttt{<ul>} que son hijo de un elemento acompañado por \texttt{<li>}}
+    \item \$('p>code') \textit{: selecciona todos los elementos encontrados por
+    \texttt{<code>} que son hijos de un elemento acompañado por \texttt{<p>}}
+\end{itemize}
+El combinador de hijo puede ser pensado de una forma mas especifica para
+obtener los descendientes seleccionando sólo el descendiente de primer nivel,
+en el siguiente código HTML el elemento \texttt{<img> es un hijo único del
+elemento \texttt{<span>}}
+\begin{lstlisting}
+<div id="container">
+  <div id="inner">
+    <p>
+      <span><img src="example.jpg" alt="" /></span>
+    </p>
+  </div>
+</div>
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Hermanos adyacentes: E + F} % (fold)
+Todos los elementos encontrados por F seguidos inmediatamente por un Elemento E
+y que tengan un mismo padre.
+\textbf{Ejemplo}
+\begin{itemize}
+    \item \$('ul + p') \textit{: selecciona todos los elementos por
+    \texttt{<p>} que están inmediatamente después de un elemento \texttt{<ul>}.}
+    \item \$('strong + em') \textit{: selecciona todos los elementos
+    encontrados por \texttt{<em>} que están después de un elemento
+    \texttt{<strong>}.}
+\end{itemize}
+Un punto importante a considerar tanto con el combinar \texttt{+} como con el
+\texttt{~} es que solo seleccionan los hermanos.
+\begin{lstlisting}
+<div id="container">
+  <ul>
+    <li></li>
+    <li></li>
+  </ul>
+    <p>
+      <img />
+    </p>
+</div>
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Hermanos adyacentes: E + F} % (fold)
+Del ejemplo anterior:
+\begin{itemize}
+    \item \$('ul + p') \textit{: selecciona \texttt{<p>} ya que esta
+    inmediatamente después de \texttt{<ul>} y los dos elementos comparten el
+    mismo padre \texttt{<div id="\/container"\/>}.}
+    \item \$('ul + img') \textit{: no selecciona nada porque \texttt{<ul>} es
+    un nivel mas alto que \texttt{<img>} en el árbol DOM.}
+    \item \$('li + img') \textit{: no selecciona nada porque \texttt{<li>} y
+    \texttt{<img>} estan en el mismo nivel en el árbol DOM.}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Hermanos en General: E ~ F} % (fold)
+Todos los elementos encontrados por F que están después de un elemento E y
+tienen el mismo padre.
+\textbf{Ejemplo}
+\begin{itemize}
+    \item \$('p ~ ul') \textit{: selecciona todos los elementos encontrados por
+    \texttt{<ul>} que están después de un elemento \texttt{<p>}.}
+    \item \$('code ~ code') \textit{: selecciona todos los elementos encontrados
+    por \texttt{<code>} después de \texttt{<code>}.}
+\end{itemize}
+La diferencia ente el combinador \texttt{+} y el \texttt{~} es el alcance.
+mientras que el combinador \texttt{+} alcanza los elementos inmediatamente
+siguientes el combinador \texttt{~} se extiende a todos los elementos de un
+mismo nivel.
+\begin{lstlisting}
+  <ul>
+    <li class="first"></li>
+    <li class="second"></li>
+    <li class ="third"></li>
+  </ul>
+  <ul>
+    <li class="fourth"></li>
+    <li class="fifth"></li>
+    <li class="sixth"></li>
+  </ul>
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Hermanos adyacentes: E + F} % (fold)
+Del ejemplo anterior:
+\begin{itemize}
+    \item \$('li.first ~ li') \textit{: selecciona \texttt{<li class="second"\/>}
+    and \texttt{<li class="third"\/>}.}
+    \item \$('li.first + li') \textit{: selecciona \texttt{<li class="second"\/>}.}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Multiple Elementos: E, F, G} % (fold)
+Selecciona todas los elementos encontrados por el selector de expresiones E, F o G.
+\begin{itemize}
+    \item \$('code,  em,  strong') \textit{: selecciona todos los elementos
+    encontrados por \texttt{<code>} or \texttt{<em>} or \texttt{<strong>}.} 
+    \item \$('p strong, .myclass') \textit{: selecciona todos los elementos por
+    \texttt{<strong>} que son descendientes de un elemento encontrado
+    \texttt{<p>} y tienen una clase \texttt{.myclass}.}
+\end{itemize}
+El combinador coma \texttt{(,)} es eficiente para seleccionar elementos
+dispares.
+\end{frame}
+
+\begin{frame}[fragile]{Enésimo Hijo (:nth-child(n))} % (fold)
+Todos los elementos que son enésimos hijos de sus padres.
+\textbf{Ejemplo}
+\begin{itemize}
+    \item \$('li:nth-child(2)') \textit{: selecciona todos los elementos
+    encontrados por \texttt{<li>} que son segundo hijo del padre.}
+    \item \$('p:nth-child(5)') \textit{: selecciona todos los elementos
+    encontrados por \texttt{<p>} que son quinto hijo de su padre.}
+\end{itemize}
+\begin{lstlisting}
+  <div>
+    <h2></h2>
+    <p></p>
+    <h2></h2>
+    <p></p>
+    <p></p>
+  </div>
+\end{lstlisting}
+\begin{itemize}
+    \item \$('p:nth(1)') \textit{: selecciona el segundo \texttt{<p>} porque la
+    numeración para \texttt{:nth(n)} comienza en 0.} 
+    \item \$('p:nth-child(1)') \textit{: no selecciona nada porque el primer
+    elemento hijo del padre no es \texttt{<p>}.}
+    \item \$('p:nth(2)') \textit{: selecciona el primer \texttt{<p>} porque es
+    el segundo hijo del padre.}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Hijos} % (fold)
+\begin{itemize}
+    \item Primer Hijo (:first-child) \textit{: Todos los elementos que son
+    primer hijo de su padres.}
+
+\textbf{Ejemplo}
+\begin{itemize}
+    \item \$('li:first-child') \textit{: selecciona todos los elementos
+    encontrados por \texttt{<li>} que son el primer hijo del padre.} 
+\end{itemize}
+    \item Ultimo Hijo (:last-child) \textit{: Todos los elementos que son el último hijo del padre.}
+
+\textbf{Ejemplo}
+\begin{itemize}
+    \item \$('li:first-last') \textit{: selecciona todos los elementos
+    encontrados por \texttt{<li>} que son el último hijo del padre.} 
+\end{itemize}
+    \item Único Hijo (:only-child) \textit{: Todos los elementos que son único
+    hijo del padre.}
+
+\textbf{Ejemplo}
+\begin{itemize}
+    \item \$('li:first-last') \textit{: selecciona todos los elementos
+    encontrados por \texttt{<li>} que son único hijo del padre.} 
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Diversos Selectores} % (fold)
+\begin{itemize}
+    \item No (:not(s)) \textit{: Todos los elementos que no coinciden con el
+    selector \texttt{s}.}
+    
+    \textbf{Ejemplo}
+    \begin{itemize}
+        \item \$('li:not(.myclass)') \textit{: Selecciona todos los elemntos
+        encontrados por \texttt{<li>} que no tienen \texttt{class="myclass"}.}
+    \end{itemize}
+    \item Vacio (:empty) \textit{: Todos los elementos que no tienen hijos
+    (incluyendo los nodos de texto).}
+    
+    \textbf{Ejemplo}
+    \begin{itemize}
+        \item \$('p:empty') \textit{: Selecciona todos los elementos
+        encontrados por \texttt{<p>} que no tienen hijos.}
+    \end{itemize}
+    \item Universal (:*)\textit{: Todos los elementos.}
+    
+    \textbf{Ejemplo}
+    \begin{itemize}
+        \item \$('*') \textit{: Selecciona todos los elementos en el documento.}
+    \end{itemize}
+\end{itemize}
+\end{frame}
+
+\subsection{Selectores XPath} % (fold)
+
+\begin{frame}[fragile]{Descendientes: E//F} % (fold)
+Todos los elementos encontrados por F que son descendientes de un elemento
+encontrado por E.
+\textbf{Ejemplo}
+\begin{itemize}
+    \item \$('div//code'): \textit{: selecciona todos los elementos encontrados
+    do \texttt{<code>} que son descendientes de un elemento encontrado por
+    \texttt{<div>}}
+\end{itemize}
+Este selector de descendientes de XPath funciona igual que el selector de
+descendiente de CSS, salvo que en la version XPath se puede especificar que
+inicie desde la raíz del documento.
+\end{frame}
+
+\begin{frame}[fragile]{Hijos: E/F} % (fold)
+Todos los elementos encontrados por F que son hijos de un elemento
+conincidente con E.
+\textbf{Ejemplo}
+\begin{itemize}
+    \item \$('/docroot/el') \textit{: Selecciona todos los elementos
+    encontrados por \texttt{<el>} que son hijos de un elemento coincidente con
+    \texttt{<docroot>}.}
+\end{itemize}
+El selector de XPath hijo es una alternativa para el selector CSS hijo. Si el
+selector de expresión comienza con un slash como es el caso del ejemplo,  el
+selector inmediatamente después del slash debe estar en la raíz del documento. 
+\end{frame}
+
+\begin{frame}[fragile]{Padres: E/..} % (fold)
+Todos los elementos que son padres de un elemento que coincide con E.
+\textbf{Ejemplo}
+\begin{itemize}
+    \item \$('.myclass/..') \textit{: Selecciona los elementos padre de todos
+    los elementos que tengan una clase \texttt{myclass}.}
+    \item \$('.myclass/../p') \textit{: Selecciona los elementos que coinciden
+    con \texttt{<p>} que son hijos de un elemento que tiene una clase
+    \texttt{myclass}.}
+\end{itemize}
+\begin{lstlisting}
+  <div>
+    <p id="firstp"></p>
+    <div id="subdiv"></div>
+    <p id="secondp">
+      <span class="myclass"></span>
+    </p>
+  </div>
+  <div>
+    <p></p>
+  </div>
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Padres: E/..} % (fold)
+En el código anterior:
+\begin{itemize}
+    \item \$('span.myclass/..') \textit{: selecciona \texttt{<p id="secondp"\/>} porque este es el padre de \texttt{<span class="myclass"\/>}.}
+    \item \$('\#firstp/../') \textit{: selecciona \texttt{<p id="firstp"\/>}, \texttt{<div id="subdiv"\/>} y \texttt{<p id="secondp"\/>} porque el selector:}
+    \begin{itemize}
+        \item a \textit{: Comienza con \texttt{<p id="firstp"\/>}.}
+        \item b \textit{: Atraviesa un nivel en el árbol DOM.}
+        \item c \textit{: Selecciona todos los hijos de \texttt{<div>}.}
+    \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Contiene: [F]} % (fold)
+Todos los elementos que coinciden con F.
+\textbf{Ejemplo}
+\begin{itemize}
+    \item \$('p[.myclass]') \textit{: selecciona todos los elementos
+    encontrados por \texttt{<p>} que contienen un elemento con una clase
+    \texttt{myclass}.}
+\end{itemize}
+\end{frame}
+
+\subsection{Selectores de Atributos} % (fold)
+
+\begin{frame}[fragile]{Valores de Atributos} % (fold)
+\begin{itemize}
+\item Tiene Atributos: [@foo] \textit{Todos los elementos que tienen el
+atributo foo.}
+    
+    \textbf{Ejemplo}
+    \begin{itemize}
+        \item \$('p[@class]') \textit{: selecciona todos los elementos encontrados
+    por \texttt{<p>} que tiene una class como atributo.}
+    \end{itemize}
+\item Valores de Atributos no iguales: [@foo!=bar] \textit{Todos los elementos en los que el atributo foo no tiene exactamente el valor
+bar.}
+    
+    \textbf{Ejemplo}
+    \begin{itemize}
+        \item \$('input[@name!=myname]') \textit{: selecciona todos los elementos
+    coincidentes con \texttt{<input>} en los que el atributo \texttt{name} no
+    tiene como valor \texttt{myname}.}
+    \end{itemize}
+
+\item Comienzo del valor de los Atributos: [@foo\^=bar] \textit{Todos los
+elementos que tengan el atributo foo y su valor comience con el string bar.}
+    
+    \textbf{Ejemplo}
+    \begin{itemize}
+        \item \$('input[@name\^=my]') \textit{: selecciona todos los elementos
+    coincidentes con \texttt{<input>} cuyo valor del atributo \texttt{name}
+    comience con \texttt{my}.}
+    \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Valores de Atributos} % (fold)
+\begin{itemize}
+\item Final del valor de los Atributos: [@foo\$=bar] \textit{Todos los elementos
+que tengan el atributo foo y su valor termina con el string bar.}
+    
+    \textbf{Ejemplo}
+    \begin{itemize}
+        \item \$('a[@href\$=index.html]') \textit{: selecciona todos los elementos
+    coincidentes con \texttt{<a>} en los que el valor del atributo
+    \texttt{href} termine con \texttt{index.html}.}
+    \end{itemize}
+
+\item Atributos en los que el valor contiene: [@foo*=bar] \textit{Todos los
+elementos en los que el atributo foo contiene en su valor el string bar.}
+    
+    \textbf{Ejemplo}
+    \begin{itemize}
+        \item \$('a[href*=example.com]') \textit{: selecciona todos los elementos
+    coincidentes con \texttt{<a>} en los que el valor del atributo
+    \texttt{href} contiene el string \texttt{example.com}.}
+    \end{itemize}
+\end{itemize}
+\end{frame}
+
 \end{document}
