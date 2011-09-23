@@ -309,7 +309,7 @@ h1 strong {color: blue;}
     \end{enumerate}
 
     Recuerde que todas las reglas marcadas como \texttt{!important} ignorarán
-    reglas en conflicto sea cual sea su especifidad u orden. 
+    reglas en conflicto sea cual sea su especificidad u orden. 
 \end{frame}
 
 \begin{frame}[allowframebreaks, fragile]{Orden de las reglas} % (fold)
@@ -435,11 +435,435 @@ div#side {border-color: gray;
         ejemplo, puede añadir un borde a la parte inferior de un elemento o
         solo a los lados derecho e izquierdo. 
     \end{enumerate}
-
     
 \end{frame}
 
+\subsection{Especificar Valores} % (fold)
 
 
+\begin{frame}[allowframebreaks]{Unidades de longitud} % (fold)
+    CSS permite especificar medidas en muchas unidades. Algunas de ellas como
+    \texttt{em} y \texttt{pica} están tomadas de la prensa tradicional. Al
+    especificar longitudes es importante recordar lo siguiente: 
+
+    \begin{itemize}
+        \item No añada espacio entre el número y la abreviatura de la unidad en
+        dos letras. Debe ser \texttt{24px} y no \texttt{24 px}
+        \item El único valor que no necesita abreviatura de unidad es cero. 
+        \item Las medidas pueden contener fracciones decimales como
+        \texttt{14.5cm}
+        \item Algunas propiedades, como los márgenes, aceptan valores
+        negativos: \texttt{margin: -500px}
+    \end{itemize}
+
+    En la siguiente lista puede encontrar las unidades disponibles:
+    \begin{description}
+        \item[\texttt{px} (Píxel)] Las unidades de píxel son relativas a la resolución
+        del monitor
+        \item[\texttt{pt} (Punto)] Unidad tradicional de medida para los tipos. En CSS,
+        un punto equivale a 1/72 pulgadas.
+        \item[\texttt{pc} (Pica)] Unidad tradicional de medida equivalente a 12
+        puntos o a 1/6 pulgadas.
+        \item[\texttt{em} (Em)] Unidad de medida relativa que equivale
+        tradicionalmente al ancho de la letra M mayúscula. En CSS equivale al
+        tamaño en puntos de la fuente (pe. un espacio em en un tipo de 24pt
+        mide 24 puntos de ancho). Se usa para medidas verticales y horizontales
+        \item[\texttt{ex} (Ex)] Unidad de medida relativa que es la altura de
+        la letra minúscula \textbf{x} para esa fuente (aproximadamente la mitad
+        de un \texttt{em})
+        \item[\texttt{in} (Pulgadas)] Medida métrica
+        \item[\texttt{mm} (Milímetros)] Medida métrica
+        \item[\texttt{cm} (Centímetros)] Medida métrica
+    \end{description}
+\end{frame}
+
+\begin{frame}[fragile,allowframebreaks]{Especificar el color} % (fold)
+    Al igual que en HTML, hay dos formas de especificar el color: por el nombre
+    y por el valor numérico. 
+
+    \textbf{Por el nombre}\\[0.2cm]
+    Puede especificar valores cromáticos por el nombre, de este modo: 
+
+    \begin{lstlisting}
+h1 {color: olive;}
+    \end{lstlisting}
+    
+    La especificación CSS 2.1 solo acepta 17 nombres de color para utilizar en
+    hojas de estilo (CSS 1 y CSS 2 solo tenían 16 nombres, el naranja se añadió
+    en la versión 2.1). Los nombres de color son: 
+    \begin{verbatim}
+aqua        green       orange      white
+black       lime        purple      yellow
+blue        maroon      red 
+fuchsia     navy        silver 
+gray        
+    \end{verbatim}
+
+    \textbf{Por el valor rgb} \\[0.2cm]
+    En las hojas de estilo, los colores RGB pueden especificarse por cualquiera
+    de estos métodos: 
+
+    \begin{lstlisting}
+{color: #0000FF;}
+{color: ##00F;}
+{color: rgb(0, 0, 255);}
+{color: rgb(0%, 0%, 100%)}
+    \end{lstlisting}
+
+    El primer método utiliza tres valores RGB hexadecimales de dos dígitos. El
+    segundo método utiliza una sintaxis de tres dígitos,  que se convierte a la
+    forma de seis dígitos replicando cada dígito. (por tanto \texttt{\#\#00F})
+    es lo mismo que \texttt{\#\#0000FF}).
+    Los dos últimos métodos utilizan notación funcional que especifica los
+    valores RGB como una lista separada por comas de valores regulares de 0 a
+    255 o porcentuales de 0 a 100 por ciento. 
+
+\end{frame}
+
+% subsection Especificar Valores (end)
+
+\section{Selectores}
+
+\begin{frame}{Selectores} % (fold)
+    El selector es la parte de la regla de estilo que especifica el elemento o
+    los elementos al que se aplican las instrucciones de presentación. Por
+    ejemplo, si quiere que todos los \texttt{h1} de un documento sean verdes
+    escriba una sola regla de estilo que tenga \texttt{h1} como selector. 
+\end{frame}
+
+\begin{frame}{Tipos de Selectores} % (fold)
+    CSS ofrece varios tipos de selectores: 
+
+    \begin{itemize}
+        \item Selectores de tipo (elemento)
+        \item Selectores contextuales (descendiente, hijo y hermano adyacente)
+        \item Selectores de clase e ID 
+        \item Selectores de atributos
+        \item Pseudoclases
+        \item Pseudoelementos.
+    \end{itemize}
+
+    Puede ver los selectores disponibles en CSS3 en la dirección
+    \url{http://www.w3.org/TR/css3-selectors/}
+\end{frame}
+
+\begin{frame}[fragile]{Selector de tipo} % (fold)
+    El selector de tipo es el selector más sencillo, selecciona un elemento por
+    su nombre. 
+\begin{lstlisting}
+h1 { color: blue; }
+h2 { color: blue; }
+p { color: blue; }
+\end{lstlisting}
+
+    Los selectores de tipo pueden agruparse en listas separadas por comas de
+    modo que pueda aplicarse en todos ellos una sola propiedad. El siguiente
+    ejemplo tiene el mismo efecto que el ejemplo anterior. 
+\begin{lstlisting}
+h1, h2, p { color: blue; }
+\end{lstlisting}
+
+    CSS 2 introdujo un selector de elementos universal (\texttt{*}) que
+    coincide con todos los elementos. La regla de estilo  \texttt{* {color:
+    gray}} pone en gris todos los elementos del documento. 
+\end{frame}
+
+\subsection{Selectores contextuales} % (fold)
+
+
+\begin{frame}[fragile]{Selectores contextuales} % (fold)
+    Los selectores de tipo, como los del ejemplo anterior,  se aplican a todos
+    los casos en los que se encuentre el elemento en un documento. Por contra,
+    los selectores contextuales le permiten aplicar propiedades de estilo  a
+    los elementos seleccionados, basándose en su contexto o relación con otro
+    elemento. 
+\end{frame}
+
+\begin{frame}[fragile]{Selector descendiente} % (fold)
+    Los selectores descendiente seleccionan elementos contenidos en otro
+    elemento. Se indican en una lista separada por un espacio, comenzando con
+    el elemento de nivel más alto.
+    \begin{lstlisting}
+li em {color: olive;}
+    \end{lstlisting}
+    Como los selectores de tipo simples, los selectores contextuales pueden
+    agruparse también en listas separadas por comas. 
+\begin{lstlisting}
+h1 em, h2 em, h3 em {color: red;}
+\end{lstlisting}
+
+    Los selectores descendientes también pueden estar anidados a varias capas
+    de profundidad,  tal y como muestra este ejemplo que selecciona  sólo texto
+    enfatizado (\texttt{em}) en anclas (\texttt{a}) en listas ordenadas
+    \texttt{ol}. 
+\begin{lstlisting}
+ol a em  {font-weight: bold;}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Selector hijo} % (fold)
+    Un selector hijo es parecido al selector descendiente pero sólo selecciona
+    hijos directos de un elemento dado. Los selectores hijo están separados por
+    el símbolo mayor que (>). 
+\begin{lstlisting}
+p > em {background-color: gray;}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Selector hermano adyacente} % (fold)
+    Este selector se utiliza para seleccionar un elemento que sigue
+    inmediatamente a otro elemento con el mismo elemento padre. El combinador
+    para estos selectores es un signo más. 
+
+    \begin{lstlisting}
+h1 + p {padding-left: 40;}
+    \end{lstlisting}
+\end{frame}
+% subsection Selectores contextuales (end)
+
+\subsection{Selectores ID y de clase} % (fold)
+
+\begin{frame}[fragile]{Selector class} % (fold)
+    Utilice el atributo \texttt{class} para identificar distintos elementos
+    como parte de un grupo conceptual. Los elementos de una clase pueden
+    modificarse con una sola regla de estilo. 
+    \begin{lstlisting}
+<h1 class="special"> Attention ! </h1> 
+<p class="special"> You look marvelous today. </p> 
+
+h1.special {color: red;}
+p.special {color: red;} 
+
+
+.special {color: red;}
+    \end{lstlisting}
+
+    Al seleccionar un nombre para una clase, asegúrese de que tenga
+    significado. Tenga en cuenta que el nombre de una clase no puede contener
+    espacios, y los guiones bajos están desaconsejados por la falta de soporte
+    de algunos navegadores.
+
+\end{frame}
+
+\begin{frame}{Selector ID} % (fold)
+    El selector \texttt{id} se emplea de manera similar a \texttt{class} pero
+    se utiliza para seleccionar un único elemento en lugar de un grupo. \\[0.5cm]
+
+    En el diseño Web actual, los atributos \texttt{id} suelen utilizarse para
+    identificar secciones principales que normalmente son \texttt{div} de una
+    página. Algunos valores frecuentes para este fin son: \texttt{content,
+    header, sidebar, navigation} y \texttt{footer}.\\[0.5cm] 
+
+    Los nombres \texttt{id} deberían elegirse en función del papel semántico
+    del elemento, no por su presentación. Por ejemplo, para una barra lateral a
+    la izquierda de la página que contenga noticias es mejor llamar al div
+    \texttt{div id='sidebar-news'} que \texttt{div id='sidebar-left'}.
+\end{frame}
+
+% subsection Selectores ID y de clase (end)
+
+\subsection{Selectores de atributo} % (fold)
+
+\begin{frame}[fragile]{Selección de atributo simple} % (fold)
+    El selector de atributo más amplio selecciona elementos con un determinado
+    atributo, sea cual sea su valor. La sintaxis es como sigue: 
+
+    \begin{lstlisting}
+elemento[atributo]
+    \end{lstlisting}
+
+    Ejemplo: 
+\begin{lstlisting}
+img[title] {border: 3px solid red;}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Valor de atributo exacto} % (fold)
+    Selecciona los elementos en función de un atributo con un valor de atributo
+    exacto.
+
+    \begin{lstlisting}
+elemento[atributo='valorexacto']
+    \end{lstlisting}
+
+    Ejemplo: 
+
+    \begin{lstlisting}
+img[title="titulo1"] {border: 3px solid red;}
+    \end{lstlisting}
+
+\end{frame}
+
+\begin{frame}[fragile]{Valor de atributo parcial} % (fold)
+    En el caso de atributos que aceptan listas de valores separados por comas,
+    este selector de atributo permite buscar uno solo de esos valores (en lugar
+    de la cadena entera). El signo \texttt{~} en el selector diferencia este
+    selector de los que coinciden con un valor exacto. 
+
+    \begin{lstlisting}
+elemento[atributo~="valor"]
+    \end{lstlisting}
+
+    Ejemplo 
+    \begin{lstlisting}
+img[title~='grande']
+    \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Valor de atributo separado por guiones} % (fold)
+    Este selector está ideado para seleccionar valores separados por guiones.
+    El selector busca coincidencias con el valor especificado o con ese valor
+    seguido por un guión. Se utiliza regularmente para aplicar estilo a un
+    texto en un idioma específico. 
+    
+    Ejemplo: 
+    \begin{verbatim}
+*[lang|="it"] {
+        font-family: SimSum-18030,SimHei, serif; 
+        border: 1px solid black;
+        font-size: 19pt;
+}
+
+<p lang="it-CH"> Questa è la storia di un mondo ideale </p>
+    \end{verbatim}
+\end{frame}
+
+% subsection Selectores de atributo (end)
+
+
+\subsection{Pseudoselectores} % (fold)
+
+\begin{frame}[fragile]{Pseudoclases} % (fold)
+    Las pseudoclases funcionan como si hubiera una clase aplicada a un grupo de
+    elementos, en la mayoría de los casos el elemento ancla \texttt{a}.\\[0.5cm]
+
+    \textbf{Pseudoclases ancla}\\
+    \begin{lstlisting}
+a:link {color: red; text-decoration: none;}
+a:visited {color: blue;}
+a:hover {color: fuchsia; text-decoration: underline;}
+a:active {color: maroon;}
+    \end{lstlisting}
+\end{frame}
+
+\begin{frame}{Otros Pseudoclases} % (fold)
+    Tenga cuidado, todavía no tienen buen soporte en algunos casos. 
+
+    \begin{description}
+        \item[\texttt{:focus}] Selecciona elementos que tienen foco. 
+        \item[\texttt{:first-child}] Selecciona el primer hijo de un elemento
+        padre.
+        \item[\texttt{:lang()}] Selecciona elementos para los que se ha
+        especificado un idioma.
+    \end{description}
+\end{frame}
+
+\begin{frame}[fragile]{Pseudo Elementos} % (fold)
+    \begin{description}
+        \item[\texttt{:first-line}] Este selector aplica la regla de estilo a
+        la primera línea del elemento especificado. 
+        \item[\texttt{:first-letter}] Vincula un estilo a la primera letra de
+        un elemento.
+        \item[\texttt{:before} y \texttt{:after}] Inserta contenido generado
+        antes y/o después de un elemento y declaran un estilo para ese
+        contenido. En el siguiente ejemplo inserta comillas muy marcadas antes
+        y después de un \texttt{blockquote}.\\
+        \begin{lstlisting}
+            blockquote:before { 
+                content: '"'; 
+                font-size: 24px; 
+                color: purple; } 
+            
+            blockquote:after { 
+                content: '"'; 
+                font-size: 24px; 
+                color: purple; } 
+        \end{lstlisting}
+    \end{description}
+\end{frame}
+
+% subsection Pseudoselectores (end)
+
+\section{Técnicas CSS}
+
+\subsection{Centrar una página} % (fold)
+
+\begin{frame}[fragile]{Centrar una página} % (fold) 
+    Existen varios métodos para hacer esto. \\
+    Veamos el primero y el modo más adecuado de centrar un elemento de ancho
+    fijo, el cual consiste en especificar la anchura del elemento que contiene
+    todos los contenidos de la página (normalmente un \texttt{div}) y luego
+    ajustar los márgenes izquierdo y derecho a \texttt{auto}. 
+
+    \begin{lstlisting}
+div#pagina{
+    width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+    \end{lstlisting}
+
+    Existe otra solución menos elegante, que consiste en centrar toda la página
+    utilizando la propiedad \texttt{text-align} en el elemento body.
+
+    \begin{lstlisting}
+body { text-align: center; } 
+body * { text-align: left; }
+
+div#pagina {
+    width: 500px;
+    margin: 0 auto;
+}
+    \end{lstlisting}
+\end{frame}
+
+% subsection Centrar una página (end)
+
+\subsection{Diseños en dos columnas} % (fold)
+
+\begin{frame}[fragile, allowframebreaks]{Diseños en dos columnas} % (fold)
+    El marcado y los estilos de este ejemplo producen una página con un área de
+    cabecera, una columna principal de contenido, una barra lateral de vínculos
+    y un pie con información de copyleft. \\[0.5cm]
+
+    Este marcado proporciona los elementos necesarios para el diseño en dos
+    columnas. 
+    \begin{lstlisting}
+<div class="masterhead"> Masterhead and headline </div> 
+<div class="main"> <h1> Titulo del articulo </h1> </div>
+<div class="sidebar">
+    <h2>Lista de enlaces</h2> 
+    <ul>
+        <li> Enlace 1 </li>
+        <li> Enlace 1 </li>
+        <li> Enlace 1 </li>
+    </ul>
+</div>
+<div class="footer"> Copyleft </div>
+    \end{lstlisting}
+    El div con contenido fue situado de primero antes que el div con la lista
+    de links para que los usuarios con navegadores no gráficos accedan primero
+    al el. Las reglas de estilo que se ocupan del flotamiento son éstas: 
+
+    \begin{lstlisting}
+.masterhead {
+    background: #ccc;
+    padding: 15px;
+}
+.main {
+    float: left;
+    width: 70%;
+    margin-right: 3%;
+    margin-left: 3%;
+}
+.footer{
+    clear: left;
+    padding: 15px;
+    background: #666;
+}
+    \end{lstlisting}
+\end{frame}
+
+% subsection Diseños en dos columnas (end)
 
 \end{document}
