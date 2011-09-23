@@ -576,23 +576,59 @@ Todos los elementos que coinciden con F.
 
 \subsection{Selectores de Atributos} % (fold)
 
-\begin{frame}[fragile]{Tiene Atributos: [@foo]} % (fold)
-Todos los elementos que tienen el atributo foo.
-\textbf{Ejemplo}
+\begin{frame}[fragile]{Valores de Atributos} % (fold)
 \begin{itemize}
-    \item \$('p[@class]') \textit{: selecciona todos los elementos encontrados
+\item Tiene Atributos: [@foo] \textit{Todos los elementos que tienen el
+atributo foo.}
+    
+    \textbf{Ejemplo}
+    \begin{itemize}
+        \item \$('p[@class]') \textit{: selecciona todos los elementos encontrados
     por \texttt{<p>} que tiene una class como atributo.}
+    \end{itemize}
+\item Valores de Atributos no iguales: [@foo!=bar] \textit{Todos los elementos en los que el atributo foo no tiene exactamente el valor
+bar.}
+    
+    \textbf{Ejemplo}
+    \begin{itemize}
+        \item \$('input[@name!=myname]') \textit{: selecciona todos los elementos
+    coincidentes con \texttt{<input>} en los que el atributo \texttt{name} no
+    tiene como valor \texttt{myname}.}
+    \end{itemize}
+
+\item Comienzo del valor de los Atributos: [@foo\^=bar] \textit{Todos los
+elementos que tengan el atributo foo y su valor comience con el string bar.}
+    
+    \textbf{Ejemplo}
+    \begin{itemize}
+        \item \$('input[@name\^=my]') \textit{: selecciona todos los elementos
+    coincidentes con \texttt{<input>} cuyo valor del atributo \texttt{name}
+    comience con \texttt{my}.}
+    \end{itemize}
 \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]{Valores de Atributos no iguales: [@foo!=bar]} % (fold)
-Todos los elementos en los que el atributo foo no tiene exactamente el valor
-bar.
-\textbf{Ejemplo}
+\begin{frame}[fragile]{Valores de Atributos} % (fold)
 \begin{itemize}
-    \item \$('input[@name!=myname]') \textit{: selecciona todos los elementos
-    coincidentes con \texttt{input} en los que el atributo \texttt{name} no
-    tiene como valor \texttt{myname}.}
+\item Final del valor de los Atributos: [@foo\$=bar] \textit{Todos los elementos
+que tengan el atributo foo y su valor termina con el string bar.}
+    
+    \textbf{Ejemplo}
+    \begin{itemize}
+        \item \$('a[@href\$=index.html]') \textit{: selecciona todos los elementos
+    coincidentes con \texttt{<a>} en los que el valor del atributo
+    \texttt{href} termine con \texttt{index.html}.}
+    \end{itemize}
+
+\item Atributos en los que el valor contiene: [@foo*=bar] \textit{Todos los
+elementos en los que el atributo foo contiene en su valor el string bar.}
+    
+    \textbf{Ejemplo}
+    \begin{itemize}
+        \item \$('a[href*=example.com]') \textit{: selecciona todos los elementos
+    coincidentes con \texttt{<a>} en los que el valor del atributo
+    \texttt{href} contiene el string \texttt{example.com}.}
+    \end{itemize}
 \end{itemize}
 \end{frame}
 
