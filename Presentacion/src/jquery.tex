@@ -497,4 +497,103 @@ Todos los elementos que son enésimos hijos de sus padres.
 \end{itemize}
 \end{frame}
 
+\subsection{Selectores XPath} % (fold)
+
+\begin{frame}[fragile]{Descendientes: E//F} % (fold)
+Todos los elementos encontrados por F que son descendientes de un elemento
+encontrado por E.
+\textbf{Ejemplo}
+\begin{itemize}
+    \item \$('div//code'): \textit{: selecciona todos los elementos encontrados
+    do \texttt{<code>} que son descendientes de un elemento encontrado por
+    \texttt{<div>}}
+\end{itemize}
+Este selector de descendientes de XPath funciona igual que el selector de
+descendiente de CSS, salvo que en la version XPath se puede especificar que
+inicie desde la raíz del documento.
+\end{frame}
+
+\begin{frame}[fragile]{Hijos: E/F} % (fold)
+Todos los elementos encontrados por F que son hijos de un elemento
+conincidente con E.
+\textbf{Ejemplo}
+\begin{itemize}
+    \item \$('/docroot/el') \textit{: Selecciona todos los elementos
+    encontrados por \texttt{<el>} que son hijos de un elemento coincidente con
+    \texttt{<docroot>}.}
+\end{itemize}
+El selector de XPath hijo es una alternativa para el selector CSS hijo. Si el
+selector de expresión comienza con un slash como es el caso del ejemplo,  el
+selector inmediatamente después del slash debe estar en la raíz del documento. 
+\end{frame}
+
+\begin{frame}[fragile]{Padres: E/..} % (fold)
+Todos los elementos que son padres de un elemento que coincide con E.
+\textbf{Ejemplo}
+\begin{itemize}
+    \item \$('.myclass/..') \textit{: Selecciona los elementos padre de todos
+    los elementos que tengan una clase \texttt{myclass}.}
+    \item \$('.myclass/../p') \textit{: Selecciona los elementos que coinciden
+    con \texttt{<p>} que son hijos de un elemento que tiene una clase
+    \texttt{myclass}.}
+\end{itemize}
+\begin{lstlisting}
+  <div>
+    <p id="firstp"></p>
+    <div id="subdiv"></div>
+    <p id="secondp">
+      <span class="myclass"></span>
+    </p>
+  </div>
+  <div>
+    <p></p>
+  </div>
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Padres: E/..} % (fold)
+En el código anterior:
+\begin{itemize}
+    \item \$('span.myclass/..') \textit{: selecciona \texttt{<p id="secondp"\/>} porque este es el padre de \texttt{<span class="myclass"\/>}.}
+    \item \$('\#firstp/../') \textit{: selecciona \texttt{<p id="firstp"\/>}, \texttt{<div id="subdiv"\/>} y \texttt{<p id="secondp"\/>} porque el selector:}
+    \begin{itemize}
+        \item a \textit{: Comienza con \texttt{<p id="firstp"\/>}.}
+        \item b \textit{: Atraviesa un nivel en el árbol DOM.}
+        \item c \textit{: Selecciona todos los hijos de \texttt{<div>}.}
+    \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Contiene: [F]} % (fold)
+Todos los elementos que coinciden con F.
+\textbf{Ejemplo}
+\begin{itemize}
+    \item \$('p[.myclass]') \textit{: selecciona todos los elementos
+    encontrados por \texttt{<p>} que contienen un elemento con una clase
+    \texttt{myclass}.}
+\end{itemize}
+\end{frame}
+
+\subsection{Selectores de Atributos} % (fold)
+
+\begin{frame}[fragile]{Tiene Atributos: [@foo]} % (fold)
+Todos los elementos que tienen el atributo foo.
+\textbf{Ejemplo}
+\begin{itemize}
+    \item \$('p[@class]') \textit{: selecciona todos los elementos encontrados
+    por \texttt{<p>} que tiene una class como atributo.}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Valores de Atributos no iguales: [@foo!=bar]} % (fold)
+Todos los elementos en los que el atributo foo no tiene exactamente el valor
+bar.
+\textbf{Ejemplo}
+\begin{itemize}
+    \item \$('input[@name!=myname]') \textit{: selecciona todos los elementos
+    coincidentes con \texttt{input} en los que el atributo \texttt{name} no
+    tiene como valor \texttt{myname}.}
+\end{itemize}
+\end{frame}
+
 \end{document}
