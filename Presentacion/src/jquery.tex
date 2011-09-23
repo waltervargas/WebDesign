@@ -632,4 +632,157 @@ elementos en los que el atributo foo contiene en su valor el string bar.}
 \end{itemize}
 \end{frame}
 
+\subsection{Selectores de Formulario} % (fold)
+
+\begin{frame}[fragile]{Selectores de Formulario} % (fold)
+Los siguientes selectores se pueden utilizar para acceder a los elementos del
+formulario en cualquier estado.
+\begin{itemize}
+        \item Todos los elementos del formulario \texttt{(<input>, <select>,
+        <textarea>, <button>)}.
+        \item Todos los campos de texto \texttt{(<input type="text"\/>)}.
+        \item Todos los campos de password \texttt{(<input type="password"\/>)}.
+        \item Todos los input submit y elementos button \texttt{(<input
+        type="submit"\/>, <button>)}.
+        \item Todos los input de imagen \texttt{(<input type="image"\/>)}.
+        \item Todos los elementos de interfaz de usuario que estén habilitadas.
+        \item Todos los elementos de interfaz de usuario checkboxes and radio
+        buttons.
+\end{itemize}
+\end{frame}
+
+\subsection{Selectores Personalizados} % (fold)
+
+\begin{frame}[fragile]{Elemento Incluido,  Elemento Extraño, Enésimo Elemento}
+\begin{itemize}
+\item Elemento Incluido (:even) Elemento Extraño (:odd) 
+
+\textit{Todos los elementos con indice incluido: 
+  :even
+Todos los elementos con un indice extraño:
+  :odd.}
+
+\textbf{Ejemplo}  
+\begin{itemize}
+    \item \$('li:even') \textit{: selecciona todos los elementos que coinciden
+    con \texttt{li} que tienen un valor indice par.}
+    \item \$('li:even') \textit{: selecciona todos los elementos que coinciden
+    con \texttt{<tr>} que tienen un valor indice impar}
+\end{itemize}
+
+\item Enésimo Elemento (:eq(n), :nth(n)) 
+
+\textit{El elemento con un valor de indice igual a n.}
+
+\textbf{Ejemplo}
+\begin{itemize}
+    \item \$('li:eq(2)') \textit{: selecciona el tercer elemento \texttt{<li>} .}
+    \item \$('p:nth(1)') \textit{: selecciona el segundo elemento \texttt{<p>} .}
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Mayor que,  Menor que, Primero, Ultimo} % (fold)
+\begin{itemize}
+    \item Mayor que :gt(n) \textit{Todos los elementos con un indice mayor que N}
+
+        \textbf{Ejemplo}
+        \begin{itemize}
+            \item \$('li:gt(1)') \textit{: selecciona todos los elementos
+        encontrados por \texttt{<li>} a parir del segundo.}
+        \end{itemize}
+    \item Menor que :lt(n) \textit{Todos los elementos con un indice menor que N}
+
+        \textbf{Ejemplo}
+        \begin{itemize}
+            \item \$('li:lt(3)') \textit{: selecciona todos los elementos
+            encontrados por \texttt{<li>} anteriores del tercero,  en otras palabras los dos primeros.}
+        \end{itemize}
+    \item Primero :first \textit{La primera instancia de un elemento}
+
+        \textbf{Ejemplo}
+        \begin{itemize}
+            \item \$('a:first') \textit{: selecciona el primer elemento \texttt{<a>}.}
+        \end{itemize}
+    \item Ultimo :last \textit{La ultima instancia de un elemento}
+
+        \textbf{Ejemplo}
+        \begin{itemize}
+            \item \$('\#container .myclass:last') \textit{: selecciona el último elemento con una clase \texttt{myclass} y es descendiente de un
+        elemento con \texttt{id="container"}.}
+        \end{itemize}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]{Padre,  Que Contiene, Visible, Oculto} % (fold)
+\begin{itemize}
+    \item Padre :parent.
+    
+    \textit{Todos los elementos que son padres de otro elemento.}
+    
+    \textbf{Ejemplo}
+        \begin{itemize}
+            \item \$('td:parent') \textit{: selecciona todos los elementos encontrados por \texttt{<td>} que son padres de otro elemento.}
+        \end{itemize}
+
+    \item Que Contiene :contains(text).
+    
+    \textit{Todos los elementos que contienen el texto especificado.}
+    
+    \textbf{Ejemplo}
+        \begin{itemize}
+            \item \$('li:contains(second)') \textit{: selecciona todos los
+            elementos encontrados por \texttt{<li>} que son contienen el texto
+            second.}
+        \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Padre,  Que Contiene, Visible, Oculto} % (fold)
+\begin{itemize}
+    \item Visible :visible.
+    
+    \textit{Todos los elementos que son Visibles.}
+
+    \textbf{Ejemplo}
+        \begin{itemize}
+            \item \$('td:visible') \textit{: selecciona todos los elementos
+            encontrados por \texttt{<td>} que son visibles.}
+        \end{itemize}
+
+    \item Oculto :hidden.
+    
+    \textit{Todos los elementos que son ocultos.}
+    
+    \textbf{Ejemplo}
+        \begin{itemize}
+            \item \$('input:hidden') \textit{: selecciona todos los elementos
+            encontrados por \texttt{<input>} que están ocultos.}
+        \end{itemize}
+\end{itemize}
+\end{frame}
+
+\section{Recorrido de los métodos DOM}
+
+\subsection{La fábrica de funciones JQuery} % (fold)
+
+\begin{frame}[fragile]{La fábrica de funciones JQuery} % (fold)
+
+\textbf{Ejemplo}
+\begin{itemize}
+    \item \$('') \textit{: .}
+\end{itemize}
+\end{frame}
+
+\subsection{\$()} % (fold)
+
+\begin{frame}[fragile]{Parámetros (primera versión)} % (fold)
+
+\textbf{Ejemplo}
+\begin{itemize}
+    \item \$('') \textit{: .}
+\end{itemize}
+\end{frame}
+
 \end{document}
