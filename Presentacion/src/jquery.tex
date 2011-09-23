@@ -298,4 +298,106 @@ id="\/inner"\/>} y
 </div>
 \end{lstlisting}
 \end{frame}
+
+
+\begin{frame}[fragile]{Hijo: E>F} % (fold)
+Todos los elementos encontrados por F que son hijos de un elemento acompañado
+por E.
+\textbf{Ejemplo}
+\begin{itemize}
+    \item \$('li>ul') \textit{: selecciona todos los elementos que comienzan
+    por \texttt{<ul>} que son hijo de un elemento acompañado por \texttt{<li>}}
+    \item \$('p>code') \textit{: selecciona todos los elementos encontrados por
+    \texttt{<code>} que son hijos de un elemento acompañado por \texttt{<p>}}
+\end{itemize}
+El combinador de hijo puede ser pensado de una forma mas especifica para
+obtener los descendientes seleccionando sólo el descendiente de primer nivel,
+en el siguiente código HTML el elemento \texttt{<img> es un hijo único del
+elemento \texttt{<span>}}
+\begin{lstlisting}
+<div id="container">
+  <div id="inner">
+    <p>
+      <span><img src="example.jpg" alt="" /></span>
+    </p>
+  </div>
+</div>
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Hermanos adyacentes: E + F} % (fold)
+Todos los elementos encontrados por F seguidos inmediatamente por un Elemento E
+y que tengan un mismo padre.
+\textbf{Ejemplo}
+\begin{itemize}
+    \item \$('ul + p') \textit{: selecciona todos los elementos por
+    \texttt{<p>} que están inmediatamente después de un elemento \texttt{<ul>}.}
+    \item \$('strong + em') \textit{: selecciona todos los elementos
+    encontrados por \texttt{<em>} que están después de un elemento
+    \texttt{<strong>}.}
+\end{itemize}
+Un punto importante a considerar tanto con el combinar \texttt{+} como con el
+\texttt{~} es que solo seleccionan los hermanos.
+\begin{lstlisting}
+<div id="container">
+  <ul>
+    <li></li>
+    <li></li>
+  </ul>
+    <p>
+      <img />
+    </p>
+</div>
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Hermanos adyacentes: E + F} % (fold)
+Del ejemplo anterior:
+\begin{itemize}
+    \item \$('ul + p') \textit{: selecciona \texttt{<p>} ya que esta
+    inmediatamente después de \texttt{<ul>} y los dos elementos comparten el
+    mismo padre \texttt{<div id="\/container"\/>}.}
+    \item \$('ul + img') \textit{: no selecciona nada porque \texttt{<ul>} es
+    un nivel mas alto que \texttt{<img>} en el árbol DOM.}
+    \item \$('li + img') \textit{: no selecciona nada porque \texttt{<li>} y
+    \texttt{<img>} estan en el mismo nivel en el árbol DOM.}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Hermanos en General: E ~ F} % (fold)
+Todos los elementos encontrados por F que están después de un elemento E y
+tienen el mismo padre.
+\begin{itemize}
+    \item \$('p ~ ul') \textit{: selecciona todos los elementos encontrados por
+    \texttt{<ul>} que están después de un elemento \texttt{<p>}.}
+    \item \$('code ~ code') \textit{: selecciona todos los elementos encontrados
+    por \texttt{<code>} después de \texttt{<code>}.}
+\end{itemize}
+La diferencia ente el combinador \texttt{+} y el \texttt{~} es el alcance.
+mientras que el combinador \texttt{+} alcanza los elementos inmediatamente
+siguientes el combinador \texttt{~} se extiende a todos los elementos de un
+mismo nivel.
+\begin{lstlisting}
+  <ul>
+    <li class="first"></li>
+    <li class="second"></li>
+    <li class ="third"></li>
+  </ul>
+  <ul>
+    <li class="fourth"></li>
+    <li class="fifth"></li>
+    <li class="sixth"></li>
+  </ul>
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Hermanos adyacentes: E + F} % (fold)
+Del ejemplo anterior:
+\begin{itemize}
+    \item \$('li.first ~ li') \textit{: selecciona \texttt{<li class="second"\/>}
+    and \texttt{<li class="third"\/>}.}
+    \item \$('li.first + li') \textit{: selecciona \texttt{<li class="second"\/>}.}
+\end{itemize}
+\end{frame}
+
 \end{document}
