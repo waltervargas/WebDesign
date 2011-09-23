@@ -367,6 +367,7 @@ Del ejemplo anterior:
 \begin{frame}[fragile]{Hermanos en General: E ~ F} % (fold)
 Todos los elementos encontrados por F que están después de un elemento E y
 tienen el mismo padre.
+\textbf{Ejemplo}
 \begin{itemize}
     \item \$('p ~ ul') \textit{: selecciona todos los elementos encontrados por
     \texttt{<ul>} que están después de un elemento \texttt{<p>}.}
@@ -397,6 +398,102 @@ Del ejemplo anterior:
     \item \$('li.first ~ li') \textit{: selecciona \texttt{<li class="second"\/>}
     and \texttt{<li class="third"\/>}.}
     \item \$('li.first + li') \textit{: selecciona \texttt{<li class="second"\/>}.}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Multiple Elementos: E, F, G} % (fold)
+Selecciona todas los elementos encontrados por el selector de expresiones E, F o G.
+\begin{itemize}
+    \item \$('code,  em,  strong') \textit{: selecciona todos los elementos
+    encontrados por \texttt{<code>} or \texttt{<em>} or \texttt{<strong>}.} 
+    \item \$('p strong, .myclass') \textit{: selecciona todos los elementos por
+    \texttt{<strong>} que son descendientes de un elemento encontrado
+    \texttt{<p>} y tienen una clase \texttt{.myclass}.}
+\end{itemize}
+El combinador coma \texttt{(,)} es eficiente para seleccionar elementos
+dispares.
+\end{frame}
+
+\begin{frame}[fragile]{Enésimo Hijo (:nth-child(n))} % (fold)
+Todos los elementos que son enésimos hijos de sus padres.
+\textbf{Ejemplo}
+\begin{itemize}
+    \item \$('li:nth-child(2)') \textit{: selecciona todos los elementos
+    encontrados por \texttt{<li>} que son segundo hijo del padre.}
+    \item \$('p:nth-child(5)') \textit{: selecciona todos los elementos
+    encontrados por \texttt{<p>} que son quinto hijo de su padre.}
+\end{itemize}
+\begin{lstlisting}
+  <div>
+    <h2></h2>
+    <p></p>
+    <h2></h2>
+    <p></p>
+    <p></p>
+  </div>
+\end{lstlisting}
+\begin{itemize}
+    \item \$('p:nth(1)') \textit{: selecciona el segundo \texttt{<p>} porque la
+    numeración para \texttt{:nth(n)} comienza en 0.} 
+    \item \$('p:nth-child(1)') \textit{: no selecciona nada porque el primer
+    elemento hijo del padre no es \texttt{<p>}.}
+    \item \$('p:nth(2)') \textit{: selecciona el primer \texttt{<p>} porque es
+    el segundo hijo del padre.}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Hijos} % (fold)
+\begin{itemize}
+    \item Primer Hijo (:first-child) \textit{: Todos los elementos que son
+    primer hijo de su padres.}
+
+\textbf{Ejemplo}
+\begin{itemize}
+    \item \$('li:first-child') \textit{: selecciona todos los elementos
+    encontrados por \texttt{<li>} que son el primer hijo del padre.} 
+\end{itemize}
+    \item Ultimo Hijo (:last-child) \textit{: Todos los elementos que son el último hijo del padre.}
+
+\textbf{Ejemplo}
+\begin{itemize}
+    \item \$('li:first-last') \textit{: selecciona todos los elementos
+    encontrados por \texttt{<li>} que son el último hijo del padre.} 
+\end{itemize}
+    \item Único Hijo (:only-child) \textit{: Todos los elementos que son único
+    hijo del padre.}
+
+\textbf{Ejemplo}
+\begin{itemize}
+    \item \$('li:first-last') \textit{: selecciona todos los elementos
+    encontrados por \texttt{<li>} que son único hijo del padre.} 
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Diversos Selectores} % (fold)
+\begin{itemize}
+    \item No (:not(s)) \textit{: Todos los elementos que no coinciden con el
+    selector \texttt{s}.}
+    
+    \textbf{Ejemplo}
+    \begin{itemize}
+        \item \$('li:not(.myclass)') \textit{: Selecciona todos los elemntos
+        encontrados por \texttt{<li>} que no tienen \texttt{class="myclass"}.}
+    \end{itemize}
+    \item Vacio (:empty) \textit{: Todos los elementos que no tienen hijos
+    (incluyendo los nodos de texto).}
+    
+    \textbf{Ejemplo}
+    \begin{itemize}
+        \item \$('p:empty') \textit{: Selecciona todos los elementos
+        encontrados por \texttt{<p>} que no tienen hijos.}
+    \end{itemize}
+    \item Universal (:*)\textit{: Todos los elementos.}
+    
+    \textbf{Ejemplo}
+    \begin{itemize}
+        \item \$('*') \textit{: Selecciona todos los elementos en el documento.}
+    \end{itemize}
 \end{itemize}
 \end{frame}
 
