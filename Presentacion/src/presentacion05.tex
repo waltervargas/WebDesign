@@ -1,0 +1,162 @@
+\input{preambulo.tex}
+
+% Titulo
+\title[WebDesign] {Diseño Web | Tecnologías Involucradas}
+\author[Walter Vargas]{ info@covetel.com.ve \inst{1}}
+\subtitle{Capa de Presentación CSS}
+\institute[covetel.com.ve]{ \inst{1} Cooperativa Venezolana de Tecnologías Libres R.S. }
+\date
+
+\begin{document}
+
+\begin{frame} % (fold)
+    \titlepage 
+\end{frame}
+
+\begin{frame} % (fold)
+    \tableofcontents
+\end{frame}
+
+\section{JavaScript}
+
+\subsection{Métodos de Implementación} % (fold)
+
+% subsection Métodos de Implementación (end)
+
+\begin{frame}[allowframebreaks, fragile]{Donde implementar JavaScript?} % (fold)
+
+    JavaScript puede implementarse en una sola página o en todo un sitio. Como
+    en CSS, puede incrustarse en un documento o estar fuera del documento. Los
+    dos métodos se realizan con el elemento \texttt{<script>}
+    Comenzaremos con el ejemplo incrustado:
+
+        \begin{lstlisting}
+<script type="text/javascript">
+// <![CDATA[
+...aqui va el codigo JavaScript
+  // ]]>
+</script>
+        \end{lstlisting}
+
+    Como se observa, el elemento \texttt{<script>} establece el bloque como si
+    fuera un script y se ajusta al tipo MIME (utilizando el atributo
+    \texttt{<type>}) a \texttt{<text/javascript>} (también se aceptaría
+    \texttt{<text/ecmascript>}).
+
+    El  \texttt{<// <!CDATA [ y // ]]>}) quizás le resulten familiares, ya que
+    son una de las formas de designar comentarios en JavaScript e indican al
+    script anterior que ignore el resto de cada una de esas líneas.
+
+    Externalizar el JavaScript es el método preferido de implementación, porque
+    permite incluir las mismas funciones en varias páginas (y puede evitar
+    declarar el contenido como \texttt{<CDATA>}). Así se internaliza un
+    script:
+
+    \begin{lstlisting}
+
+<script type="text/javascript" src="my_script.js"></script>
+
+    \end{lstlisting}
+
+    En este ejemplo se ha movido el script JavaScript a un archivo
+    independiente y simplemente se ha incluido en el documento presentando su
+    nombre de archivo como fuente \texttt{<src>} del elemento
+    \texttt{<script>}. Puede incluir todos los scripts que quiera de este
+    modo e incluso combinar este método con scripts incrustados como en este
+    ejemplo de Google Analytics (www.google.com/analytics/):
+
+    \begin{lstlisting}
+
+<script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script>
+<script type="text/javascript">
+  // <![CDATA[
+_uact = "UA-XXXXXXX-X";
+urchinTracker();
+  //   ]]>
+</script>
+    \end{lstlisting}
+
+    El script externo reside en el servidor Google y es el mismo para todos los
+    que utilicen Google Analytics. El script incrustado estable la cuenta de
+    usuario (la variable \texttt{<_uacct>} y activa la función
+    \texttt{<urchinTracker>}.
+
+    Se recomienda mantener los elementos \texttt{<script>} en un área común en
+    la cabecera \texttt{<head>} de las páginas \texttt{<(X)HTML>}. Es
+    fundamentalmente por razones de convención y para facilitar el
+    mantenimiento.
+
+\end{frame}
+
+\begin{frame}[allowframebreaks, fragile]{Sintaxis de JavaScript} % (fold)
+
+% subsection Sintaxis de JavaScript(end)
+
+\begin{frame}{fragile}
+    
+    Cada script consiste en una serie de declaraciones. Las declaraciones
+    pueden terminarse con un salto de línea:
+
+    \begin{lstlisting}
+primera declaracion
+segunda declaracion
+    \end{lstlisting}
+
+    ó con un punto y coma \texttt{<(;)>}
+
+    \begin{lstlisting}
+primera declaracion; segunda declaracion;
+    \end{lstlisting}
+
+    Para facilitar la legibilidad, y para evitar problemas de terminación de
+    declaraciones, se recomienda usar ambos:
+
+    \begin{lstlisting}
+primera declaracion;
+segunda declaracion;
+    \end{lstlisting}
+
+\end{frame}
+
+\begin{frame}{fragile}[Comentarios] % (fold)
+
+    JavaScript permite hacer comentarios en su código, pero de formas algo
+    distintas. El primer estilo de comentario utiliza dos barras inclinadas:
+
+    \begin{lstlisting}
+// esto es un comentario
+    \end{lstlisting}
+
+    Este tipo de comentario hace que el intérprete ignore el resto de la línea.
+    El segundo método le permite comentar a través de varias líneas:
+   
+   \begin{lstlisting}
+/* esto es un comentario
+   multilínea o de bloque */
+    \end{lstlisting}
+
+    Además de utilizar comentarios para dejar notas, son también muy útiles en
+    los procesos de corrección de errores: puede dejar una línea o sección del
+    código de un comentario para averiguar si es la que está dando el error.
+
+\end{frame}
+
+\begin{frame}{fragile}[Variables]
+    
+    En JavaScript se tiene que declarar las variables antes de comenzar a
+    usarlas. Aunque es muy flexible para nombrar y declarar variables.
+    Las variables se declaran utilizando la palabra clave reservada
+    \texttt{<var>}. Los nombres de variable pueden tener cualquier extensión y
+    contener números letras y ciertos caracteres no alfanuméricos. Conviene
+    evitar los operadores aritméticos  \texttt{<+,-,*,/>} y comillas
+    \texttt{<' y ">}. También tendrá que procurar que los nombres de variable
+    no creen conflictos con palabras clases reservadas de JavaScript \texttt{<>} 
+
+
+\end{frame}
+
+\end{frame}
+
+% subsection Diseños en dos columnas (end)
+
+\end{document}
