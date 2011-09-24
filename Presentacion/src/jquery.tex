@@ -1045,4 +1045,52 @@ El método .removeAttr utiliza la función JavaScript removeAttribute, pero tien
 la ventaja de poder ser encadenado a una expresión de selección JQuery.
 \end{frame}
 
+\subsection{Propiedades de Estilo} % (fold)
+
+\begin{frame}[fragile]{.css()} % (fold)
+\begin{itemize}
+    \item .css(property,  value) \textit{ property= un nombre de propiedad CSS.    
+    value= un valor establecido para la propiedad.}
+    \item .css(map) \textit{ map= un mapa de pares propiedad-valor para
+    establecer.}
+    \item .css(property, function) \textit{ function= una función que devuelve el valor a establecer.}
+\end{itemize}
+\begin{lstlisting}
+$('div.example').css('width', function(index) {
+  return index * 50;
+});
+\end{lstlisting}
+Este ejemplo establece la anchura de los elementos que coinciden con lo valores
+progresivamente más grandes.
+\end{frame}
+
+\begin{frame}[fragile]{Dimensiones} % (fold)
+\begin{itemize}
+    \item .height(value) \textit{ value= un entero representando el número de pixeles o un entero junto con una unidad opcional de medida.}
+    \item .width(value) \textit{ value= un entero representado el número de o un entero junto con una unidad opcional de medida.}
+\end{itemize}
+\end{frame}
+
+\subsection{Atributos de Clase} % (fold)
+
+\begin{frame}[fragile]{Atributos de Clase} % (fold)
+\begin{itemize}
+    \item .addClass(class) \textit{ class= uno o mas nombres de clase que se agrega al atributo de clase o a cada elemento emparejado.}
+    \item .removeClass(class) \textit{ class= uno o mas nombres de clase que se eliminan del atributo de clase o de cada elemento emparejado.}
+\begin{lstlisting}
+$('p').removeClass('myclass noclass').addClass('yourclass')
+\end{lstlisting}
+Aquí las clases \texttt{myclass} y \texttt{noclass} se eliminan de los
+párrafos, mientras \texttt{yourclass} es añadida.
+    \item .toggleClass(class) \textit{ function= un nombre de clase para ser activado en el atributo de clase de cada elemento en el conjunto combinado.}
+\begin{lstlisting}
+<div class="tumble">Some text</div>
+
+$('div.tumble').toggleClass('bounce')
+
+<div class="tumble bounce">Some text</div>
+\end{lstlisting}
+\end{itemize}
+\end{frame}
+
 \end{document}
