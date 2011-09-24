@@ -765,24 +765,238 @@ Todos los elementos con un indice extraño:
 
 \section{Recorrido de los métodos DOM}
 
-\subsection{La fábrica de funciones JQuery} % (fold)
+\subsection{\$()} % (fold)
 
-\begin{frame}[fragile]{La fábrica de funciones JQuery} % (fold)
-
+\begin{frame}[fragile]{\$()} % (fold)
+Crea un nuevo objeto JQuery encontrando elementos en el DOM.
+\begin{lstlisting}
+  $(selector[,  context])
+  $(element)
+  $(elementArray)
+  $(Object)
+  $(html)
+\end{lstlisting}
 \textbf{Ejemplo}
 \begin{itemize}
-    \item \$('') \textit{: .}
+    \item selector \textit{: una cadena que contiene una expresión de selección.}
+    \item context \textit{: parte del árbol DOM dentro de la cual se busca.}
+    \item element \textit{: un elemento DOM para envolver en un objeto JQuery.}
+    \item elementArray \textit{: un array contiene un conjunto de elementos DOM
+    para envolver en un objeto JQuery.}
+    \item object \textit{: un objeto JQuery existente para clonar.}
+    \item html \textit{: una cadena que contiene un código HTMK que describen
+    el nuevo elemento DOM a crear.}
 \end{itemize}
 \end{frame}
 
-\subsection{\$()} % (fold)
+\subsection{Métodos de Filtrado} % (fold)
 
-\begin{frame}[fragile]{Parámetros (primera versión)} % (fold)
-
+\begin{frame}[fragile]{.filter()} % (fold)
+Reduce el conjunto de elementos encontrados con aquellos que coincidan con el
+selector.
 \textbf{Ejemplo}
 \begin{itemize}
-    \item \$('') \textit{: .}
+    \item \$('.filter(selector)') \textit{ selector= una cadena que contiene
+    una expresión de selección que coincida con los elementos.}
+    \item \$('.filter(function)') \textit{ function= una función usada como
+    prueba para cada elemento del conjunto.}
 \end{itemize}
+\begin{lstlisting}
+  <ul>
+    <li><strong> list </strong> item 1 - one strong </li>
+    <li><strong> list </strong> item <strong>2</strong> -
+    two<span>strongs</span></li>
+    <li>list item 3</li>
+    <li>list item 4</li>
+    <li>list item 5</li>
+    <li>list item 6</li>
+  </ul>    
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{.filter()} % (fold)
+\begin{lstlisting}
+$('li').filter(function(index) {
+  return \$("strong",  this).length ==1;
+})
+\end{lstlisting}
+El resultado de esta expresión será el primer elemento de la lista, ya que
+contiene exactamente una etiqueta \texttt{<strong>} dentro de la función de
+filtro. \texttt{this} se refiere a cada elemento DOM a su vez. El parámetro
+pasado a la función nos dice que es el elemento DOM a ser comparado.
+\end{frame}
+
+\begin{frame}[fragile]{.not()} % (fold)
+\begin{itemize}
+    \item .not(selector) \textit{ selector= una cadena que contiene una
+    expresión para que coincida con los elementos.}
+    \item .not(elements) \textit{ elements= uno o mas elementos DOM para
+    eliminar del conjunto.}
+\end{itemize}
+\begin{lstlisting}
+<ul>
+  <li>list item 1</li>
+  <li>list item 2</li>
+  <li id="notli">list item 3</li>
+  <li>list item 4</li>
+  <li>list item 5</li>
+</ul>
+\end{lstlisting}
+\begin{lstlisting}
+$('li').not(document.getElementById('notli'))
+\end{lstlisting}
+Esta expresión obtiene un objeto JQuery con los items 1, 2, 4 y 5.
+\end{frame}
+
+\subsection{Recorrido del árbol de métodos} % (fold)
+
+\begin{frame}[fragile]{.find()} % (fold)
+\begin{itemize}
+    \item .find(selector) \textit{ selector= un string que contiene un selector
+    que coincida con los elementos.}
+\end{itemize}
+\begin{lstlisting}
+<ul class="level-1">
+  <li class="item-i">I</li>
+  <li class="item-ii">II
+    <ul class="level-2">
+      <li class="item-a">A</li>
+      <li class="item-b">B
+        <ul class="level-3">
+          <li class="item-1">1</li>
+          <li class="item-2">2</li>
+          <li class="item-3">3</li>
+        </ul>
+      </li>
+      <li class="item-c">C</li>
+    </ul>
+  </li>
+  <li class="item-iii">III</li>
+</ul>
+\end{lstlisting}
+\begin{lstlisting}
+$('li.item-ii').find('li')
+\end{lstlisting}
+El resultado de esta llamada es un objeto JQuery que contiene los items A, B, 1, 2, 3 and C.\\[0.9cm] 
+\end{frame}
+
+\begin{frame}[fragile]{.children()} % (fold)
+\begin{itemize}
+    \item .children([selector]) \textit{ selector=un string que contiene un selector que coincida con los elementos }
+\end{itemize}
+\begin{lstlisting}
+<ul class="level-1">
+  <li class="item-i">I</li>
+  <li class="item-ii">II
+    <ul class="level-2">
+      <li class="item-a">A</li>
+      <li class="item-b">B
+        <ul class="level-3">
+          <li class="item-1">1</li>
+          <li class="item-2">2</li>
+          <li class="item-3">3</li>
+        </ul>
+      </li>
+      <li class="item-c">C</li>
+    </ul>
+  </li>
+  <li class="item-iii">III</li>
+</ul>
+\end{lstlisting}
+\begin{lstlisting}
+$('ul.level-2').children()
+\end{lstlisting}
+El resultado de esta llamada es un objeto JQuery que contiene los items A, B y C.
+\end{frame}
+
+\begin{frame}[fragile]{.parents()} % (fold)
+\begin{itemize}
+    \item .parents([selector]) \textit{ selector=un string que contiene un selector que coincida con los elementos }
+\end{itemize}
+\begin{lstlisting}
+<ul class="level-1">
+  <li class="item-i">I</li>
+  <li class="item-ii">II
+    <ul class="level-2">
+      <li class="item-a">A</li>
+      <li class="item-b">B
+        <ul class="level-3">
+          <li class="item-1">1</li>
+          <li class="item-2">2</li>
+          <li class="item-3">3</li>
+        </ul>
+      </li>
+      <li class="item-c">C</li>
+    </ul>
+  </li>
+  <li class="item-iii">III</li>
+</ul>
+\end{lstlisting}
+\begin{lstlisting}
+$('li.item-a').parents()
+\end{lstlisting}
+El resultado de esta llamada es un objeto JQuery que contiene la lista level-2,
+item ii y la lista level-1.
+\end{frame}
+
+\begin{frame}[fragile]{.prev()} % (fold)
+\begin{itemize}
+    \item .prev([selector]) \textit{ selector=un string que contiene un selector que coincida con los elementos }
+\end{itemize}
+\begin{lstlisting}
+<ul>
+  <li>list item 1</li>
+  <li>list item 2</li>
+  <li class="third-item">list item 3</li>
+  <li>list item 4</li>
+  <li>list item 5</li>
+</ul>
+\end{lstlisting}
+\begin{lstlisting}
+$('li.third-item').prev()
+\end{lstlisting}
+El resultado de esta llamada es un objeto JQuery que contiene item 2.
+\end{frame}
+
+\subsection{Varios métodos de recorrido} % (fold)
+
+\begin{frame}[fragile]{.add()} % (fold)
+\begin{itemize}
+    \item .add(selector) \textit{ selector=un string que contiene un selector que coincida con los elementos adicionales}
+    \item .add(elements) \textit{ elements=uno o mas elementos para agregar al
+    conjunto de elementos encontrados.}
+    \item .add(html) \textit{ html=un fragmento HTML para agregar al conjunto
+    de elementos encontrados.}
+\end{itemize}
+\begin{lstlisting}
+<ul>
+  <li>list item 1</li>
+  <li>list item 2</li>
+  <li>list item 3</li>
+</ul>
+<p>un parrafo</p>
+\end{lstlisting}
+\begin{lstlisting}
+$('li').add('p')
+\end{lstlisting}
+El resultado de esta llamada es un objeto JQuery que contiene los 4 elementos.
+\end{frame}
+
+\begin{frame}[fragile]{.is)} % (fold)
+\begin{itemize}
+    \item .is(selector) \textit{ selector=un string que contiene un selector que coincida con los elementos adicionales}
+\end{itemize}
+\begin{lstlisting}
+<ul>
+  <li>list item 1</li>
+  <li>list item 2</li>
+  <li>list item 3</li>
+</ul>
+\end{lstlisting}
+\begin{lstlisting}
+$('li').add('p')
+\end{lstlisting}
+El resultado de esta llamada es un objeto JQuery que contiene los 4 elementos.
 \end{frame}
 
 \end{document}
