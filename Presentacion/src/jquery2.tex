@@ -1,0 +1,419 @@
+\input{preambulo.tex}
+
+% Titulo
+\title[WebDesign] {Diseño Web | Tecnologías Involucradas}
+\author[Walter Vargas]{ info@covetel.com.ve \inst{1}}
+\subtitle{JQuery}
+\institute[covetel.com.ve]{ \inst{1} Cooperativa Venezolana de Tecnologías Libres R.S. }
+\date
+
+\begin{document}
+
+\begin{frame} % (fold)
+    \titlepage 
+\end{frame}
+
+\begin{frame} % (fold)
+    \tableofcontents
+\end{frame}
+
+\section{Métodos de manipulación DOM} % (fold)
+
+\subsection{Atributos Generales} % (fold)
+
+\begin{frame}[fragile]{.attr(attribute)} % (fold)
+\begin{itemize}
+    \item .attr(attribute) \textit{ attribute= el nombre del atributo a
+    obtener.}
+    \item .attr(attribute,  value) \textit{ value= un valor establecido para el atributo.}
+    \item .attr(map) \textit{ map= un mapa de pares atributo-valor para
+    establecer.}
+    \item .attr(attribute,  function) \textit{ function= una función que
+    devuelve el valor a establecer.}
+\end{itemize}
+\begin{lstlisting}
+<img id="greatphoto" src="brush-seller.jpg" alt="brush seller" />
+\end{lstlisting}
+\begin{lstlisting}
+$('#greatphoto').attr('alt', 'Beijing Brush Seller');
+\end{lstlisting}
+Cambia el atributo alt señalando el atributo alt y estableciendo el nuevo valor después de la coma dentro del paréntesis.
+\end{frame}
+
+\begin{frame}[fragile]{.attr()} % (fold)
+Mediante el uso de una función para establecer los atributos, podemos concatenar un nuevo valor con un valor existente.
+\begin{lstlisting}
+$('#greatphoto').attr({alt: function() {return 'Beijing' + this.alt}, title:
+function() {return 'Beijing' + this.alt + ' - photo by Kelly Clarck'}});
+\end{lstlisting}
+El uso de una función puede ser aún mas útil cuando se aplican los atributos de
+elementos multiples.
+\end{frame}
+
+\begin{frame}[fragile]{.removeAttr()} % (fold)
+\begin{itemize}
+    \item .removeAttr(attribute) \textit{ attribute= un atributo.}
+\end{itemize}
+El método .removeAttr utiliza la función JavaScript removeAttribute, pero tiene
+la ventaja de poder ser encadenado a una expresión de selección JQuery.
+\end{frame}
+
+\subsection{Propiedades de Estilo} % (fold)
+
+\begin{frame}[fragile]{.css()} % (fold)
+\begin{itemize}
+    \item .css(property,  value) \textit{ property= un nombre de propiedad CSS.    
+    value= un valor establecido para la propiedad.}
+    \item .css(map) \textit{ map= un mapa de pares propiedad-valor para
+    establecer.}
+    \item .css(property, function) \textit{ function= una función que devuelve el valor a establecer.}
+\end{itemize}
+\begin{lstlisting}
+$('div.example').css('width', function(index) {
+  return index * 50;
+});
+\end{lstlisting}
+Este ejemplo establece la anchura de los elementos que coinciden con lo valores
+progresivamente más grandes.
+\end{frame}
+
+\begin{frame}[fragile]{Dimensiones} % (fold)
+\begin{itemize}
+    \item .height(value) \textit{ value= un entero representando el número de pixeles o un entero junto con una unidad opcional de medida.}
+    \item .width(value) \textit{ value= un entero representado el número de o un entero junto con una unidad opcional de medida.}
+\end{itemize}
+\end{frame}
+
+\subsection{Atributos de Clase} % (fold)
+
+\begin{frame}[fragile]{Atributos de Clase} % (fold)
+\begin{itemize}
+    \item .addClass(class) \textit{ class= uno o mas nombres de clase que se agrega al atributo de clase o a cada elemento emparejado.}
+    \item .removeClass(class) \textit{ class= uno o mas nombres de clase que se eliminan del atributo de clase o de cada elemento emparejado.}
+\begin{lstlisting}
+$('p').removeClass('myclass noclass').addClass('yourclass')
+\end{lstlisting}
+Aquí las clases \texttt{myclass} y \texttt{noclass} se eliminan de los
+párrafos, mientras \texttt{yourclass} es añadida.
+    \item .toggleClass(class) \textit{ function= un nombre de clase para ser activado en el atributo de clase de cada elemento en el conjunto combinado.}
+\begin{lstlisting}
+<div class="tumble">Some text</div>
+\end{lstlisting}
+\begin{lstlisting}
+$('div.tumble').toggleClass('bounce')
+\end{lstlisting}
+\begin{lstlisting}
+<div class="tumble bounce">Some text</div>
+\end{lstlisting}
+\end{itemize}
+\end{frame}
+
+\subsection{Reemplazo DOM} % (fold)
+
+\begin{frame}[fragile]{Reemplazo DOM} % (fold)
+\begin{itemize}
+    \item .html(HTML) \textit{ HTML= una cadena HTML para establecer el contenido de cada elemento encontrado.} 
+    \begin{lstlisting}
+    <div class="demo-container">
+      <div class"demo-box">Demostration Box</div>
+    </div>
+    \end{lstlisting}
+    \begin{lstlisting}
+    $('div.demo-container'>.html('<p>All new content. <em>You bet!</em></p>'));
+    \end{lstlisting}
+    \begin{lstlisting}
+    <div class="demo-container">
+      <p>All new content. <em>You Bet!</em></p>
+      <div class"demo-box">Demostration Box</div>
+    </div>
+    \end{lstlisting}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Métodos} % (fold)
+\begin{itemize}
+    \item .text(text) \textit{ text= una cadena de texto para establecer el contenido de cada elemento encontrado.} 
+    \begin{lstlisting}
+    <div class="demo-container">
+      <div class"demo-box">Demostration Box</div>
+      <ul>
+        <li>list item1</li>
+        <li>list <strong>item</strong>2</li>
+      </ul>
+    </div>
+    \end{lstlisting}
+    \begin{lstlisting}
+    $('div.demo-container').text('<p>This is a Test.</p>')
+    \end{lstlisting}
+    \begin{lstlisting}
+    <div class="demo-container">
+     <p>This is a test</p>
+    </div>
+    \end{lstlisting}
+    \item .val(value) \textit{ value= una cadena de texto para establecer el valor de la propiedad de cada elemento encontrado.}
+\end{itemize}
+\end{frame}
+
+\subsection{Inserciones DOM, Dentro} % (fold)
+
+\begin{frame}[fragile]{Inserciones DOM, Dentro} % (fold)
+\begin{itemize}
+    \item .prepend(content) \textit{ content= un elemento, cadena HTML u objeto
+    jQuery para insertar al principio del elemento establecido encontrado.} 
+    \begin{lstlisting}
+    <div class="demo-container">
+      <div class"demo-box">Demostration Box</div>
+    </div>
+    \end{lstlisting}
+    \begin{lstlisting}
+    $('div.demo-box').prepend('<div class="insertion">This text
+    was<strong>inserted</strong></div>');
+    \end{lstlisting}
+    \item .prependTo(target) \textit{ target= un selector, elemento, cadena
+    HTML, cadena u objeto JQuery; el conjunto combinado de elementos se
+    insertan al principio del elemento especificado por este parámetro.} 
+    \begin{lstlisting}
+    <div class="demo-container">
+      <div class"demo-box">Demostration Box</div>
+    </div>
+    \end{lstlisting}
+    \begin{lstlisting}
+    $('<div class="insertion">This text was<strong>inserted</strong></div>').prependTo('div.demo-box');
+    \end{lstlisting}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Inserciones DOM, Dentro} % (fold)
+\begin{itemize}
+    \item .append(content) \textit{ content= un elemento, cadena HTML u objeto
+    jQuery para insertar al final del elemento establecido encontrado.} 
+    \begin{lstlisting}
+    <div class="demo-container">
+      <div class"demo-box">Demostration Box</div>
+    </div>
+    \end{lstlisting}
+    \begin{lstlisting}
+    $('div.demo-box').append('<div class="insertion">This text
+    was<strong>inserted</strong></div>');
+    \end{lstlisting}
+    \item .appendTo(target) \textit{ target= un selector, elemento, cadena
+    HTML, cadena u objeto JQuery; el conjunto combinado de elementos se
+    insertan al final del elemento especificado por este parámetro.} 
+    \begin{lstlisting}
+    <div class="demo-container">
+      <div class"demo-box">Demostration Box</div>
+    </div>
+    \end{lstlisting}
+    \begin{lstlisting}
+    $('<div class="insertion">This text was<strong>inserted</strong></div>').appendTo('div.demo-box');
+    \end{lstlisting}
+\end{itemize}
+\end{frame}
+
+\subsection{Inserciones DOM, Fuera} % (fold)
+
+\begin{frame}[fragile]{Inserciones DOM, Fuera} % (fold)
+\begin{itemize}
+    \item .insertBefore(content) \textit{ content= un selector o elemento que
+    se insertara antes del conjunto encontrado.} 
+    \begin{lstlisting}
+    <div class="demo-container">
+      <div class"demo-box">Demostration Box</div>
+    </div>
+    \end{lstlisting}
+    \begin{lstlisting}
+    $('<div class="insertion">This text was<strong>inserted</strong></div>').insertBefore('div.demo-box');
+    \end{lstlisting}
+    \item .insertAfter(content) \textit{ content= un selector o elemento que se insertara después del conjunto encontrado.} 
+    \begin{lstlisting}
+    <div class="demo-container">
+      <div class"demo-box">Demostration Box</div>
+    </div>
+    \end{lstlisting}
+    \begin{lstlisting}
+    $('<div class="insertion">This text was<strong>inserted</strong></div>').insertAfter('div.demo-box');
+    \end{lstlisting}
+\end{itemize}
+\end{frame}
+
+\subsection{DOM Copia, DOM Eliminación} % (fold)
+
+\begin{frame}[fragile]{DOM Copia, DOM Eliminación} % (fold)
+\begin{itemize}
+    \item .clone([deep]) \textit{ deep= Un booleano. Predeterminado verdadero. Si se establece falso el método copia sólo los elementos coincidentes con si mismo con exclusión de cualquier hijo o descendiente.} 
+    \begin{lstlisting}
+    <div class="demo-container">
+      <div class"demo-box">Demostration Box</div>
+    </div>
+    \end{lstlisting}
+    \begin{lstlisting}
+    $('div.demo-box:last').clone().insertAfter('div.demo-box:last');
+    \end{lstlisting}
+    \item .remove([selector]) \textit{ selector= Un selector que filtra los elementos encontrado a ser removidos.} 
+    \begin{lstlisting}
+    <div class="demo-container">
+      <div class"demo-box">Demostration Box</div>
+    </div>
+    \end{lstlisting}
+    \begin{lstlisting}
+    $('div.demo-box').remove('#temporary-demo-box')
+    \end{lstlisting}
+\end{itemize}
+\end{frame}
+
+\section{Métodos de Evento} % (fold)
+
+\subsection{Controlador adjunto de eventos} % (fold)
+
+\begin{frame}[fragile]{Controlador adjunto de eventos} % (fold)
+\begin{itemize}
+    \item .bind(evenType[, eventData, handler]) \textit{ evenType= Una cadena que contiene un tipo de evento JavaScript, sea click o submit.}
+
+    \textit{ eventData= Un mapa de datos que pueden ser pasados por un   manejador de eventos.}
+
+    \textit{ handler= Una función que se ejecutará cada vez que se dispare el
+    evento.}
+    \begin{lstlisting}
+    $('#foo').bind('click', function() {
+      alert('User clicked on foo');
+    });
+    \end{lstlisting}
+    \item .trigger(evenType [, extraParameters]) \textit{ extraParameters= Un array de parámetros adicionales pasados a través de un manejador de eventos.} 
+    \begin{lstlisting}
+    $('#foo').bind('click' function() {
+      alert($(this).text());
+    });
+    $('#foo').trigger('click');
+    \end{lstlisting}
+\end{itemize}
+\end{frame}
+
+\subsection{Cargar de Documentos} % (fold)
+
+\begin{frame}[fragile]{Carga de Documentos} % (fold)
+\begin{itemize}
+    \item .load(handler) \textit{ handler= Una función que se ejecutará cada vez que se dispare el evento.}
+    \begin{lstlisting}
+      <img class="target" src="hat.gif" width="80" height="54" />
+    \end{lstlisting}
+    \begin{lstlisting}
+    $('.target').load(function() {
+      $(this).log('Load event was triggered.');
+    });
+    \end{lstlisting}
+    \item .error(handler) \textit{ handler= Una función que se ejecutará cada vez que se dispare el evento.} 
+    \begin{lstlisting}
+      <img class="target" src="missing.gif" width="80" height="54" />
+    \end{lstlisting}
+    \begin{lstlisting}
+    $('.target').error(function() {
+      $(this).log('Error event was triggered.');
+    });
+    \end{lstlisting}
+\end{itemize}
+\end{frame}
+
+\subsection{Eventos del Mouse} % (fold)
+
+\begin{frame}[fragile]{Eventos del Mouse} % (fold)
+\begin{itemize}
+    \item .click(handler) \textit{ handler= Una función que se ejecutará cada vez que se dispare el evento.}
+    \begin{lstlisting}
+    $('.target').click(function() {
+      $(this).log('Click event was triggered.');
+    });
+    \end{lstlisting}
+    \item .mouseover(handler) \textit{ handler= Una función que se ejecutará cada vez que se dispare el evento.} 
+    \begin{lstlisting}
+    $('.target').mouseover(function() {
+      $(this).log('Mouseover event was triggered.');
+    });
+    \end{lstlisting}
+    \item .hover(handlerIn, handlerOut) \textit{ handlerIn= Una función que se
+    ejecutará cuando el puntero del mouse entra en el elemento.} 
+
+    \textit{ handlerOut= Una función que se ejecutará cuando el puntero del mouse sale del elemento.} 
+    \begin{lstlisting}
+    $('.target').hover(function() {
+      $(this).log('Hover event was triggered entering');
+    }function() {
+      $(this).log('Hover event was triggered leaving');
+    });
+    \end{lstlisting}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Eventos del Mouse} % (fold)
+\begin{itemize}
+    \item .mousemove(). 
+    \item .dblclick(). 
+    \item .mousemove(). 
+    \item .toggle(). 
+    \item .mouseup(.) 
+    \item .mousedown().
+\end{itemize}
+\end{frame}
+
+\subsection{Eventos del Formulario} % (fold)
+
+\begin{frame}[fragile]{Eventos del Formulario} % (fold)
+\begin{itemize}
+    \item .focus(handler) \textit{ handler= Una función que se ejecutará cada vez que se dispare el evento.}
+    \begin{lstlisting}
+    $('.target').focus(function() {
+      $(this).log('Focus event was triggered.');
+    });
+    \end{lstlisting}
+    \item .blur().
+    \item .change().
+    \item .select().
+    \item .submit(handler) \textit{ handler= Una función que se ejecutará cada vez que se dispare el evento.} 
+    \begin{lstlisting}
+    <form class="target" action="foo.html">
+      <input type="text" /><input type="submit" value="Go" />
+    </form>
+    <div class="trigger button">Button</div>
+    \end{lstlisting}
+    \begin{lstlisting}
+    $('.trigger').click(function() {
+      $('.target').submit();
+    });
+    \end{lstlisting}
+\end{itemize}
+\end{frame}
+
+\subsection{Eventos del Teclado} % (fold)
+
+\begin{frame}[fragile]{Eventos del Teclado} % (fold)
+\begin{itemize}
+    \item .keypress(handler) \textit{ handler= Una función que se ejecutará cada vez que se dispare el evento.}
+    \begin{lstlisting}
+    $('.target').keypress(function() {
+      $(this).log('Keypress event was triggered.');
+    });
+    \end{lstlisting}
+    \item .keydown().
+    \item .keyup().
+\end{itemize}
+\end{frame}
+
+\subsection{Eventos del Navegador} % (fold)
+
+\begin{frame}[fragile]{Eventos del Navegador} % (fold)
+\begin{itemize}
+    \item .resize(handler) \textit{ handler= Una función que se ejecutará cada vez que se dispare el evento.}
+    \begin{lstlisting}
+    $(window).resize(function() {
+      $(this).log('Resize event was triggered.');
+    });
+    \end{lstlisting}
+    \item .scroll(handler) \textit{ handler= Una función que se ejecutará cada vez que se dispare el evento.} 
+    \begin{lstlisting}
+    $('.trigger').click(function() {
+      $('.target').scroll();
+    });
+    \end{lstlisting}
+\end{itemize}
+\end{frame}
+
+\end{document}
