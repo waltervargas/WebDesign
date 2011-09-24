@@ -906,7 +906,7 @@ El resultado de esta llamada es un objeto JQuery que contiene los items A, B, 1,
 \begin{lstlisting}
 $('ul.level-2').children()
 \end{lstlisting}
-El resultado de esta llamada es un objeto JQuery que contiene los items A, B y C.
+El resultado de esta llamada es un objeto JQuery que contiene los items A, B y C. \\[0.9cm]
 \end{frame}
 
 \begin{frame}[fragile]{.parents()} % (fold)
@@ -935,8 +935,7 @@ El resultado de esta llamada es un objeto JQuery que contiene los items A, B y C
 \begin{lstlisting}
 $('li.item-a').parents()
 \end{lstlisting}
-El resultado de esta llamada es un objeto JQuery que contiene la lista level-2,
-item ii y la lista level-1.
+El resultado de esta llamada es un objeto JQuery que contiene la lista level-2, item ii y la lista level-1.\\[0.9cm]
 \end{frame}
 
 \begin{frame}[fragile]{.prev()} % (fold)
@@ -982,7 +981,7 @@ $('li').add('p')
 El resultado de esta llamada es un objeto JQuery que contiene los 4 elementos.
 \end{frame}
 
-\begin{frame}[fragile]{.is)} % (fold)
+\begin{frame}[fragile]{.is()} % (fold)
 \begin{itemize}
     \item .is(selector) \textit{ selector=un string que contiene un selector que coincida con los elementos adicionales}
 \end{itemize}
@@ -994,9 +993,56 @@ El resultado de esta llamada es un objeto JQuery que contiene los 4 elementos.
 </ul>
 \end{lstlisting}
 \begin{lstlisting}
-$('li').add('p')
+$('ul').click(function(event) {
+  if ($(event.target).is('li') ) {
+    $(even.target).remove();
+  }
+});
 \end{lstlisting}
-El resultado de esta llamada es un objeto JQuery que contiene los 4 elementos.
+Ahora cuando el usuario presione click en la palabra list en el primer item o
+donde sea en el tercer item, el elemento que hace click en la lista se
+eliminara del documento.
+\end{frame}
+
+\section{Métodos de manipulación DOM} % (fold)
+
+\subsection{Atributos Generales} % (fold)
+
+\begin{frame}[fragile]{.attr(attribute)} % (fold)
+\begin{itemize}
+    \item .attr(attribute) \textit{ attribute= el nombre del atributo a
+    obtener.}
+    \item .attr(attribute,  value) \textit{ value= un valor establecido para el atributo.}
+    \item .attr(map) \textit{ map= un mapa de pares atributo-valor para
+    establecer.}
+    \item .attr(attribute,  function) \textit{ function= una función que
+    devuelve el valor a establecer.}
+\end{itemize}
+\begin{lstlisting}
+<img id="greatphoto" src="brush-seller.jpg" alt="brush seller" />
+\end{lstlisting}
+\begin{lstlisting}
+$('#greatphoto').attr('alt', 'Beijing Brush Seller');
+\end{lstlisting}
+Cambia el atributo alt señalando el atributo alt y estableciendo el nuevo valor después de la coma dentro del paréntesis.
+\end{frame}
+
+\begin{frame}[fragile]{.attr()} % (fold)
+Mediante el uso de una función para establecer los atributos, podemos concatenar un nuevo valor con un valor existente.
+\begin{lstlisting}
+$('#greatphoto').attr({alt: function() {return 'Beijing' + this.alt}, title:
+function() {return 'Beijing' + this.alt + ' - photo by Kelly Clarck'}});
+\end{lstlisting}
+El uso de una función puede ser aún mas útil cuando se aplican los atributos de
+elementos multiples.
+\end{frame}
+
+\begin{frame}[fragile]{.removeAttr()} % (fold)
+\begin{itemize}
+    \item .removeAttr(attribute) \textit{ attribute= un atributo.}
+\end{itemize}
+El método .removeAttr utiliza la función JavaScript removeAttribute, pero tiene
+la ventaja de poder ser encadenado a una expresión de selección JQuery.
 \end{frame}
 
 \end{document}
