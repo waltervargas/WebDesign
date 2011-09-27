@@ -210,4 +210,59 @@
 \end{itemize}
 \end{frame}
 
+\section{Otros Métodos} % (fold)
+
+\subsection{Otros Métodos} % (fold)
+
+\begin{frame}[fragile]{Métodos de Codificación y decodificación base-64} % (fold)
+
+\begin{itemize}
+\item .atob() \textit{Método que decodifica una cadena codificada en base-64.}
+
+\item .btoa() \textit{Método para codificar una cadena en base-64. Este método utiliza los caracteres A-Z,  a-z, 0-9, +, / y = para la codificación de una cadena.}
+\end{itemize}
+
+\textbf{Ejemplo}
+\begin{lstlisting}
+<html>
+<head>
+    <script type="text/javascript">
+        function EncodeDecode () {
+            input = document.getElementById ("myInput");
+
+            encodedData = window.btoa (input.value);
+            alert ("encoded data: " + encodedData);
+
+            decodedData = window.atob (encodedData);
+            alert ("decoded data: " + decodedData);
+        }
+    </script>
+</head>
+<body>
+    <input type="text" id="myInput" value="The text to encode"/>
+    <button onclick="EncodeDecode ();">Encode in base-64!</button>
+</body>
+</html>
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{JSON.parse} % (fold)
+Método para convertir un array en Objeto.
+\begin{itemize}
+\item Usando JavaScript
+\textbf{Ejemplo}
+\begin{lstlisting}
+var JsonString = '[{"name": "Jhon", "apellido":"Smith"}]';
+var JsonObjects = JSON.parse(JsonString);
+alert(JsonObjects);
+\end{lstlisting}
+\item Usando JQuery
+\textbf{Ejemplo}
+\begin{lstlisting}
+var obj = jQuery.parseJSON('{"name": "Jhon", "apellido":"Smith"}');
+alert(obj.name === "Jhon");
+\end{lstlisting}
+\end{itemize}
+\end{frame}
+
 \end{document}
