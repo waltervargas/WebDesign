@@ -295,17 +295,6 @@ Esto produce la siguiente estructura de datos (siempre que el navegador es compa
 \end{lstlisting}
 \end{frame}
 
-\begin{frame}[fragile]{Callback} % (fold)
-Enlaza una función que se ejecuta cuando el DOM ha terminado de cargar.
-\textbf{Ejemplo}
-\begin{lstlisting}
- $(function(){ // Document is ready }); 
-\end{lstlisting}
-\begin{lstlisting}
- jQuery(function($) { // Your code using failsafe $ alias here... }); 
-\end{lstlisting}
-\end{frame}
-
 \begin{frame}[fragile]{Llamadas Asíncronas} % (fold)
 \begin{itemize}
 \item jQuery.ajax() \textit{ : Realizar una solicitud asíncrona HTTP (Ajax).}
@@ -334,5 +323,18 @@ $.ajax({
   }
 });
 \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Callbacks de .ajax()} % (fold)
+Estos son los ganchos de devolución de llamada proporcionada por \$.ajax() :
+\begin{itemize}
+\item beforeSend \textit{ : este recibe el objeto jqXHR y las opciones de mapeo
+con parámetros.} 
+\item error \textit { : recibe una cadena que indica el tipo de error y un objeto de excepción en su caso.}
+\item dataFiler \textit{ : se invoca inmediatamente después de recibir la respuesta correcta de los datos.}
+\item success \textit{ : se ejecuta si la solicitud se realiza correctamente.}
+\item complete \textit{ : se ejecuta cuando la solicitud termina, ya sea en el
+fracaso o éxito.}
+\end{itemize}
 \end{frame}
 \end{document}
