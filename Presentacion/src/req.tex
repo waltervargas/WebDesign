@@ -1,0 +1,338 @@
+\input{preambulo.tex}
+
+% Titulo
+\title[WebDesign] {Diseño Web | Tecnologías Involucradas}
+\author[Walter Vargas]{ info@covetel.com.ve \inst{1}}
+\subtitle{Requerimientos Participantes del Curso}
+\institute[covetel.com.ve]{ \inst{1} Cooperativa Venezolana de Tecnologías Libres R.S. }
+\date
+
+\begin{document}
+
+\begin{frame} % (fold)
+    \titlepage 
+\end{frame}
+
+\begin{frame} % (fold)
+    \tableofcontents
+\end{frame}
+
+\section{Requerimientos Participantes del Curso} % (fold)
+
+\subsection{Diferencia entre .attr() y .prop()} % (fold)
+
+\begin{frame}[fragile]{Diferencia entre .attr y .prop()} % (fold)
+En la versión 1.6 de JQuery se han dividido los métodos para el manejo de
+atributos y propiedades DOM.
+\begin{itemize}
+\item Atributos DOM: \textit{representan el estado de la información DOM una vez recuperados del Documento.}
+
+\textbf{Ejemplo}
+
+\begin{lstlisting}
+<input type="text" value="abc">
+\end{lstlisting}
+
+\item Propiedades DOM: \textit{representan el estado dinámico del documento.
+.prop() selecciona u obtiene las propiedades de los elementos DOM.} 
+
+\textbf{Ejemplo}
+
+Si un usuario hace click en un elemento de entrada y define .prop("value") como abcdef .attr("value") seguirá siendo abc. 
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Diferencia entre .attr y .prop()} % (fold)
+En la mayoría de los casos,  el navegador trata el valor del atributo como el valor inicial,  pero los atributos booleanos como el checked o disabled tienen una semántica inusual.
+
+\textbf{Ejemplo}
+
+Considere la etiqueta:
+\begin{lstlisting}
+<input type="checkbox" checked>
+\end{lstlisting}
+La presencia del atributo checked significa que la propiedad DOM .checked es verdadera, a pesar que el atributo no tiene valor. En el código anterior el valor del atributo checked es una cadena vacía pero el valor de la propiedad checked es verdadero.
+
+Antes de JQuery 1.6 .attr("checked") devolvía el valor de la propiedad booleana
+(true) pero a partir de JQuery 1.6 devuelve el valor real del atributo (una
+cadena vacía), que no cambia cuando el usuario hace click en la casilla de verificación para cambiar su estado.
+\end{frame}
+
+\begin{frame}[fragile]{Método .noConflict()} % (fold)
+Muchas bibliotecas JavaScript usan \texttt{\$} función o nombre de variable,
+como lo hace JQuery. \texttt{\$} es solo un alias para JQuery, por lo que toda
+la funcionalidad está disponible sin necesidad de utilizar \texttt{\$}. Si
+tenemos que usar otra librería de JavaScript junto con Jquery podemos devolver el control de \texttt{\$} a la biblioteca JavaScript usando el método
+.noConflict():
+
+\textbf{Ejemplo}
+
+\begin{lstlisting}
+ <script type="text/javascript" src="other_lib.js"> </ script>
+ <script type="text/javascript" src="jquery.js"> </ script>
+ <script type="text/javascript">
+   . $ NoConflict ();
+   jQuery (document). ready (function ($) {
+   //El codigo que utiliza $ jQuery puede seguir aqui.
+   });
+   //El codigo que utiliza otras bibliotecas $ puede seguir aqui.
+ </script>
+\end{lstlisting}
+
+\begin{lstlisting}
+jQuery.noConflict();
+//Algo con jQuery
+jQuery("div p").hide();
+//Algo con otra libreria $()
+$("content").style.display = 'none';
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Manejo de Objetos, Interacción de Array con JQuery} % (fold)
+\begin{itemize}
+\item .each() \textit{ : método de iteracción genérico, que puede ser usado para recorrer sin problemas los objetos y las matrices. Las matrices y los objetos de matriz, como una propiedad de longitud.}
+
+\textbf{Ejemplo}
+
+\begin{lstlisting}
+<body>
+  <div id="one"></div>
+  <div id="two"></div>
+  <div id="three"></div>
+  <div id="four"></div>
+  <div id="five"></div>
+<script>
+    var arr = [ "one", "two", "three", "four", "five" ];
+    var obj = { one:1, two:2, three:3, four:4, five:5 };
+
+    jQuery.each(arr, function() {
+      $("#" + this).text("Mine is " + this + ".");
+       return (this != "three"); // will stop running after "three"
+   });
+
+    jQuery.each(obj, function(i, val) {
+      $("#" + i).append(document.createTextNode(" - " + val));
+    });
+</script>
+</body>
+\end{lstlisting}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Manejo de Objetos, Interacción de Array con JQuery} % (fold)
+\begin{itemize}
+\item .map() \textit{Traduce todos los elementos de una matriz o un objeto a
+un nuevo array de items.}
+
+\textbf{Ejemplo}
+
+\begin{lstlisting}
+<body>
+  <div></div>
+  <p></p>
+  <span></span>
+<script>
+    var arr = [ "a", "b", "c", "d", "e" ];
+    $("div").text(arr.join(", "));
+    arr = jQuery.map(arr, function(n, i){
+      return (n.toUpperCase() + i);
+    });
+    $("p").text(arr.join(", "));
+    arr = jQuery.map(arr, function (a) { 
+      return a + a; 
+    });
+    $("span").text(arr.join(", "));
+</script>
+</body>
+\end{lstlisting}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Creación de Plugins JQuery} % (fold)
+Para crear nuestro plugin, podemos extender de dos objetos:
+\begin{itemize}
+\item JQuery: que maneja la lógica interna de la librería.
+\item JQuery.fn: que maneja interacciones con los elementos visuales
+\end{itemize}
+En Función del tipo de plugin extenderemos de uno u otro objeto. Nuestro plugin debemos incluirlo en una librería JavaScript que deberia llamarse: jquery.myplugin.js, donde myplugin es el nombre de nuestro plugin.
+
+Creamos el objeto principal, sus metodos y propiedades
+
+\textbf{Ejemplo}
+
+\begin{lstlisting}
+    jQuery.comprobarAlert = function(message){    
+         alert(message);    
+    }
+
+    jQuery.fn.alerter = function(){
+    this.each( function(){
+        alert(this);
+    });
+    }
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Creación de Plugins JQuery} % (fold)
+Creamos un archivo HTML en el que vinculamos la librería JQuery y
+nuestro plugin y lo usamos.
+
+\begin{lstlisting}
+$(document).ready( function(){
+    $("#victima").alerter();
+});
+\end{lstlisting}
+
+Podemos extender la opciones del plugin. Como ejemplo añadimos al plugin de
+alerta la posibilidad de enviar una cadena adicional al comienzo y al final del mensaje, para esto hay dos opciones:
+\begin{itemize}
+\item La primera usar \texttt{JQuery.extend}: 'textit{ : una función de
+built-in de JQuery, pensada para proveer variables "default" modificadas por el usuario.}
+\begin{lstlisting}
+jQuery.comprobarAlert = function( mensaje, opciones_user ){
+
+    opciones_default = {
+        inicio_str : "Alerta: ",
+        final_str: " /fin "
+    }
+
+
+    opciones = jQuery.extend(opciones_default , opciones_user);
+    alert(opciones.inicio_str + mensaje + opciones.final_str);
+}
+\end{lstlisting}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Creación de Plugins JQuery} % (fold)
+\begin{itemize}
+\item la segunda es hacerlo sin ayuda de extend que puede ser mas entendible.
+\begin{lstlisting}
+jQuery.comprobarAlert = function( mensaje, opciones_user ){
+    if( opciones_user == undefined ){
+        opciones = ({
+            inicio_str : "Alerta: ",
+            final_str: " /fin "
+        });
+    }else{
+        opciones = opciones_user;
+    }
+    alert(opciones.inicio_str + mensaje + opciones.final_str);
+}
+\end{lstlisting}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Serialización de Arreglos y Objetos} % (fold)
+\begin{itemize}
+\item .param() \textit{ : crea una representación en serie de un array o un objeto, adecuado para usar en una cadena de consulta URL o solicitud Ajax.}
+\begin{lstlisting}
+var myObject = {
+  a: {
+    one: 1, 
+    two: 2, 
+    three: 3
+  }, 
+  b: [1,2,3]
+};
+var recursiveEncoded = $.param(myObject);
+var recursiveDecoded = decodeURIComponent($.param(myObject));
+
+alert(recursiveEncoded);
+alert(recursiveDecoded);
+\end{lstlisting}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Serialización de Arreglos y Objetos} % (fold)
+\begin{itemize}
+\item .serializeArray() \textit{Codifica un conjunto de elementos de formulario como una matriz de nombres y valores.}
+\begin{lstlisting}
+<form>
+  <div><input type="text" name="a" value="1" id="a" /></div>
+  <div><input type="text" name="b" value="2" id="b" /></div>
+  <div><input type="hidden" name="c" value="3" id="c" /></div>
+  <div>
+    <textarea name="d" rows="8" cols="40">4</textarea>
+  </div>
+  <div><select name="e">
+    <option value="5" selected="selected">5</option>
+    <option value="6">6</option>
+    <option value="7">7</option>
+  </select></div>
+  <div>
+    <input type="checkbox" name="f" value="8" id="f" />
+  </div>
+  <div>
+    <input type="submit" name="g" value="Submit" id="g" />
+  </div>
+</form>
+\end{lstlisting}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Serialización de Arreglos y Objetos} % (fold)
+\begin{lstlisting}
+<script>
+$('form').submit(function() {
+  console.log($(this).serializeArray());
+  return false;
+});
+</script>
+\end{lstlisting}
+Esto produce la siguiente estructura de datos (siempre que el navegador es compatible con console.log ):
+\begin{lstlisting}
+[
+   {
+     nombre: "a",
+     valor "1"
+   },
+   {
+     nombre: "b",
+     valor: "2"
+   }
+]
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Callback} % (fold)
+Enlaza una función que se ejecuta cuando el DOM ha terminado de cargar.
+\textbf{Ejemplo}
+\begin{lstlisting}
+ $(function(){ // Document is ready }); 
+\end{lstlisting}
+\begin{lstlisting}
+ jQuery(function($) { // Your code using failsafe $ alias here... }); 
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Llamadas Asíncronas} % (fold)
+\begin{itemize}
+\item jQuery.ajax() \textit{ : Realizar una solicitud asíncrona HTTP (Ajax).}
+\item jQuery.ajax(url, [settings]) 
+\begin{itemize}
+\item Url \textit{ : una cadena que contiene la URL a la que se envía la solicitud.}
+\item Settings \textit{ : un conjunto de pares llave/valor que configuran la
+petición Ajax. Todas las configuraciones son opcionales. Un defecto se puede
+configurar para cualquier opción con .ajaxSetup().}
+
+\textit{Ver \texttt{http://api.jquery.com/jQuery.ajax/jQuery-ajax-settings} para ver una lista completa de todos los ajustes.}
+\end{itemize}
+Por defecto el método \texttt{.ajax()} realiza todas las solicitudes de forma asincrónica (es decir, se establece en true por defecto). Si necesita solicitudes sincrónicas, establezca esta opción false .  
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Llamadas Asíncronas} % (fold)
+\textbf{Ejemplo}
+Recuperar la versión más reciente de una página HTML.
+\begin{lstlisting}
+$.ajax({
+  url: "test.html",
+  cache: false,
+  success: function(html){
+    $("#results").append(html);
+  }
+});
+\end{lstlisting}
+\end{frame}
+\end{document}
